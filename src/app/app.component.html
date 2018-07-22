@@ -1,0 +1,6 @@
+<app-header></app-header>
+<app-menu [ngClass]="{'open':isOpen()}"></app-menu>
+<div class="content " (window:resize)="setWidth() ">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

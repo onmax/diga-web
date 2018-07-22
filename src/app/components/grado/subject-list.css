@@ -1,0 +1,50 @@
+ul {
+  padding: 0;
+  list-style: none;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.subjects__groups {
+  padding-left: 15px;
+  margin-bottom: 15px;
+  height: 0;
+  visibility: hidden;
+  margin-top: -10px;
+  opacity: 0;
+  transition: .3s all cubic-bezier(0.175, 0.885, 0.32, 1.275)
+}
+
+.show {
+  height: inherit;
+  visibility: visible;
+  margin-top: 0;
+  opacity: 1;
+}
+
+.subject__info {
+  font-size: 14px;
+  display: flex;
+  align-items: baseline
+}
+
+.subject__info:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.subject__code {
+  font-size: 12px;
+  color: #203569;
+  font-weight: 700;
+}
+
+.subjects__groups {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.subjects__groups li:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

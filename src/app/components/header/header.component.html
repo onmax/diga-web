@@ -1,0 +1,11 @@
+<header *ngIf="getWidthStatus() === 'large'" class="pc">
+  <a routerLink="/">
+    <h1 translate>diga</h1>
+  </a>
+</header>
+<header *ngIf="getWidthStatus() !== 'large'" class="mobile">
+  <a (click)="closeMenu()" routerLink="/">
+    <h1>D.I.G.A.</h1>
+  </a>
+  <i class="material-icons" (click)="toggleMobileMenu()">menu</i>
+</header>

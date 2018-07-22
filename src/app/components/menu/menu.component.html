@@ -1,0 +1,64 @@
+<aside>
+  <div class="menu-header">
+    <div class="menu-header__logo" *ngIf="getWidthStatus() === 'large'"></div>
+    <div class="menu-header__links">
+      <a href="http://">ETSAM</a>
+      <a href="http://">UPM</a>
+    </div>
+  </div>
+  <nav>
+    <ul class="pages">
+      <li>
+        <span class="option" (click)="toggleSubmenu('staff')">Direccion</span>
+        <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('staff')}" id="staff">
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Direccion</li>
+          </a>
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Secreataria</li>
+          </a>
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Profesorado</li>
+          </a>
+        </ul>
+      </li>
+      <li>
+        <span class="option" (click)="toggleSubmenu('teaching')">Docencia</span>
+        <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('teaching')}" id="teaching">
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Grado</li>
+          </a>
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Posgrado</li>
+          </a>
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Memoria</li>
+          </a>
+        </ul>
+      </li>
+      <li>
+        <span class="option" (click)="toggleSubmenu('research')">Investigación</span>
+        <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('research')}" id="research">
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Grupos I+D+i</li>
+          </a>
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Grupos Innovación Docente</li>
+          </a>
+        </ul>
+      </li>
+      <li>
+        <span class="option" (click)="toggleSubmenu('explore')">Explorar</span>
+        <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('explore')}" id="explore">
+          <a (click)="closeMenu()" routerLink="/grado">
+            <li>Noticias. Eventos</li>
+          </a>
+        </ul>
+      </li>
+      <li>
+        <span class="option" (click)="switchLanguage()" translate>language</span>
+      </li>
+    </ul>
+  </nav>
+</aside>
+<div class="overlay-close" (click)="closeMenu()" *ngIf="getWidthStatus() !== 'large' && isOpen()"></div>

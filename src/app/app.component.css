@@ -1,0 +1,31 @@
+app-header {
+  grid-area: h
+}
+
+app-menu {
+  grid-area: m;
+}
+
+.content {
+  grid-area: c;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+app-footer {
+  grid-area: f
+}
+
+/*Mobile*/
+
+@media screen and (max-width:992px) {
+  app-menu {
+    position: fixed;
+    left: 100vw;
+    transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    top: var(--header-height);
+    height: calc(100vw - var(--header-height));
+  }
+  app-menu.open {
+    left: 20vw;
+  }
+}

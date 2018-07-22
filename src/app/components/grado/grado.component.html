@@ -1,0 +1,30 @@
+<main>
+  <section class="title">
+    <h2>Grado</h2>
+  </section>
+
+  <section class="semester">
+    <h4>1º cuatrimestre</h4>
+    <h6 class="course course-1">1º Curso</h6>
+    <h6 class="course course-4">4º Curso</h6>
+    <h6 class="course course-5">5º Curso</h6>
+    <div *ngFor="let column of columnsData" class="subjects {{column.name}-subjects">
+      <span>{{column.name}}</span>
+      <ul class="subjects__list" *ngFor="let subject of column.subjects">
+        <li>
+          <div class="subject__info" (click)="toggleGroups($event)">
+            <span class="subject__code">{{subject.code}}</span>
+            <span>-</span>
+            <span>{{subject.name}}</span>
+          </div>
+          <ul class="subjects__groups">
+            <li>Grupo 1</li>
+            <li>Grupo 2</li>
+            <li>Grupo 3</li>
+            <li>Grupo 4</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>

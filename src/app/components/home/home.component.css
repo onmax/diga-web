@@ -1,0 +1,64 @@
+.carousel {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  height: 305px;
+}
+
+.carousel .images {
+  display: flex;
+  flex-direction: row;
+  transition: .3s all cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.carousel .images img {
+  min-width: 600px;
+  object-fit: contain center center;
+}
+
+@media screen and (max-width:600px) {
+  .carousel {
+    width: 100vw;
+    height: inherit;
+  }
+  .carousel .images img {
+    min-width: 100vw;
+  }
+}
+
+.carousel i {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 75px;
+  cursor: pointer;
+  z-index: 10;
+  --black: rgba(0, 0, 0, .5);
+}
+
+.carousel i:hover {
+  --black: rgba(0, 0, 0, .7);
+}
+
+.control-left {
+  left: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, var(--black) 100%);
+}
+
+.control-right {
+  right: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, var(--black) 100%);
+}
+
+.description {
+  max-width: 400px;
+  text-align: justify;
+  margin: 0 auto;
+  margin-top: 25px;
+  padding: 0 25px;
+}

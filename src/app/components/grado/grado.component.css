@@ -1,0 +1,69 @@
+section.semester {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 26px auto auto;
+  grid-template-areas: "t t t t" "c1 c1 c4 c5" "s1 s2 s3 s4";
+  /*t:title, c: course(1,4,5), s:subject(1,2,3,4)*/
+}
+
+@media screen and (max-width: 992px) {
+  section.semester {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.semester h4 {
+  grid-area: t;
+  margin: 0;
+  background: #d4d4d4;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.course {
+  font-size: 15px;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.subjects {
+  padding-left: 15px;
+  text-align: center;
+}
+
+.course-1 {
+  grid-area: c1;
+  order: 1;
+}
+
+.course-4 {
+  grid-area: c4;
+  order: 4;
+}
+
+.course-5 {
+  grid-area: c5;
+  order: 6;
+}
+
+.basic-subjects {
+  grid-area: s1;
+  order: 2;
+}
+
+.diversifiable-subjects {
+  grid-area: s2;
+  order: 3;
+}
+
+.optional-subjects {
+  grid-area: s3;
+  order: 5;
+}
+
+.intensification-subjects {
+  grid-area: s4;
+  order: 7;
+}
