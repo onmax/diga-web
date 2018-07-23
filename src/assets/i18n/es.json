@@ -1,4 +1,37 @@
 {
   "diga": "Departamento de Ideación Gráfica Arquitectónica",
-  "language": "English"
+  "language": "English",
+  "grade": {
+    "semester": "Semestre",
+    "course": "Curso",
+    "basic": "Básicas",
+    "diversifiable": "Diversificables",
+    "optional": "Optativas",
+    "intensification": "Intensificación",
+    "subjects": {
+      "gda_1": "Geometría y Dibujo Arquitectónico 1",
+      "gda_2": "Geometría y Dibujo Arquitectónico 2",
+      "dai_1": "Dibujo, Análisis e Ideación 1",
+      "dai_2": "Dibujo, Análisis e Ideación 2",
+      "taller_experimental_1": "Taller Experimental 1",
+      "taller_experimental_2": "Taller Experimental 2",
+      "intensificacion": "Intesificación en ideación gráfica",
+      "diseno_grafico_1": "Diseño gráfico 1",
+      "diseno_grafico_2": "Diseño gráfico 2",
+      "infografia": "Infografía",
+      "arquitectura_luz_secuencia": "Arquitectura, luz, secuencia y color",
+      "maquetas_imagen": "Maquetas e imagen",
+      "imaginacion_arquitectonica": "Imaginación arquitectónica",
+      "especulaciones": "Especulaciones: acciones vinculadas al proyectar",
+      "historia_construccion": "Historia de la Construcción: Taller de cantería",
+      "dibujar_configurar": "Dibujar / Configurar: Pintura, escultura, arquitectura",
+      "construccion_espacio": "La Construcción del Espacio: una fenomenología de la mirada",
+      "biomimicry": "BIOMIMICRY, Naturaleza y Arquitectura. Green Buildings.",
+      "formatos_experimentales": "Formatos experimentales en comunicación audio/visual",
+      "arquitectura_paisaje": "Arquitectura y Paisaje: el dibujo de apuntes",
+      "dibujo_documentacion": "Dibujo y documentación de arquitectura, ciudad y paisaje.",
+      "patrimonio": "Patrimonio, forma y construcción",
+      "narrativa_lenguaje": "Narrativas y lenguajes híbridos para la Comunicación Arquitectónica"
+    }
+  }
 }

@@ -1,3 +1,7 @@
+export interface Semester {
+  name: string;
+  columns: Columns[];
+}
 export interface Columns {
   name: string;
   subjects: Subject[];
@@ -11,7 +15,4 @@ export interface Subject {
 export interface Groups {
   name: string;
   spreadsheetId: string;
-}
-export interface SpreadsheetData {
-  feed: object;
 }

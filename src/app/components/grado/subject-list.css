@@ -44,7 +44,7 @@ ul {
   cursor: pointer;
 }
 
-.subjects__groups li:hover {
+.subject__groups-hover:hover {
   cursor: pointer;
   text-decoration: underline;
 }
