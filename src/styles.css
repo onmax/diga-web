@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: 'Lato', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   z-index: 0;
+  position: relative;
 }
 
 :root {
@@ -12,14 +13,22 @@ body {
   --primary: #b71c1c;
   --primary-darker: #931616;
   --main-black: #212121;
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 app-root {
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: var(--header-height) 1fr var(--footer-height);
-  grid-template-areas: "m h" "m c" "f f";
+  grid-template-areas:
+    "m h"
+    "m c"
+    "f f";
   width: 100%;
+}
+
+app-menu {
+  z-index: 100;
 }
 
 main {
@@ -30,16 +39,17 @@ main {
   :root {
     --header-height: 40px;
   }
+
   app-root {
     display: inherit;
   }
+
   main {
     margin-top: calc(var(--header-height) + 25px);
   }
 }
 
 /*Titulos*/
-
 section.title {
   overflow: hidden;
 }

@@ -16,6 +16,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GradoComponent } from './components/grado/grado.component';
+import { SubjectComponent } from './components/subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { GradoComponent } from './components/grado/grado.component';
     MenuComponent,
     FooterComponent,
     HomeComponent,
-    GradoComponent
+    GradoComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { GradoComponent } from './components/grado/grado.component';
       }
     })
   ],
-  providers: [],
+  providers: [SubjectComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -6,7 +6,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  z-index: 10001;
+  z-index: 100;
 }
 
 footer p {
@@ -48,13 +48,16 @@ footer i {
   footer {
     flex-direction: column-reverse;
   }
+
   footer img {
     height: 50px;
     width: auto;
   }
+
   .direccion-geografica p {
     text-align: center;
   }
+
   .copyright {
     text-align: center;
     font-size: 10px;

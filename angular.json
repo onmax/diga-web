@@ -26,7 +26,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/direction-reveal.js",
               "node_modules/direction-reveal/scripts/direction-reveal.js"
             ]
           },

@@ -6,7 +6,7 @@ app-menu {
   grid-area: m;
 }
 
-.content {
+main {
   grid-area: c;
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
@@ -16,15 +16,15 @@ app-footer {
 }
 
 /*Mobile*/
-
 @media screen and (max-width:992px) {
   app-menu {
     position: fixed;
     left: 100vw;
-    transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: .3s all var(--transition);
     top: var(--header-height);
     height: calc(100vw - var(--header-height));
   }
+
   app-menu.open {
     left: 20vw;
   }

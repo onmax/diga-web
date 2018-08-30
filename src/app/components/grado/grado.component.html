@@ -17,8 +17,8 @@
     <h6 class="course course-5">5º
       <span translate>grade.course</span>
     </h6>
-    <div *ngFor="let column of semester.columns" class="subjects {{column.name | slice:6 }}-subjects">
-      <span translate>{{column.name}}</span>
+    <div *ngFor="let column of semester.columns" class="subjects {{ column.name }}-subjects">
+      <span translate>{{column.name === '' ? ('') : ('grade.' + column.name) }}</span>
       <ul class="subjects__list" *ngFor="let subject of column.subjects">
         <li>
           <div class="subject__info" (click)="toggleGroups($event, subject.spreadsheetId)">
@@ -32,5 +32,9 @@
         </li>
       </ul>
     </div>
+  </section>
+
+  <section>
+    <app-subject *ngIf="getNParams() === 4" [gradeData]="gradeData"></app-subject>
   </section>
 </main>

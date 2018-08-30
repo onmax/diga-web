@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-//components
+// components
 import { HomeComponent } from './components/home/home.component';
 import { GradoComponent } from './components/grado/grado.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'grado', component: GradoComponent },
+  { path: 'grado/:quarter/:type/:subject/:group', component: GradoComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

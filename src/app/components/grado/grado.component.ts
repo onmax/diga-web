@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Columns, Subject, Semester } from './grado.module';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -12,31 +13,36 @@ export class GradoComponent implements OnInit {
   private id_first_semester: string =
     '1hmXByLguRRq8_Mcq50YbTyp0WzwlIKmQ8uEVYluwIhI';
   private id_second_semester: string =
-    '1yIkWtotRawkWet4qBV2M0kDnnhO-2MWyrak7byj0BJc';
+    '1O_Q0U0rVeyEPVIcGaIdYPqpeNI-3j7ogfFwM4lMpPzo';
 
   gradeData: Semester[] = [];
   columnsData: Columns[] = [];
+  params: string[];
   constructor(
     private spreadsheet: SpreadsheetsService,
     private translateService: TranslateService,
-    private appService: AppService
+    private appService: AppService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     let columnsTitle = [
-      'grade.basic',
-      'grade.diversifiable',
-      'grade.optional',
-      'grade.intensification'
+      'basic',
+      'obligatory_diversifiable',
+      'optional',
+      'intensification'
     ];
     this.getSubjects(this.id_first_semester, '1', columnsTitle);
-    columnsTitle = [
-      'grade.basic',
-      '',
-      'grade.optional',
-      'grade.intensification'
-    ];
+    columnsTitle = ['basic', '', 'optional', 'intensification'];
     this.getSubjects(this.id_second_semester, '2', columnsTitle);
+    this.route.paramMap.subscribe(value => {
+      let data: any = value;
+      this.params = data.params;
+    }).unsubscribe;
+  }
+
+  getNParams() {
+    return Object.keys(this.params).length;
   }
 
   //Get all subjects from the spreadsheet and then push it to columnsData
@@ -47,20 +53,21 @@ export class GradoComponent implements OnInit {
       this.spreadsheet.getJSON(id, i).subscribe(
         value => {
           let data: any = value;
-          if (data.feed.entry.length !== undefined) {
+          if (data.feed.entry !== undefined) {
             data.feed.entry.map(e => {
               subjects.push({
                 code: e.gsx$codigo.$t,
-                name: e.gsx$asignatura.$t,
+                name: e.gsx$traduccionasignatura.$t,
                 spreadsheetId: e.gsx$spreadsheetid.$t
               });
             });
           } else {
-            console.log('empty');
+            //Column empty
           }
         },
         error => {
           console.log('Error');
+          console.log(error);
         }
       );
 
@@ -93,12 +100,12 @@ export class GradoComponent implements OnInit {
         value => {
           let data: any = value;
           data.feed.entry.map(e => {
-            console.log(e);
             if (e.gsx$grupos.$t) {
               let li = document.createElement('li');
               li.classList.add('subject__groups-hover');
               li.setAttribute('_ngcontent-c4', '');
-              if (e.gsx$codigo.$t) {
+
+              if (e.gsx$codigo !== undefined) {
                 let span = document.createElement('span');
                 span.classList.add('subject__code');
                 span.setAttribute('_ngcontent-c4', '');
