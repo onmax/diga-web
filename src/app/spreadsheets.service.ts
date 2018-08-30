@@ -7,7 +7,7 @@ export class SpreadsheetsService {
   constructor(private http: HttpClient) {}
 
   getJSON(id, n) {
-    return this.http.get(
+    return this.http.get<any>(
       `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`
     );
   }

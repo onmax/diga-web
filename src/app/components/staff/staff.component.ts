@@ -17,7 +17,7 @@ export class StaffComponent implements OnInit {
   ayudantes_doctores: Teacher[];
   asociados: Teacher[];
   tecnico_laboratorio: Teacher[];
-  fullList: Teacher[][];
+  fullList: Teacher[][] = [];
 
   constructor(private http: HttpClient) {}
 

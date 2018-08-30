@@ -5,7 +5,11 @@
 export const environment = {
   production: false,
   spreadsheets: {
-    teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg'
+    teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg',
+    subjects: {
+      first_cuarter: '1hmXByLguRRq8_Mcq50YbTyp0WzwlIKmQ8uEVYluwIhI',
+      second_cuarter: '1O_Q0U0rVeyEPVIcGaIdYPqpeNI-3j7ogfFwM4lMpPzo'
+    }
   }
 };
 
