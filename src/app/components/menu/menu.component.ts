@@ -15,7 +15,14 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const links = document.querySelectorAll('.submenu a');
+    links.forEach(a => {
+      a.addEventListener('click', () => {
+        this.closeMenu();
+      });
+    });
+  }
 
   getWidthStatus() {
     return this.appService.screenWidth;
@@ -32,11 +39,13 @@ export class MenuComponent implements OnInit {
   setSubmenus() {
     let url = this.router.url;
     url = url.substring(1);
-    if (url === 'home')
+    if (url === 'home') {
       this.submenuOptions = ['staff', 'teaching', 'research', 'explore'];
-    else if (['grado', 'posgrado', 'memoria'].includes(url))
+    } else if (['grado', 'posgrado', 'memoria'].includes(url)) {
       this.submenuOptions = ['teaching'];
-    else this.submenuOptions = [];
+    } else {
+      this.submenuOptions = [];
+    }
   }
   isOpen() {
     return this.appService.mobileMenu;
