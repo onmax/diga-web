@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 // Routing
 import { RoutingModule } from './routing.module';
@@ -34,6 +35,7 @@ import { StaffComponent } from './components/staff/staff.component';
     BrowserModule,
     RoutingModule,
     HttpClientModule,
+    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

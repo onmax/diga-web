@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  spreadsheets: {
+    teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg'
+  }
 };
 
 /*

@@ -1,9 +1,9 @@
-section.semester {
+.semester {
   margin-top: 25px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 26px auto auto;
-  grid-template-areas: "t t t t" "c1 c1 c4 c5" "s1 s2 s3 s4";
+  grid-template-areas: "t t t t""c1 c1 c4 c5""s1 s2 s3 s4";
   /*t:title, c: course(1,4,5), s:subject(1,2,3,4)*/
 }
 

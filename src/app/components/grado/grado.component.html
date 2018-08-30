@@ -1,40 +1,37 @@
-<main>
-  <section class="title">
-    <h2>Grado</h2>
-  </section>
+<h2 class="title">
+  <span>Grado</span>
+</h2>
+<section class="semester" *ngFor="let semester of gradeData">
+  <h4>
+    <span>{{semester.name}}º</span>
+    <span translate>grade.semester</span>
+  </h4>
+  <h6 class="course course-1">1º
+    <span translate>grade.course</span>
+  </h6>
+  <h6 class="course course-4">4º
+    <span translate>grade.course</span>
+  </h6>
+  <h6 class="course course-5">5º
+    <span translate>grade.course</span>
+  </h6>
+  <div *ngFor="let column of semester.columns" class="subjects {{ column.name }}-subjects">
+    <span translate>{{column.name === '' ? ('') : ('grade.' + column.name) }}</span>
+    <ul class="subjects__list" *ngFor="let subject of column.subjects">
+      <li>
+        <div class="subject__info" (click)="toggleGroups($event, subject.spreadsheetId)">
+          <span class="subject__code">{{subject.code}}</span>
+          <span>-</span>
+          <span translate>grade.subjects.{{subject.name}}</span>
+        </div>
+        <span style="display: none">Cargando</span>
+        <ul class="subjects__groups">
+        </ul>
+      </li>
+    </ul>
+  </div>
+</section>
 
-  <section class="semester" *ngFor="let semester of gradeData">
-    <h4>
-      <span>{{semester.name}}º</span>
-      <span translate>grade.semester</span>
-    </h4>
-    <h6 class="course course-1">1º
-      <span translate>grade.course</span>
-    </h6>
-    <h6 class="course course-4">4º
-      <span translate>grade.course</span>
-    </h6>
-    <h6 class="course course-5">5º
-      <span translate>grade.course</span>
-    </h6>
-    <div *ngFor="let column of semester.columns" class="subjects {{ column.name }}-subjects">
-      <span translate>{{column.name === '' ? ('') : ('grade.' + column.name) }}</span>
-      <ul class="subjects__list" *ngFor="let subject of column.subjects">
-        <li>
-          <div class="subject__info" (click)="toggleGroups($event, subject.spreadsheetId)">
-            <span class="subject__code">{{subject.code}}</span>
-            <span>-</span>
-            <span translate>grade.subjects.{{subject.name}}</span>
-          </div>
-          <span style="display: none">Cargando</span>
-          <ul class="subjects__groups">
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <app-subject *ngIf="getNParams() === 4" [gradeData]="gradeData"></app-subject>
-  </section>
-</main>
+<section>
+  <app-subject *ngIf="getNParams() === 4" [gradeData]="gradeData"></app-subject>
+</section>

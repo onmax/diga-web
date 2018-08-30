@@ -43,18 +43,15 @@ main {
   app-root {
     display: inherit;
   }
-
-  main {
-    margin-top: calc(var(--header-height) + 25px);
-  }
 }
 
 /*Titulos*/
-section.title {
+h2.title {
   overflow: hidden;
+  margin: 0;
 }
 
-section.title h2 {
+h2.title span {
   font-size: 17px;
   font-weight: 600;
   line-height: 1.2;
@@ -67,7 +64,7 @@ section.title h2 {
   padding-right: 6px;
 }
 
-section.title h2::after {
+h2.title span::after {
   content: '';
   position: absolute;
   bottom: 2px;
@@ -75,4 +72,10 @@ section.title h2::after {
   width: 100vw;
   height: 1px;
   background: #121212;
+}
+
+@media screen and (max-width:992px) {
+  h2.title {
+    margin-top: 40px;
+  }
 }
