@@ -3,7 +3,7 @@
 </h2>
 <section class="semester" *ngFor="let semester of gradeData">
   <h4>
-    <span>{{semester.name}}º</span>
+    <span>{{semester.semester}}º</span>
     <span translate>grade.semester</span>
   </h4>
   <h6 class="course course-1">1º
@@ -17,14 +17,16 @@
   </h6>
   <div *ngFor="let column of semester.columns" class="subjects {{ column.name }}-subjects">
     <span translate>{{column.name === '' ? ('') : ('grade.' + column.name) }}</span>
-    <ul class="subjects__list" *ngFor="let subject of column.subjects">
-      <li>
+    <ul>
+      <li class="subject" *ngFor="let subject of column.subjects">
         <div class="subject__info" (click)="toggleGroups($event, subject.spreadsheetId)">
           <span class="subject__code">{{subject.code}}</span>
           <span>-</span>
           <span translate>grade.subjects.{{subject.name}}</span>
         </div>
-        <span style="display: none">Cargando</span>
+        <div style="display: none">
+          <div class="loadingText" *ngFor="let i of [1,2,3,4]"></div>
+        </div>
         <ul class="subjects__groups">
         </ul>
       </li>

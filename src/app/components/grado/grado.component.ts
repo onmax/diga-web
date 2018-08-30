@@ -19,6 +19,8 @@ export class GradoComponent implements OnInit {
   gradeData: Semester[] = [];
   columnsData: Columns[] = [];
   params: string[];
+
+  currentElemsLoading: string[] = [];
   constructor(
     private spreadsheet: SpreadsheetsService,
     private translateService: TranslateService,
@@ -73,19 +75,21 @@ export class GradoComponent implements OnInit {
 
       this.columnsData.push({
         name: columnsTitle[i - 1],
-        subjects: subjects
+        subjects
       });
     }
     this.gradeData.push({
-      name: semester,
+      semester,
       columns: this.columnsData
     });
   }
 
-  toggleGroups(event: any, id: string) {
+  async toggleGroups(event: any, id: string) {
     const elem = event.target;
+
     // Selects the ul element for that target and get all CSS clasess
     const groups = elem.parentNode.parentNode.children[2];
+
     const classes = groups.className.split(' ');
 
     // If has show, we close it.
@@ -95,6 +99,10 @@ export class GradoComponent implements OnInit {
       // If it is closed but has already opened, then we add show class
       groups.classList.add('show');
     } else {
+      if (this.currentElemsLoading.includes(elem.parentNode.parentNode)) {
+        return;
+      }
+      this.currentElemsLoading.push(elem.parentNode.parentNode);
       // Get the data and create all necesary elements
       const loadingElem = elem.parentNode.parentNode.children[1];
       loadingElem.style.display = 'inherit';
@@ -103,37 +111,57 @@ export class GradoComponent implements OnInit {
           data.feed.entry.map(e => {
             if (e.gsx$grupos.$t) {
               const li = document.createElement('li');
-              li.classList.add('subject__groups-hover');
+              li.setAttribute('_ngcontent-c4', '');
               let span;
               if (e.gsx$codigo !== undefined) {
-                span = document.createElement('span');
-                span.classList.add('subject__code');
-                span.setAttribute('_ngcontent-c4', '');
-                span.innerHTML = e.gsx$codigo.$t + '-';
-                li.appendChild(span);
+                span = `
+                  <span _ngcontent-c4 class="subject__code">${
+                    e.gsx$codigo.$t
+                  }-</span>
+                `;
+                li.insertAdjacentHTML('beforeend', span);
               }
-              span = document.createElement('span');
+
               const text = this.translateService.translations[
                 this.appService.currentLang
               ].grade.subjects[e.gsx$grupos.$t];
 
-              span.innerHTML = text !== undefined ? text : e.gsx$grupos.$t;
-              li.appendChild(span);
+              span = `<span _ngcontent-c4>${
+                text !== undefined ? text : e.gsx$grupos.$t
+              }</span>`;
+
+              li.insertAdjacentHTML('beforeend', span);
               groups.appendChild(li);
+            } else {
+              const li = `<li _ngcontent-c4 class="subjects__error">No hay grupos disponibles.</li>`;
+              groups.insertAdjacentHTML('beforeend', li);
             }
           });
           loadingElem.style.display = 'none';
+          this.currentElemsLoading.splice(
+            this.currentElemsLoading.indexOf(elem.parentNode.parentNode),
+            1
+          );
         },
         error => {
           console.error(error);
 
-          const li = document.createElement('li');
-          li.innerHTML = 'No hay grupos disponibles.';
-          groups.appendChild(li);
           loadingElem.style.display = 'none';
+
+          const li = `<li _ngcontent-c4 class="subjects__error">¡Ha habido un error!.</li>`;
+
+          groups.insertAdjacentHTML('beforeend', li);
+          this.currentElemsLoading.splice(
+            this.currentElemsLoading.indexOf(elem.parentNode.parentNode),
+            1
+          );
         }
       );
       groups.classList.add('show');
     }
+  }
+
+  getRandomRows(): number[] {
+    return Array(Math.floor(Math.random() * 5) + 2);
   }
 }

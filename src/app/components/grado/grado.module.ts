@@ -1,5 +1,5 @@
 export interface Semester {
-  name: string;
+  semester: string;
   columns: Columns[];
 }
 export interface Columns {
