@@ -16,7 +16,7 @@ export class SpreadsheetsService {
   }
 
   getAllSubjects() {
-    const all: Quarter[] = null;
+    const all: Quarter[] = [];
     this.getJSON(environment.spreadsheets.subjects.all).subscribe(data => {
       let quarter: Quarter,
         lastQuarter: string,
@@ -26,6 +26,8 @@ export class SpreadsheetsService {
         lastSubject,
         groups: Groups[];
       data = data.feed.entry;
+      console.log(data);
+
       data.map(e => {
         if (e.gsx$quarter.$t !== lastQuarter) {
           lastQuarter = e.gsx$quarter.$t;
