@@ -1,1 +1,24 @@
-<h1>INFO</h1>
+<section class="subject" id="subjectInfo">
+  <div class="loading-grid" *ngIf="!commonData">
+    <div class="title loading"></div>
+    <div class="subtitle loading"></div>
+  </div>
+  <div *ngIf="commonData">
+    <h2 class="title">
+      {{commonData.name}}
+    </h2>
+    <h5 class="subtitle">
+      <span>
+        {{commonData.code}}
+      </span>
+      -
+      <span>
+        {{commonData.course}}
+      </span>
+    </h5>
+    <p class="description" *ngIf="commonData.description">
+      {{commonData.description}}
+    </p>
+  </div>
+
+</section>

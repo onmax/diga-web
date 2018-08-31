@@ -5,9 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class AppService {
-  mobileMenu: boolean = false;
-  screenWidth: string = '';
-  currentLang: string = 'es';
+  mobileMenu = false;
+  screenWidth = '';
+  currentLang = 'es';
   constructor(private translateService: TranslateService) {
     this.setWidth();
   }
@@ -27,8 +27,12 @@ export class AppService {
   }
 
   setWidth = () => {
-    if (window.innerWidth > 992) this.screenWidth = 'large';
-    else if (window.innerWidth > 502) this.screenWidth = 'medium';
-    else this.screenWidth = 'small';
+    if (window.innerWidth > 992) {
+      this.screenWidth = 'large';
+    } else if (window.innerWidth > 502) {
+      this.screenWidth = 'medium';
+    } else {
+      this.screenWidth = 'small';
+    }
   };
 }

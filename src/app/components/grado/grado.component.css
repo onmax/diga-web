@@ -67,3 +67,17 @@
   grid-area: s4;
   order: 7;
 }
+
+.loading {
+  height: 10px;
+  background: #c0c0c0;
+  margin: 5px 0;
+}
+
+.loading:nth-child(odd) {
+  width: 40%;
+}
+
+.loading:nth-child(even) {
+  width: 65%;
+}

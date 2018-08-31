@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Columns, Subject, Semester } from './grado.module';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
+import { Columns, Subject, Semester } from '../../models';
 
 import { environment } from '../../../environments/environment';
 @Component({
@@ -112,11 +112,12 @@ export class GradoComponent implements OnInit {
             if (e.gsx$grupos.$t) {
               const li = document.createElement('li');
               li.setAttribute('_ngcontent-c4', '');
+
               let span;
-              if (e.gsx$codigo !== undefined) {
+              if (e.gsx$codigoasignatura.$t !== '') {
                 span = `
                   <span _ngcontent-c4 class="subject__code">${
-                    e.gsx$codigo.$t
+                    e.gsx$codigoasignatura.$t
                   }-</span>
                 `;
                 li.insertAdjacentHTML('beforeend', span);
@@ -131,6 +132,9 @@ export class GradoComponent implements OnInit {
               }</span>`;
 
               li.insertAdjacentHTML('beforeend', span);
+              li.addEventListener('click', () => {
+                this.selectSubject(id, e.gsx$hojaexcel.$t);
+              });
               groups.appendChild(li);
             } else {
               const li = `<li _ngcontent-c4 class="subjects__error">No hay grupos disponibles.</li>`;
@@ -159,9 +163,5 @@ export class GradoComponent implements OnInit {
       );
       groups.classList.add('show');
     }
-  }
-
-  getRandomRows(): number[] {
-    return Array(Math.floor(Math.random() * 5) + 2);
   }
 }

@@ -24,7 +24,7 @@ app-root {
   grid-template-areas:
     "m h"
     "m c"
-    "f f";
+    "m f";
   width: 100%;
 }
 
@@ -79,18 +79,4 @@ h2.title span::after {
   h2.title {
     margin-top: 40px;
   }
-}
-
-.loadingText {
-  height: 10px;
-  background: #c0c0c0;
-  margin: 5px 0;
-}
-
-.loadingText:nth-child(odd) {
-  width: 40%;
-}
-
-.loadingText:nth-child(even) {
-  width: 65%;
 }

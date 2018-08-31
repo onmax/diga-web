@@ -2,14 +2,17 @@ aside {
   padding: 20px 25px;
   background: var(--primary);
   color: #fff;
-  height: calc(100vh - var(--header-height) - 40px);
+  height: 100%;
   z-index: 100;
   overflow: auto;
+  position: fixed;
+  max-width: 150px;
 }
 
 /*Mobile*/
 @media screen and (max-width:992px) {
   aside {
+    max-width: inherit;
     width: 80vw;
   }
 }

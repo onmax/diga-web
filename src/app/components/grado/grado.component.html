@@ -25,7 +25,7 @@
           <span translate>grade.subjects.{{subject.name}}</span>
         </div>
         <div style="display: none">
-          <div class="loadingText" *ngFor="let i of [1,2,3,4]"></div>
+          <div class="loading" *ngFor="let i of [1,2,3]"></div>
         </div>
         <ul class="subjects__groups">
         </ul>
@@ -34,6 +34,4 @@
   </div>
 </section>
 
-<section>
-  <app-subject *ngIf="getNParams() === 4" [gradeData]="gradeData"></app-subject>
-</section>
+<app-subject></app-subject>
