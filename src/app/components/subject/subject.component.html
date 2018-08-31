@@ -11,12 +11,13 @@
       <span>
         {{commonData.code}}
       </span>
-      -
-      <span>
-        {{commonData.course}}
+
+      <span *ngIf="commonData.course">
+        - {{commonData.course}}
       </span>
     </h5>
-    <p class="description" *ngIf="commonData.description">
+    <p class="
+        description" *ngIf="commonData.description">
       {{commonData.description}}
     </p>
   </div>

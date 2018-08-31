@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { Columns, Subject, Semester } from '../../models';
+import { Columns, Subject, Quarter } from '../../models';
 
 import { environment } from '../../../environments/environment';
 @Component({
@@ -16,7 +16,7 @@ export class GradoComponent implements OnInit {
   private id_first_semester = environment.spreadsheets.subjects.first_cuarter;
   private id_second_semester = environment.spreadsheets.subjects.second_cuarter;
 
-  gradeData: Semester[] = [];
+  gradeData: Quarter[] = [];
   columnsData: Columns[] = [];
   params: string[];
 
@@ -25,7 +25,8 @@ export class GradoComponent implements OnInit {
     private spreadsheet: SpreadsheetsService,
     private translateService: TranslateService,
     private appService: AppService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -49,7 +50,7 @@ export class GradoComponent implements OnInit {
   }
 
   // Get all subjects from the spreadsheet and then push it to columnsData
-  getSubjects(id: string, semester: string, columnsTitle: string[]) {
+  getSubjects(id: string, quarter: string, columnsTitle: string[]) {
     this.columnsData = [];
     for (let i = 1; i <= 4; i++) {
       const subjects: Subject[] = [];
@@ -79,12 +80,18 @@ export class GradoComponent implements OnInit {
       });
     }
     this.gradeData.push({
-      semester,
+      quarter,
       columns: this.columnsData
     });
   }
 
-  async toggleGroups(event: any, id: string) {
+  toggleGroups(
+    event: any,
+    id: string,
+    quarter: string,
+    type: string,
+    subject: string
+  ) {
     const elem = event.target;
 
     // Selects the ul element for that target and get all CSS clasess
@@ -133,7 +140,7 @@ export class GradoComponent implements OnInit {
 
               li.insertAdjacentHTML('beforeend', span);
               li.addEventListener('click', () => {
-                this.selectSubject(id, e.gsx$hojaexcel.$t);
+                this.selectSubject(quarter, type, subject, e.gsx$grupos.$t);
               });
               groups.appendChild(li);
             } else {
@@ -163,5 +170,34 @@ export class GradoComponent implements OnInit {
       );
       groups.classList.add('show');
     }
+  }
+  selectSubject(quarter: string, type: string, subject: string, group: string) {
+    switch (type) {
+      case 'basic':
+        type = 'basicas';
+        break;
+      case 'obligatory_diversifiable':
+        type = 'obligatorias_diversificables';
+        break;
+      case 'optional':
+        type = 'optativas';
+        break;
+      case 'intensification':
+        type = 'intensificacion';
+        break;
+    }
+    group = group
+      .replace(' ', '_')
+      .toLowerCase()
+      .trim();
+    console.log(`/cuatrimestre_${quarter}/${type}/${subject}/${group}`);
+
+    this.router.navigate([
+      'grado',
+      `cuatrimestre_${quarter}`,
+      type,
+      subject,
+      group
+    ]);
   }
 }

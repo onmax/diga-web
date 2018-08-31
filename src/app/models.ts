@@ -12,8 +12,8 @@ export interface SpreadsheetSubject {
   page: string;
   spreadsheetId: string;
 }
-export interface Semester {
-  semester: string;
+export interface Quarter {
+  quarter: string;
   columns: Columns[];
 }
 export interface Columns {

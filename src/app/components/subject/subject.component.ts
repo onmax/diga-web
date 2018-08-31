@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { SpreadsheetSubject, Semester, GeneralSubjectData } from '../../models';
+import { SpreadsheetSubject, Quarter, GeneralSubjectData } from '../../models';
 
 @Component({
   selector: 'app-subject',
@@ -13,7 +13,7 @@ export class SubjectComponent implements OnInit, OnChanges {
   spreadsheetSubject: SpreadsheetSubject;
   params: any;
   commonData: GeneralSubjectData;
-  subject: Semester[] = [];
+  subject: Quarter[] = [];
   constructor(
     private spreadsheetsService: SpreadsheetsService,
     private activatedRoute: ActivatedRoute
