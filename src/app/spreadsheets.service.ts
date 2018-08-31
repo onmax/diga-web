@@ -26,7 +26,6 @@ export class SpreadsheetsService {
         lastSubject,
         groups: Groups[];
       data = data.feed.entry;
-      console.log(data);
 
       data.map(e => {
         if (e.gsx$quarter.$t !== lastQuarter) {
@@ -47,18 +46,15 @@ export class SpreadsheetsService {
         }
         if (e.gsx$subject.$t !== lastSubject) {
           lastSubject = e.gsx$subject.$t;
-          if (e.gsx$subject.$t !== null) {
-            groups = [];
-          }
           subject = {
             name: lastSubject,
-            groups,
+            groups: [],
             spreadsheetId: e.gsx$id.$t,
             code: e.gsx$code.$t
           };
           type.subjects.push(subject);
         }
-        groups.push({
+        subject.groups.push({
           name: e.gsx$group.$t,
           page: e.gsx$page.$t
         });
