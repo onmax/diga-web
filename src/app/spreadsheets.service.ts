@@ -23,8 +23,7 @@ export class SpreadsheetsService {
         type: Type,
         lastType,
         subject: Subject,
-        lastSubject,
-        groups: Groups[];
+        lastSubject;
       data = data.feed.entry;
 
       data.map(e => {
