@@ -3,8 +3,8 @@
 </h2>
 <section class="semester" *ngFor="let quarter of gradeData">
   <h4>
-    <span>{{quarter.quarter}}º</span>
-    <span translate>grade.semester</span>
+    <span>{{quarter.quarter}}º </span>
+    <span translate>grade.quarter</span>
   </h4>
   <h6 class="course course-1">1º
     <span translate>grade.course</span>
@@ -15,19 +15,23 @@
   <h6 class="course course-5">5º
     <span translate>grade.course</span>
   </h6>
-  <div *ngFor="let column of quarter.columns" class="subjects {{ column.name }}-subjects">
-    <span translate>{{column.name === '' ? ('') : ('grade.' + column.name) }}</span>
+  <div *ngFor="let type of quarter.types" class="subjects {{ type.type }}-subjects">
+    <span translate>{{type.type === '' ? ('') : ('grade.' + type.type) }}</span>
     <ul>
-      <li class="subject" *ngFor="let subject of column.subjects">
-        <div class="subject__info" (click)="toggleGroups($event, subject.spreadsheetId, quarter.quarter, column.name, subject.name)">
+      <li class="subject" *ngFor="let subject of type.subjects">
+        <div class="subject__info" (click)="toggleGroups($event)">
           <span class="subject__code">{{subject.code}}</span>
           <span>-</span>
           <span translate>grade.subjects.{{subject.name}}</span>
         </div>
-        <div style="display: none">
-          <div class="loading" *ngFor="let i of [1,2,3]"></div>
-        </div>
         <ul class="subjects__groups">
+          <li *ngFor="let group of subject.groups" (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name )">
+            <span class="subject__code" *ngIf="group.code !== ''">{{group.code}}-</span>
+            <span *ngIf="['basic', 'intensification'].includes(type.type)">
+              <span translate="">grade.group</span> {{group.name | uppercase}}
+            </span>
+            <span *ngIf="!['basic', 'intensification'].includes(type.type)" translate>grade.subjects.{{group.name}}</span>
+          </li>
         </ul>
       </li>
     </ul>

@@ -2,7 +2,8 @@
   "diga": "Departamento de Ideación Gráfica Arquitectónica",
   "language": "English",
   "grade": {
-    "semester": "Semestre",
+    "group": "Grupo",
+    "quarter": "Cuatrimestre",
     "course": "Curso",
     "basic": "Básicas",
     "obligatory_diversifiable": "Obligatorias Diversificables",

@@ -5,6 +5,18 @@ ul {
   text-align: left;
 }
 
+.subjects__groups {
+  padding-left: 15px;
+  margin-bottom: 15px;
+  height: 0;
+  visibility: hidden;
+  margin-top: -10px;
+  opacity: 0;
+  transition: .3s all var(--transition);
+  font-size: 13px;
+  cursor: pointer;
+}
+
 .subject__info {
   font-size: 14px;
   display: flex;
@@ -20,18 +32,6 @@ ul {
   font-size: 12px;
   color: #203569;
   font-weight: 700;
-}
-
-.subjects__groups {
-  padding-left: 15px;
-  margin-bottom: 15px;
-  height: 0;
-  visibility: hidden;
-  margin-top: -10px;
-  opacity: 0;
-  transition: .3s all var(--transition);
-  font-size: 13px;
-  cursor: pointer;
 }
 
 .subjects__groups li:hover span {

@@ -15,7 +15,7 @@ export class SpreadsheetsService {
     );
   }
 
-  getAllSubjects() {
+  getAllSubjects(): Quarter[] | Error {
     const all: Quarter[] = [];
     this.getJSON(environment.spreadsheets.subjects.all).subscribe(data => {
       let quarter: Quarter,
@@ -53,9 +53,11 @@ export class SpreadsheetsService {
           };
           type.subjects.push(subject);
         }
+
         subject.groups.push({
           name: e.gsx$group.$t,
-          page: e.gsx$page.$t
+          page: e.gsx$page.$t,
+          code: e.gsx$groupcode.$t
         });
       });
     });

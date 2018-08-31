@@ -30,6 +30,7 @@ export interface Subject {
 export interface Groups {
   name: string;
   page: string;
+  code: string;
 }
 
 export interface GeneralSubjectData {
