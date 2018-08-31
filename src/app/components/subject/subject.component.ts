@@ -40,7 +40,7 @@ export class SubjectComponent implements OnInit, OnChanges {
     );
 
     this.spreadsheetsService
-      .getJSON(environment.spreadsheets.subjects.grades, 1)
+      .getJSON(environment.spreadsheets.subjects.all, 1)
       .subscribe(data => {
         data = data.feed.entry;
         subjectMeta = data.filter(e => {

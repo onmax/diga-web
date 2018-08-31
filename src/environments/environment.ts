@@ -7,9 +7,9 @@ export const environment = {
   spreadsheets: {
     teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg',
     subjects: {
-      grades: '1rgMuzgnO4ruJTSzJgKnhjP_L3S6WKrh9DQFB83tDy5k',
-      first_cuarter: '1hmXByLguRRq8_Mcq50YbTyp0WzwlIKmQ8uEVYluwIhI',
-      second_cuarter: '1O_Q0U0rVeyEPVIcGaIdYPqpeNI-3j7ogfFwM4lMpPzo'
+      all: '1rgMuzgnO4ruJTSzJgKnhjP_L3S6WKrh9DQFB83tDy5k',
+      firstCuarter: '1hmXByLguRRq8_Mcq50YbTyp0WzwlIKmQ8uEVYluwIhI',
+      secondCuarter: '1O_Q0U0rVeyEPVIcGaIdYPqpeNI-3j7ogfFwM4lMpPzo'
     }
   }
 };

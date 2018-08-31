@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { Columns, Subject, Quarter } from '../../models';
+import { Type, Subject, Quarter } from '../../models';
 
 import { environment } from '../../../environments/environment';
 @Component({
@@ -13,11 +13,11 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./grado.component.css', './subject-list.css']
 })
 export class GradoComponent implements OnInit {
-  private id_first_semester = environment.spreadsheets.subjects.first_cuarter;
-  private id_second_semester = environment.spreadsheets.subjects.second_cuarter;
+  private id_first_semester = environment.spreadsheets.subjects.firstCuarter;
+  private id_second_semester = environment.spreadsheets.subjects.secondCuarter;
 
   gradeData: Quarter[] = [];
-  columnsData: Columns[] = [];
+  columnsData: Type[] = [];
   params: string[];
 
   currentElemsLoading: string[] = [];
@@ -43,6 +43,9 @@ export class GradoComponent implements OnInit {
       const data: any = value;
       this.params = data.params;
     });
+    console.log(this.gradeData);
+
+    this.spreadsheet.getAllSubjects();
   }
 
   getNParams() {
@@ -62,7 +65,8 @@ export class GradoComponent implements OnInit {
               subjects.push({
                 code: e.gsx$codigo.$t,
                 name: e.gsx$traduccionasignatura.$t,
-                spreadsheetId: e.gsx$spreadsheetid.$t
+                spreadsheetId: e.gsx$spreadsheetid.$t,
+                groups: []
               });
             });
           } else {
@@ -75,13 +79,13 @@ export class GradoComponent implements OnInit {
       );
 
       this.columnsData.push({
-        name: columnsTitle[i - 1],
+        type: columnsTitle[i - 1],
         subjects
       });
     }
     this.gradeData.push({
       quarter,
-      columns: this.columnsData
+      types: this.columnsData
     });
   }
 

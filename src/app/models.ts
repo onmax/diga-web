@@ -14,16 +14,17 @@ export interface SpreadsheetSubject {
 }
 export interface Quarter {
   quarter: string;
-  columns: Columns[];
+  types: Type[];
 }
-export interface Columns {
-  name: string;
+export interface Type {
+  type: string;
   subjects: Subject[];
 }
 export interface Subject {
   code: number;
   name: string;
   spreadsheetId: string;
+  groups: Groups[];
 }
 
 export interface Groups {
