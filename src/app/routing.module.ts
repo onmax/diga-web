@@ -11,6 +11,10 @@ const routes: Routes = [
   { path: 'grado', component: GradoComponent },
   { path: 'direccion-profesorado', component: StaffComponent },
   { path: 'grado/:quarter/:type/:subject/:group', component: GradoComponent },
+  {
+    path: 'grado/:quarter/:type/:subject/:group/:code',
+    component: GradoComponent
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

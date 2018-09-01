@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, forkJoin, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { Quarter, Type, GradeSubject } from './models';
-import { convertInjectableProviderToFactory } from '@angular/core/src/di/injectable';
 @Injectable({
   providedIn: 'root'
 })
@@ -74,7 +72,7 @@ export class SpreadsheetsService {
     return all;
   }
   getGroup(data, p): GradeSubject {
-    let conincidences = null;
+    let coincidences = [];
 
     data.map(quarter => {
       quarter.types.map(type => {
@@ -90,18 +88,24 @@ export class SpreadsheetsService {
               subject.name === p.subject &&
               group.name === groupP
             ) {
-              conincidences = {
+              coincidences.push({
                 quarter: p.quarter,
                 type: p.type,
                 subject,
                 group
-              };
+              });
             }
           });
         });
       });
     });
 
-    return conincidences;
+    if (coincidences.length > 1 && p.code !== undefined) {
+      coincidences = coincidences.filter(e => {
+        return e.group.code === p.code;
+      });
+    }
+
+    return coincidences[0];
   }
 }

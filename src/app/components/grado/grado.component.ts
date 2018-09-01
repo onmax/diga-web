@@ -15,7 +15,6 @@ import { Observable, of } from 'rxjs';
 })
 export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
-  infoLoaded$: Observable<boolean>;
 
   constructor(
     private spreadsheet: SpreadsheetsService,

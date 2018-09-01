@@ -9,10 +9,7 @@ import { Observable } from 'rxjs';
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.css']
 })
-export class SubjectComponent implements OnInit, OnChanges {
-  @Input()
-  infoLoaded$;
-
+export class SubjectComponent implements OnChanges {
   @Input()
   gradeData: Quarter[];
 
@@ -22,24 +19,23 @@ export class SubjectComponent implements OnInit, OnChanges {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.getGroup();
-    this.scrollToView();
-  }
-
   ngOnChanges() {
-    this.getGroup();
+    setTimeout(() => {
+      this.getGroup();
+    }, 500);
   }
 
   getGroup() {
     this.activatedRoute.params.subscribe(p => {
       this.subject = this.spreadsheetsService.getGroup(this.gradeData, p);
+      console.log(this.subject);
+
       this.scrollToView();
     });
   }
   scrollToView() {
     document
       .getElementById('subjectInfo')
-      .scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      .scrollIntoView({ behavior: 'smooth' });
   }
 }
