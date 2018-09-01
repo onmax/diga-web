@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { take } from 'rxjs/operators';
+
+import { Observable, forkJoin, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
+
 import { environment } from '../environments/environment';
-import { Quarter, Type, Subject, Groups } from './models';
+import { Quarter, Type, GradeSubject } from './models';
+import { convertInjectableProviderToFactory } from '@angular/core/src/di/injectable';
 @Injectable({
   providedIn: 'root'
 })
 export class SpreadsheetsService {
+  gradeData$: Observable<Quarter[]> = of(this.getAllSubjects());
+
   constructor(private http: HttpClient) {}
 
   getJSON(id: string, n: number | string = 1) {
@@ -15,14 +21,14 @@ export class SpreadsheetsService {
     );
   }
 
-  getAllSubjects(): Quarter[] | Error {
+  getAllSubjects(): Quarter[] {
     const all: Quarter[] = [];
     this.getJSON(environment.spreadsheets.subjects.all).subscribe(data => {
       let quarter: Quarter,
         lastQuarter: string,
         type: Type,
         lastType,
-        subject: Subject,
+        subject: GradeSubject,
         lastSubject;
       data = data.feed.entry;
 
@@ -49,7 +55,11 @@ export class SpreadsheetsService {
             name: lastSubject,
             groups: [],
             spreadsheetId: e.gsx$id.$t,
-            code: e.gsx$code.$t
+            code: e.gsx$code.$t,
+            description: e.gsx$description.$t,
+            bibliography: e.gsx$bibliography.$t.split(environment.split),
+            coordinator: e.gsx$coordinator.$t,
+            course: e.gsx$course.$t
           };
           type.subjects.push(subject);
         }
@@ -62,5 +72,36 @@ export class SpreadsheetsService {
       });
     });
     return all;
+  }
+  getGroup(data, p): GradeSubject {
+    let conincidences = null;
+
+    data.map(quarter => {
+      quarter.types.map(type => {
+        type.subjects.map(subject => {
+          subject.groups.map(group => {
+            const groupP = ['basic', 'intensification'].includes(type.type)
+              ? p.group.split('_')[1]
+              : p.group;
+
+            if (
+              `cuatrimestre_${quarter.quarter}` === p.quarter &&
+              type.type === p.type &&
+              subject.name === p.subject &&
+              group.name === groupP
+            ) {
+              conincidences = {
+                quarter: p.quarter,
+                type: p.type,
+                subject,
+                group
+              };
+            }
+          });
+        });
+      });
+    });
+
+    return conincidences;
   }
 }

@@ -1,25 +1,19 @@
-<app-grado></app-grado>
 <section class="subject" id="subjectInfo">
-  <div class="loading-grid" *ngIf="!commonData">
-    <div class="title loading"></div>
-    <div class="subtitle loading"></div>
-  </div>
-  <div *ngIf="commonData">
+  <div *ngIf="subject">
     <h2 class="title">
-      {{commonData.name}}
+      {{subject.subject.name}}
     </h2>
     <h5 class="subtitle">
       <span>
-        {{commonData.code}}
+        {{subject.subject.code}}
       </span>
-
-      <span *ngIf="commonData.course">
-        - {{commonData.course}}
+      -
+      <span>
+        {{subject.subject.course}}
       </span>
     </h5>
-    <p class="
-        description" *ngIf="commonData.description">
-      {{commonData.description}}
+    <p class="description" *ngIf="subject.subject.description !== ''">
+      {{subject.subject.description}}
     </p>
   </div>
 

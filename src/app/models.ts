@@ -8,37 +8,41 @@ export interface Teacher {
   link: string;
   docenteEn: Object[];
 }
-export interface SpreadsheetSubject {
-  page: string;
-  spreadsheetId: string;
-}
 export interface Quarter {
   quarter: string;
   types: Type[];
 }
 export interface Type {
   type: string;
-  subjects: Subject[];
+  subjects: GradeSubject[];
 }
-export interface Subject {
+export interface GradeSubject {
   code: number;
   name: string;
   spreadsheetId: string;
-  groups: Groups[];
+  groups: Group[];
+  description: string;
+  bibliography: string[];
+  coordinator: string[];
+  course: string;
 }
 
-export interface Groups {
+export interface SelectedSubject {
+  quarter: string;
+  type: string;
+  subject: GradeSubject;
+  group: Group;
+}
+
+export interface Group {
   name: string;
   page: string;
   code: string;
 }
 
-export interface GeneralSubjectData {
-  name: string;
-  course: string;
-  code: string;
-  coordinator: string;
-  description: string;
-  bibliography: string[];
-  groups: Groups[];
+export interface SubjectParams {
+  quarter: string;
+  type: string;
+  subject: string;
+  group: string;
 }

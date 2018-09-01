@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  split: '*!*',
   spreadsheets: {
     teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg',
     subjects: {
