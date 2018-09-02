@@ -71,12 +71,19 @@ export class GradoComponent implements OnInit {
   }
   leaveSubject(e) {
     const subject = e.target.closest('.table-content__subject');
-    subject.children[0].style.opacity = '0';
-    subject.children[2].style.textDecoration = 'inherit';
+
+    subject.querySelector('i').style.opacity = '0';
+    // subject.querySelector('.table-content__subject-name').style.textDecoration =
+    //  'inherit';
+    subject.querySelector('.table-content__subject-name').style.backgroundSize =
+      '0% 0%';
   }
   overSubject(e) {
     const subject = e.target.closest('.table-content__subject');
-    subject.children[0].style.opacity = '1';
-    subject.children[2].style.textDecoration = 'underline';
+    subject.querySelector('i').style.opacity = '1';
+    /*subject.querySelector('.table-content__subject-name').style.textDecoration =
+      'underline';*/
+    subject.querySelector('.table-content__subject-name').style.backgroundSize =
+      '100% 100%';
   }
 }

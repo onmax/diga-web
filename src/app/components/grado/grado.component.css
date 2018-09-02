@@ -128,15 +128,15 @@
   margin-top: 10px;
 }
 
-.table-content__subject {
-  font-size: 15px;
+.table-content__subject-info {
+  font-size: 14px;
   display: flex;
   align-items: center;
   padding: 5px 0;
   cursor: pointer;
 }
 
-.table-content__subject>i {
+.table-content__subject-info>i {
   font-size: 17px;
   color: #B1B4BB;
   margin-top: 4px;
@@ -152,5 +152,42 @@
 }
 
 .table-content__subject-name {
+  color: black;
+  font-size: 14px;
+  line-height: 1.3;
+  text-decoration: none;
+  background-image: linear-gradient(to right, var(--main-black) 0, var(--main-black) 100%);
+  background-position: 0 1.2em;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background .5s;
   padding-left: 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.table-content__subjects-groups {
+  font-size: 13px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.table-content__subjects-groups>div {
+  display: flex;
+  align-items: baseline;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.show-group-code {
+  padding-left: 30px;
+}
+
+.not-show-group-code {
+  padding-left: 40px;
+}
+
+.table-content__subjects-groups .table-content__subject-code {
+  font-size: 12px;
 }
