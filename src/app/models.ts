@@ -24,7 +24,7 @@ export interface GradeSubject {
   groups: Group[];
   description: string;
   bibliography: string[];
-  coordinator: string[];
+  coordinator: string;
   course: string;
 }
 

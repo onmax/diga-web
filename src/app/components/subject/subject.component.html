@@ -1,20 +1,51 @@
-<section class="card subject">
+<section class="card subject" id="subjectInfo">
   <div *ngIf="subject">
     <h2 class="title" translate>
       grade.subjects.{{subject.subject.name}}
     </h2>
     <h5 class="subtitle">
-      <span>
-        {{subject.subject.code}}
+      Asignaturas&nbsp;
+      <span translate>
+        grade.{{subject.type}}
       </span>
       -
       <span>
-        {{subject.subject.course}}
+        {{subject.subject.course}}º curso
       </span>
+      -
+      <span>
+        {{subject.subject.code}}
+      </span>
+
     </h5>
-    <p class="description" *ngIf="subject.subject.description !== ''">
-      {{subject.subject.description}}
-    </p>
+    <div class="subject">
+      <div class="subject__info" *ngIf="subject.subject.coordinator !== ''">
+        <h4>Coordindador:</h4>
+        <p>
+          {{subject.subject.coordinator}}
+        </p>
+      </div>
+      <div class="subject__info" *ngIf="subject.subject.description !== ''">
+        <h4>Descripción:</h4>
+        <p>
+          {{subject.subject.description}}
+        </p>
+      </div>
+      <div class="subject__info" *ngIf="subject.subject.bibliography.length > 0">
+        <h4>Bibliografía:</h4>
+        <ul>
+          <li *ngFor="let item of subject.subject.bibliography">
+            {{item}}
+          </li>
+        </ul>
+      </div>
+      <div class="subject__groups">
+        <p>AÑADIR SWIPER!</p>
+        <ul>
+          <li *ngFor="let group of subject.subject.groups">{{group.name}}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
 </section>

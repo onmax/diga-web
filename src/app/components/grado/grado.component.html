@@ -93,7 +93,4 @@
     </div>
   </div>
 </section>
-<div id="subjectInfo" *ngIf="showSubject()">
-  <app-subject [gradeData]="gradeData"></app-subject>
-
-</div>
+<app-subject [gradeData]="gradeData" *ngIf="showSubject()"></app-subject>

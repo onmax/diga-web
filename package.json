@@ -1,9 +1,12 @@
 {
   "name": "diga-web",
+  "now": {
+    "alias": "diga"
+  },
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

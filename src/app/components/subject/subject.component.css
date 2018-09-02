@@ -7,7 +7,31 @@
 }
 
 .subtitle {
-  margin-top: 5px;
-  font-size: 12px;
+  margin: 5px 0;
+  font-size: 14px;
   color: #444;
 }
+
+.subject__info {
+  margin: 20px;
+  font-size: 15px;
+}
+
+.subject__info h4 {
+  margin: 0;
+}
+
+.subject__info p {
+  margin: 5px 10px;
+}
+
+.subject__info ul {
+  list-style-type: square;
+  margin-left: -10px;
+}
+
+.subject__info ul li {
+  padding: 5px 0;
+}
+
+.subject__groups ul {}
