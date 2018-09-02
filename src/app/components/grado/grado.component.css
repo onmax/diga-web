@@ -110,12 +110,16 @@
 .table-content {
   display: flex;
   justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  transition: 3s all ease;
 }
 
 .table-content .table-content__type {
   margin-top: 10px;
   padding: 7px 20px;
   font-size: 15px;
+  transition: 3s all ease;
 }
 
 .table-content .course {
@@ -132,6 +136,7 @@
   font-size: 14px;
   display: flex;
   align-items: center;
+
   padding: 5px 0;
   cursor: pointer;
 }
@@ -173,7 +178,7 @@
   background-size: 0% 100%;
   background-repeat: no-repeat;
   transition: background 0.5s;
-  padding-left: 4px;
+  margin-left: 4px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -195,15 +200,23 @@
   padding-top: 4px;
   padding-bottom: 4px;
   opacity: 0;
-  transition: 0.7s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.7s opacity cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: 0.3s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  padding-left: 5px;
+
+  border-left: 3px solid rgba(255, 255, 255, 0);
+}
+.table-content__subjects-groups > div:hover {
+  border-left: 3px solid var(--primary);
 }
 
 .show-group-code {
-  padding-left: 30px;
+  margin-left: 25px;
 }
 
 .not-show-group-code {
-  padding-left: 40px;
+  margin-left: 35px;
 }
 
 .table-content__subjects-groups .table-content__subject-code {

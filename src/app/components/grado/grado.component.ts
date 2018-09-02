@@ -12,6 +12,7 @@ import { Quarter } from '../../models';
 })
 export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
+  currentQuarter = '1';
 
   constructor(
     private spreadsheet: SpreadsheetsService,
@@ -76,7 +77,7 @@ export class GradoComponent implements OnInit {
     // subject.querySelector('.table-content__subject-name').style.textDecoration =
     //  'inherit';
     subject.querySelector('.table-content__subject-name').style.backgroundSize =
-      '0% 0%';
+      '0% 100%';
   }
   overSubject(e) {
     const subject = e.target.closest('.table-content__subject');
@@ -88,6 +89,11 @@ export class GradoComponent implements OnInit {
   }
 
   toogleSubject(e) {
+    const isAGroup = e.target.closest('.table-content__subjects-groups');
+    if (isAGroup !== null) {
+      return;
+    }
+
     const subject = e.target.closest('.table-content__subject');
     const groups = subject.querySelector('.table-content__subjects-groups');
     const name = subject.querySelector('.table-content__subject-name');
