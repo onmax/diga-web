@@ -14,6 +14,7 @@ export interface Quarter {
 }
 export interface Type {
   type: string;
+  course: number;
   subjects: GradeSubject[];
 }
 export interface GradeSubject {
@@ -27,17 +28,17 @@ export interface GradeSubject {
   course: string;
 }
 
+export interface Group {
+  name: string;
+  page: string;
+  code: string;
+}
+
 export interface SelectedSubject {
   quarter: string;
   type: string;
   subject: GradeSubject;
   group: Group;
-}
-
-export interface Group {
-  name: string;
-  page: string;
-  code: string;
 }
 
 export interface SubjectParams {

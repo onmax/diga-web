@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
-import { environment } from '../../../environments/environment';
-import { Quarter, GradeSubject } from '../../models';
-import { Observable } from 'rxjs';
+import { Quarter, SelectedSubject } from '../../models';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
@@ -13,24 +11,28 @@ export class SubjectComponent implements OnChanges {
   @Input()
   gradeData: Quarter[];
 
-  subject: GradeSubject;
+  subject: SelectedSubject;
   constructor(
     private spreadsheetsService: SpreadsheetsService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnChanges() {
-    setTimeout(() => {
-      this.getGroup();
-    }, 500);
+    this.getGroup();
   }
 
   getGroup() {
     this.activatedRoute.params.subscribe(p => {
       this.subject = this.spreadsheetsService.getGroup(this.gradeData, p);
+      if (this.subject === undefined) {
+        setTimeout(() => {
+          this.getGroup();
+          return;
+        }, 100);
+      } else {
+        this.scrollToView();
+      }
       console.log(this.subject);
-
-      this.scrollToView();
     });
   }
   scrollToView() {

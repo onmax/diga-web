@@ -1,69 +1,69 @@
-.slide--in-top .card__anim--in {
+.slide--in-top .card-home__anim--in {
   animation-name: slide--in-top;
 }
 
-.slide--in-top .card__anim--out {
+.slide--in-top .card-home__anim--out {
   animation-name: slide--out-bottom;
 }
 
-.slide--in-bottom .card__anim--in {
+.slide--in-bottom .card-home__anim--in {
   animation-name: slide--in-bottom;
 }
 
-.slide--in-bottom .card__anim--out {
+.slide--in-bottom .card-home__anim--out {
   animation-name: slide--out-top;
 }
 
-.slide--in-left .card__anim--in {
+.slide--in-left .card-home__anim--in {
   animation-name: slide--in-left;
 }
 
-.slide--in-left .card__anim--out {
+.slide--in-left .card-home__anim--out {
   animation-name: slide--out-right;
 }
 
-.slide--in-right .card__anim--in {
+.slide--in-right .card-home__anim--in {
   animation-name: slide--in-right;
 }
 
-.slide--in-right .card__anim--out {
+.slide--in-right .card-home__anim--out {
   animation-name: slide--out-left;
 }
 
-.slide--out-top .card__anim--in {
+.slide--out-top .card-home__anim--in {
   animation-name: slide--out-top;
 }
 
-.slide--out-top .card__anim--out {
+.slide--out-top .card-home__anim--out {
   animation-name: slide--in-bottom;
 }
 
-.slide--out-bottom .card__anim--in {
+.slide--out-bottom .card-home__anim--in {
   animation-name: slide--out-bottom;
 }
 
-.slide--out-bottom .card__anim--out {
+.slide--out-bottom .card-home__anim--out {
   animation-name: slide--in-top;
 }
 
-.slide--out-left .card__anim--in {
+.slide--out-left .card-home__anim--in {
   animation-name: slide--out-left;
 }
 
-.slide--out-left .card__anim--out {
+.slide--out-left .card-home__anim--out {
   animation-name: slide--in-right;
 }
 
-.slide--out-right .card__anim--in {
+.slide--out-right .card-home__anim--in {
   animation-name: slide--out-right;
 }
 
-.slide--out-right .card__anim--out {
+.slide--out-right .card-home__anim--out {
   animation-name: slide--in-left;
 }
 
-.card [class*='slide--'] .card__anim--in,
-.card [class*='slide--'] .card__anim--out {
+.card-home [class*='slide--'] .card-home__anim--in,
+.card-home [class*='slide--'] .card-home__anim--out {
   transform: translate(0, 0);
   animation-timing-function: var(--transition);
 }

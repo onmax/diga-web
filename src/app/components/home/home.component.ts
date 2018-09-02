@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
 
   directionReveal() {
     DirectionReveal({
-      selector: '.cards', // Container element selector.
-      itemSelector: '.card', // Item element selector.
+      selector: '.cards-home', // Container element selector.
+      itemSelector: '.card-home', // Item element selector.
       animationName: 'slide', // Animation CSS class.
       enableTouch: true, // Adds touch event to show content on first click then follow link on the second click.
       touchThreshold: 250 // Touch length must be less than this to trigger reveal which prevents the event triggering if user is scrolling.

@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'grado', component: GradoComponent },
   { path: 'direccion-profesorado', component: StaffComponent },
-  { path: 'grado/:quarter/:type/:subject/:group', component: GradoComponent },
   {
     path: 'grado/:quarter/:type/:subject/:group/:code',
     component: GradoComponent

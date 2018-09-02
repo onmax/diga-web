@@ -1,40 +1,75 @@
-<h2 class="title">
-  <span>Grado</span>
-</h2>
-<section class="semester" *ngFor="let quarter of gradeData">
-  <h4>
-    <span>{{quarter.quarter}}º </span>
-    <span translate>grade.quarter</span>
-  </h4>
-  <h6 class="course course-1">1º
-    <span translate>grade.course</span>
-  </h6>
-  <h6 class="course course-4">4º
-    <span translate>grade.course</span>
-  </h6>
-  <h6 class="course course-5">5º
-    <span translate>grade.course</span>
-  </h6>
-  <div *ngFor="let type of quarter.types" class="subjects {{ type.type }}-subjects">
-    <span translate>{{type.type === '' ? ('') : ('grade.' + type.type) }}</span>
-    <ul>
-      <li class="subject" *ngFor="let subject of type.subjects">
-        <div class="subject__info" (click)="toggleGroups($event)">
-          <span class="subject__code">{{subject.code}}</span>
-          <span>-</span>
-          <span translate>grade.subjects.{{subject.name}}</span>
-        </div>
-        <ul class="subjects__groups">
-          <li *ngFor="let group of subject.groups" (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name )">
-            <span class="subject__code" *ngIf="group.code !== ''">{{group.code}}-</span>
-            <span *ngIf="['basic', 'intensification'].includes(type.type)">
-              <span translate="">grade.group</span> {{group.name | uppercase}}
-            </span>
-            <span *ngIf="!['basic', 'intensification'].includes(type.type)" translate>grade.subjects.{{group.name}}</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
+<section class="card">
+  <h2 class="title">
+    <span>Grado</span>
+  </h2>
+  <div class="semester" *ngFor="let quarter of gradeData">
+    <h4>
+      <span>{{quarter.quarter}}º </span>
+      <span translate>grade.quarter</span>
+    </h4>
+    <h6 class="course course-1">1º
+      <span translate>grade.course</span>
+    </h6>
+    <h6 class="course course-4">4º
+      <span translate>grade.course</span>
+    </h6>
+    <h6 class="course course-5">5º
+      <span translate>grade.course</span>
+    </h6>
+    <div *ngFor="let type of quarter.types" class="subjects {{ type.type }}-subjects">
+      <span translate>{{type.type === '' ? ('') : ('grade.' + type.type) }}</span>
+      <ul>
+        <li class="subject" *ngFor="let subject of type.subjects">
+          <div class="subject__info" (click)="toggleGroups($event)">
+            <span class="subject__code">{{subject.code}}</span>
+            <span>-</span>
+            <span translate>grade.subjects.{{subject.name}}</span>
+          </div>
+          <ul class="subjects__groups">
+            <li *ngFor="let group of subject.groups" (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, subject.code )">
+              <span class="subject__code" *ngIf="group.code !== ''">{{group.code}}-</span>
+              <span *ngIf="['basica', 'intensificacion'].includes(type.type)">
+                <span translate="">grade.group</span> {{group.name | uppercase}}
+              </span>
+              <span *ngIf="!['basica', 'intensificacion'].includes(type.type)" translate>grade.subjects.{{group.name}}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </section>
-<app-subject [gradeData]="gradeData"></app-subject>
+<section class="card">
+  <h2 class="title">
+    <span>Grado</span>
+  </h2>
+  <div class="table-header">
+    <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == '1'}">
+      {{quarter.quarter}} ºCuatrimestre
+    </div>
+  </div>
+  <div class="table-content" *ngFor="let quarter of gradeData">
+    <div class="table-content__type" *ngFor="let type of quarter.types">
+      <span class="course">{{type.course}}º Curso</span>
+      <span *ngIf="small()"><br></span>
+      <span *ngIf="!small()"> - </span>
+      <span translate>grade.{{type.type}}</span>
+      <div class="table-content__subjects">
+        <div class="table-content__subject" (mouseleave)="leaveSubject($event)" (mouseover)="overSubject($event)"
+          *ngFor="let subject of type.subjects">
+          <i class="material-icons">keyboard_arrow_right</i>
+          <div class="table-content__subject-code">
+            {{subject.code}}
+          </div>
+          <div class="table-content__subject-name" translate>
+            grade.subjects.{{subject.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="subjectInfo" *ngIf="showSubject()">
+  <app-subject [gradeData]="gradeData"></app-subject>
+
+</div>

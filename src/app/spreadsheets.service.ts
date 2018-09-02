@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { environment } from '../environments/environment';
-import { Quarter, Type, GradeSubject } from './models';
+import { Quarter, Type, GradeSubject, SelectedSubject } from './models';
 @Injectable({
   providedIn: 'root'
 })
@@ -43,7 +43,8 @@ export class SpreadsheetsService {
           lastType = e.gsx$type.$t;
           type = {
             type: e.gsx$type.$t,
-            subjects: []
+            subjects: [],
+            course: parseInt(e.gsx$course.$t, 10)
           };
           quarter.types.push(type);
         }
@@ -71,14 +72,14 @@ export class SpreadsheetsService {
     });
     return all;
   }
-  getGroup(data, p): GradeSubject {
+  getGroup(data, p): SelectedSubject {
     let coincidences = [];
 
     data.map(quarter => {
       quarter.types.map(type => {
         type.subjects.map(subject => {
           subject.groups.map(group => {
-            const groupP = ['basic', 'intensification'].includes(type.type)
+            const groupP = ['basica', 'intensificacion'].includes(type.type)
               ? p.group.split('_')[1]
               : p.group;
 

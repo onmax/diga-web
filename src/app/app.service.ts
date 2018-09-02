@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Quarter } from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   mobileMenu = false;
-  screenWidth = '';
+  screenWidth: string;
+  screenPX: number;
   currentLang = 'es';
   constructor(private translateService: TranslateService) {
     this.setWidth();
@@ -17,16 +19,17 @@ export class AppService {
   }
 
   switchLanguage() {
-    if (this.currentLang == 'es') {
+    if (this.currentLang === 'es') {
       this.currentLang = 'en';
       this.translateService.use('en');
-    } else if (this.currentLang == 'en') {
+    } else if (this.currentLang === 'en') {
       this.currentLang = 'es';
       this.translateService.use('es');
     }
   }
 
-  setWidth = () => {
+  setWidth() {
+    this.screenPX = window.innerWidth;
     if (window.innerWidth > 992) {
       this.screenWidth = 'large';
     } else if (window.innerWidth > 502) {
@@ -34,5 +37,5 @@ export class AppService {
     } else {
       this.screenWidth = 'small';
     }
-  };
+  }
 }

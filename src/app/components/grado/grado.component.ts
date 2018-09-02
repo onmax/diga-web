@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
-import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../app.service';
-import { Type, GradeSubject, Quarter } from '../../models';
+import { Quarter } from '../../models';
 
-import { environment } from '../../../environments/environment';
-import { Observable, of } from 'rxjs';
 @Component({
   selector: 'app-grado',
   templateUrl: './grado.component.html',
@@ -18,14 +15,16 @@ export class GradoComponent implements OnInit {
 
   constructor(
     private spreadsheet: SpreadsheetsService,
-    private router: Router
+    private router: Router,
+    private appService: AppService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.spreadsheet.gradeData$.subscribe(
       data => {
-        console.log(data);
         this.gradeData = data;
+        console.log(data);
       },
       error => {
         console.error(error);
@@ -33,13 +32,23 @@ export class GradoComponent implements OnInit {
     );
   }
 
+  small(): boolean {
+    return this.appService.screenPX < 1462;
+  }
+
   toggleGroups(event: any) {
     const groups = event.target.closest('.subject');
     groups.children[1].classList.toggle('show');
   }
 
-  selectSubject(quarter: string, type: string, subject: string, group: string) {
-    if (['basic', 'intensification'].includes(type)) {
+  selectSubject(
+    quarter: string,
+    type: string,
+    subject: string,
+    group: string,
+    code: string
+  ) {
+    if (['basica', 'intensificacion'].includes(type)) {
       group = `grupo_${group}`;
     }
 
@@ -48,7 +57,26 @@ export class GradoComponent implements OnInit {
       `cuatrimestre_${quarter}`,
       type,
       subject,
-      group
+      group,
+      code
     ]);
+  }
+
+  showSubject() {
+    let show;
+    this.activatedRoute.params.subscribe(p => {
+      show = ![p.quarter, p.type, p.subject, p.group].includes(undefined);
+    });
+    return show;
+  }
+  leaveSubject(e) {
+    const subject = e.target.closest('.table-content__subject');
+    subject.children[0].style.opacity = '0';
+    subject.children[2].style.textDecoration = 'inherit';
+  }
+  overSubject(e) {
+    const subject = e.target.closest('.table-content__subject');
+    subject.children[0].style.opacity = '1';
+    subject.children[2].style.textDecoration = 'underline';
   }
 }
