@@ -86,4 +86,28 @@ export class GradoComponent implements OnInit {
     subject.querySelector('.table-content__subject-name').style.backgroundSize =
       '100% 100%';
   }
+
+  toogleSubject(e) {
+    const subject = e.target.closest('.table-content__subject');
+    const groups = subject.querySelector('.table-content__subjects-groups');
+    const name = subject.querySelector('.table-content__subject-name');
+    name.classList.toggle('open');
+    const icon = subject.querySelector('i');
+    icon.classList.toggle('open');
+    icon.classList.toggle('rotate');
+    groups.style.maxHeight =
+      groups.style.maxHeight === '' ? `${groups.children.length * 32}px` : '';
+
+    for (const group of groups.children) {
+      if (['', '0'].includes(group.style.opacity)) {
+        setTimeout(() => {
+          group.style.opacity = 1;
+        }, ((Array.prototype.slice.call(groups.children).indexOf(group) + 1) * 700) / groups.children.length);
+      } else {
+        setTimeout(() => {
+          group.style.opacity = 0;
+        }, 700 / (Array.prototype.slice.call(groups.children).indexOf(group) + 1) / groups.children.length);
+      }
+    }
+  }
 }

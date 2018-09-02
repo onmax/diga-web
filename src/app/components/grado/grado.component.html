@@ -56,7 +56,7 @@
       <span translate>grade.{{type.type}}</span>
       <div class="table-content__subjects">
         <div class="table-content__subject" (mouseleave)="leaveSubject($event)" (mouseover)="overSubject($event)"
-          *ngFor="let subject of type.subjects">
+          (click)="toogleSubject($event)" *ngFor="let subject of type.subjects">
           <div class="table-content__subject-info">
             <i class="material-icons">keyboard_arrow_right</i>
             <div class="table-content__subject-code">
