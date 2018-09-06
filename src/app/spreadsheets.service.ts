@@ -56,7 +56,10 @@ export class SpreadsheetsService {
             spreadsheetId: e.gsx$id.$t,
             code: e.gsx$code.$t,
             description: e.gsx$description.$t,
-            bibliography: e.gsx$bibliography.$t.split(environment.split),
+            bibliography:
+              e.gsx$bibliography.$t.split(environment.split)[0] === ''
+                ? []
+                : e.gsx$bibliography.$t.split(environment.split),
             coordinator: e.gsx$coordinator.$t,
             course: e.gsx$course.$t
           };
@@ -72,7 +75,7 @@ export class SpreadsheetsService {
     });
     return all;
   }
-  getGroup(data, p): SelectedSubject {
+  getSubject(data, p): SelectedSubject {
     let coincidences = [];
 
     data.map(quarter => {
@@ -108,5 +111,11 @@ export class SpreadsheetsService {
     }
 
     return coincidences[0];
+  }
+
+  getGroup(id: string, page: string) {
+    this.getJSON(id, page).subscribe(data => {
+      console.log(data.feed.entry);
+    });
   }
 }

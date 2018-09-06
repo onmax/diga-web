@@ -40,9 +40,15 @@
         </ul>
       </div>
       <div class="subject__groups">
-        <p>AÑADIR SWIPER!</p>
+        <h4>Grupos:</h4>
         <ul>
-          <li *ngFor="let group of subject.subject.groups">{{group.name}}</li>
+          <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
+            (click)="goTo(group.name, group.code)">
+            <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
+              <span translate>grade.group</span> {{group.name | uppercase}}
+            </span>
+            <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)" translate>grade.subjects.{{group.name}}</span>
+          </li>
         </ul>
       </div>
     </div>

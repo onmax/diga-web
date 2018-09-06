@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
 @Component({
@@ -14,30 +14,48 @@ export class SubjectComponent implements OnChanges {
   subject: SelectedSubject;
   constructor(
     private spreadsheetsService: SpreadsheetsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnChanges() {
-    this.getGroup();
+    this.getSubject();
   }
 
-  getGroup() {
+  getSubject() {
     this.activatedRoute.params.subscribe(p => {
-      this.subject = this.spreadsheetsService.getGroup(this.gradeData, p);
+      this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
       if (this.subject === undefined) {
         setTimeout(() => {
-          this.getGroup();
+          this.getSubject();
           return;
         }, 100);
       } else {
+        this.getGroup();
         this.scrollToView();
       }
       console.log(this.subject);
     });
   }
+
+  getGroup() {
+    this.spreadsheetsService.getGroup(
+      this.subject.subject.spreadsheetId,
+      this.subject.group.page
+    );
+  }
   scrollToView() {
     document
       .getElementById('subjectInfo')
       .scrollIntoView({ behavior: 'smooth' });
+  }
+  goTo(group: string, code: string) {
+    this.activatedRoute.params.subscribe(p => {
+      if (['basica', 'intensificacion'].includes(p.type)) {
+        group = `grupo_${group}`;
+        this.router.navigate([p.quarter, p.type, p.subject, group, '1']);
+      }
+      this.router.navigate([p.quarter, p.type, p.subject, group, p.code]);
+    });
   }
 }
