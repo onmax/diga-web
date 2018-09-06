@@ -34,11 +34,16 @@ export interface Group {
   code: string;
 }
 
+export interface GroupMeta {
+  teachers: string[];
+}
+
 export interface SelectedSubject {
   quarter: string;
   type: string;
   subject: GradeSubject;
   group: Group;
+  groupMeta: GroupMeta;
 }
 
 export interface SubjectParams {

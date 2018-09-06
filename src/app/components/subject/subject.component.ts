@@ -19,6 +19,7 @@ export class SubjectComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
+    console.time('Loading subject info');
     this.getSubject();
   }
 
@@ -31,6 +32,7 @@ export class SubjectComponent implements OnChanges {
           return;
         }, 100);
       } else {
+        console.timeEnd('Loading subject info');
         this.getGroup();
         this.scrollToView();
       }
@@ -44,12 +46,14 @@ export class SubjectComponent implements OnChanges {
       this.subject.group.page
     );
   }
+
   scrollToView() {
     document
       .getElementById('subjectInfo')
       .scrollIntoView({ behavior: 'smooth' });
   }
-  goTo(group: string, code: string) {
+
+  goTo(group: string) {
     this.activatedRoute.params.subscribe(p => {
       if (['basica', 'intensificacion'].includes(p.type)) {
         group = `grupo_${group}`;

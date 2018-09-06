@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
 import { environment } from '../environments/environment';
-import { Quarter, Type, GradeSubject, SelectedSubject } from './models';
+import {
+  Quarter,
+  Type,
+  GradeSubject,
+  SelectedSubject,
+  GroupMeta
+} from './models';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,12 +20,22 @@ export class SpreadsheetsService {
   constructor(private http: HttpClient) {}
 
   getJSON(id: string, n: number | string = 1) {
-    return this.http.get<any>(
-      `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`
-    );
+    const url = `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`;
+    return this.http.get<any>(url);
+  }
+
+  request(id) {
+    const url = `https://spreadsheets.google.com/feeds/list/${id}/1/public/values?alt=json`;
+    const request = new HttpRequest('GET', url, {
+      reportProgress: true
+    });
+    this.http.request(request).subscribe(data => {
+      console.log(data, '_______');
+    });
   }
 
   getAllSubjects(): Quarter[] {
+    this.request(environment.spreadsheets.subjects.all);
     const all: Quarter[] = [];
     this.getJSON(environment.spreadsheets.subjects.all).subscribe(data => {
       let quarter: Quarter,
@@ -114,8 +130,16 @@ export class SpreadsheetsService {
   }
 
   getGroup(id: string, page: string) {
+    const groupData: GroupMeta = {
+      teachers: []
+    };
     this.getJSON(id, page).subscribe(data => {
       console.log(data.feed.entry);
+      data.feed.entry.map(e => {
+        if (e.gsx$profesores.$t.trim() !== '') {
+          groupData.teachers.push(e.gsx$profesores.$t);
+        }
+      });
     });
   }
 }

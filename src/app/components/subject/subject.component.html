@@ -43,7 +43,7 @@
         <h4>Grupos:</h4>
         <ul>
           <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
-            (click)="goTo(group.name, group.code)">
+            (click)="goTo(group.name)">
             <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
               <span translate>grade.group</span> {{group.name | uppercase}}
             </span>
