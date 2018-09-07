@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
+import { AppService } from '../../app.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
@@ -12,15 +14,26 @@ export class SubjectComponent implements OnChanges {
   gradeData: Quarter[];
 
   subject: SelectedSubject;
+
+  widthLoadingBar: number;
+  widthLoadingBar$: Observable<number>;
+
   constructor(
     private spreadsheetsService: SpreadsheetsService,
+    private appService: AppService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnChanges() {
-    console.time('Loading subject info');
     this.getSubject();
+  }
+
+  loadingBar() {
+    this.widthLoadingBar$ = this.appService.loadingBar$.gradeSubject;
+    this.widthLoadingBar$.subscribe(percentage => {
+      this.widthLoadingBar = percentage;
+    });
   }
 
   getSubject() {
@@ -32,7 +45,6 @@ export class SubjectComponent implements OnChanges {
           return;
         }, 100);
       } else {
-        console.timeEnd('Loading subject info');
         this.getGroup();
         this.scrollToView();
       }

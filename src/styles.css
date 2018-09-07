@@ -42,6 +42,7 @@ main .card {
   border-radius: 5px;
   margin: 25px;
   padding: 25px;
+  position: relative;
 }
 
 main .card:hover {
@@ -86,10 +87,4 @@ h2.title span::after {
   width: 100vw;
   height: 1px;
   background: #121212;
-}
-
-@media screen and (max-width:992px) {
-  h2.title {
-    margin-top: 40px;
-  }
 }

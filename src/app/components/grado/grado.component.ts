@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
 import { Quarter } from '../../models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grado',
@@ -14,6 +15,9 @@ export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
   currentQuarter = '1';
 
+  widthLoadingBar: number;
+  widthLoadingBar$: Observable<number>;
+
   constructor(
     private spreadsheet: SpreadsheetsService,
     private router: Router,
@@ -22,6 +26,7 @@ export class GradoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loadingBar();
     this.spreadsheet.gradeData$.subscribe(
       data => {
         this.gradeData = data;
@@ -31,6 +36,13 @@ export class GradoComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  loadingBar() {
+    this.widthLoadingBar$ = this.appService.loadingBar$.gradeSubjects;
+    this.widthLoadingBar$.subscribe(percentage => {
+      this.widthLoadingBar = percentage;
+    });
   }
 
   small(): boolean {
@@ -70,6 +82,7 @@ export class GradoComponent implements OnInit {
     });
     return show;
   }
+
   leaveSubject(e) {
     const subject = e.target.closest('.table-content__subject');
 

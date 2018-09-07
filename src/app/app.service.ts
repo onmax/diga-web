@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Quarter } from './models';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,12 @@ export class AppService {
   screenWidth: string;
   screenPX: number;
   currentLang = 'es';
+
+  loadingBar$ = {
+    gradeSubjects: new Subject<number>(),
+    gradeSubject: new Subject<number>()
+  };
+
   constructor(private translateService: TranslateService) {
     this.setWidth();
   }

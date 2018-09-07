@@ -11,83 +11,98 @@ import {
   SelectedSubject,
   GroupMeta
 } from './models';
+import { Http } from '@angular/http';
+
+import { AppService } from './app.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SpreadsheetsService {
   gradeData$: Observable<Quarter[]> = of(this.getAllSubjects());
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private appService: AppService) {}
 
   getJSON(id: string, n: number | string = 1) {
     const url = `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`;
-    return this.http.get<any>(url);
-  }
-
-  request(id) {
-    const url = `https://spreadsheets.google.com/feeds/list/${id}/1/public/values?alt=json`;
-    const request = new HttpRequest('GET', url, {
-      reportProgress: true
-    });
-    this.http.request(request).subscribe(data => {
-      console.log(data, '_______');
+    return this.http.get<any>(url, {
+      reportProgress: true,
+      observe: 'events'
     });
   }
 
+  handleEvent(event, size: number = 1, isLoading: string): boolean {
+    if (event.type === HttpEventType.DownloadProgress) {
+      console.log(event.loaded);
+
+      const percentage: number = Math.round((event.loaded * 100) / size);
+      console.log(percentage + '%');
+
+      this.appService.loadingBar$[isLoading].next(percentage);
+    } else if (event.type === HttpEventType.Response) {
+      return true;
+    }
+    return false;
+  }
   getAllSubjects(): Quarter[] {
-    this.request(environment.spreadsheets.subjects.all);
     const all: Quarter[] = [];
-    this.getJSON(environment.spreadsheets.subjects.all).subscribe(data => {
-      let quarter: Quarter,
-        lastQuarter: string,
-        type: Type,
-        lastType,
-        subject: GradeSubject,
-        lastSubject;
-      data = data.feed.entry;
+    console.time('Grade info');
+    this.getJSON(environment.spreadsheets.subjects.all).subscribe(event => {
+      if (this.handleEvent(event, 74442, 'gradeSubjects')) {
+        console.timeEnd('Grade info');
+        let data: any = event;
+        data = data.body.feed.entry;
 
-      data.map(e => {
-        if (e.gsx$quarter.$t !== lastQuarter) {
-          lastQuarter = e.gsx$quarter.$t;
-          quarter = {
-            quarter: lastQuarter,
-            types: []
-          };
-          all.push(quarter);
-        }
-        if (e.gsx$type.$t !== lastType) {
-          lastType = e.gsx$type.$t;
-          type = {
-            type: e.gsx$type.$t,
-            subjects: [],
-            course: parseInt(e.gsx$course.$t, 10)
-          };
-          quarter.types.push(type);
-        }
-        if (e.gsx$subject.$t !== lastSubject) {
-          lastSubject = e.gsx$subject.$t;
-          subject = {
-            name: lastSubject,
-            groups: [],
-            spreadsheetId: e.gsx$id.$t,
-            code: e.gsx$code.$t,
-            description: e.gsx$description.$t,
-            bibliography:
-              e.gsx$bibliography.$t.split(environment.split)[0] === ''
-                ? []
-                : e.gsx$bibliography.$t.split(environment.split),
-            coordinator: e.gsx$coordinator.$t,
-            course: e.gsx$course.$t
-          };
-          type.subjects.push(subject);
-        }
+        let quarter: Quarter,
+          lastQuarter: string,
+          type: Type,
+          lastType,
+          subject: GradeSubject,
+          lastSubject;
 
-        subject.groups.push({
-          name: e.gsx$group.$t,
-          page: e.gsx$page.$t,
-          code: e.gsx$groupcode.$t
+        data.map(e => {
+          if (e.gsx$quarter.$t !== lastQuarter) {
+            lastQuarter = e.gsx$quarter.$t;
+            quarter = {
+              quarter: lastQuarter,
+              types: []
+            };
+            all.push(quarter);
+          }
+          if (e.gsx$type.$t !== lastType) {
+            lastType = e.gsx$type.$t;
+            type = {
+              type: e.gsx$type.$t,
+              subjects: [],
+              course: parseInt(e.gsx$course.$t, 10)
+            };
+            quarter.types.push(type);
+          }
+          if (e.gsx$subject.$t !== lastSubject) {
+            lastSubject = e.gsx$subject.$t;
+            subject = {
+              name: lastSubject,
+              groups: [],
+              spreadsheetId: e.gsx$id.$t,
+              code: e.gsx$code.$t,
+              description: e.gsx$description.$t,
+              bibliography:
+                e.gsx$bibliography.$t.split(environment.split)[0] === ''
+                  ? []
+                  : e.gsx$bibliography.$t.split(environment.split),
+              coordinator: e.gsx$coordinator.$t,
+              course: e.gsx$course.$t
+            };
+            type.subjects.push(subject);
+          }
+
+          subject.groups.push({
+            name: e.gsx$group.$t,
+            page: e.gsx$page.$t,
+            code: e.gsx$groupcode.$t
+          });
         });
-      });
+      }
     });
     return all;
   }
@@ -133,13 +148,19 @@ export class SpreadsheetsService {
     const groupData: GroupMeta = {
       teachers: []
     };
-    this.getJSON(id, page).subscribe(data => {
-      console.log(data.feed.entry);
-      data.feed.entry.map(e => {
-        if (e.gsx$profesores.$t.trim() !== '') {
-          groupData.teachers.push(e.gsx$profesores.$t);
-        }
-      });
+    console.time('Subject info');
+    this.getJSON(id, page).subscribe(event => {
+      if (this.handleEvent(event, 3439, 'gradeSubject')) {
+        console.timeEnd('Subject info');
+        let data: any = event;
+        data = data.body.feed.entry;
+        console.log(data);
+        data.map(e => {
+          if (e.gsx$profesores.$t.trim() !== '') {
+            groupData.teachers.push(e.gsx$profesores.$t);
+          }
+        });
+      }
     });
   }
 }

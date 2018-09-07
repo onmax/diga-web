@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { GradoComponent } from './components/grado/grado.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { StaffComponent } from './components/staff/staff.component';
+import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { StaffComponent } from './components/staff/staff.component';
     HomeComponent,
     GradoComponent,
     SubjectComponent,
-    StaffComponent
+    StaffComponent,
+    LoadingBarComponent
   ],
   imports: [
     BrowserModule,

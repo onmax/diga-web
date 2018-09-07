@@ -1,4 +1,6 @@
 <section class="card subject" id="subjectInfo">
+  <app-loading-bar [width]="widthLoadingBar"></app-loading-bar>
+
   <div *ngIf="subject">
     <h2 class="title" translate>
       grade.subjects.{{subject.subject.name}}
