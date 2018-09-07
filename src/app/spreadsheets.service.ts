@@ -144,7 +144,7 @@ export class SpreadsheetsService {
     return coincidences[0];
   }
 
-  getGroup(id: string, page: string) {
+  getGroup(id: string, page: string): GroupMeta {
     const groupData: GroupMeta = {
       teachers: []
     };
@@ -162,5 +162,6 @@ export class SpreadsheetsService {
         });
       }
     });
+    return groupData;
   }
 }

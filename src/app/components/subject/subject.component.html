@@ -21,28 +21,32 @@
 
     </h5>
     <div class="subject">
-      <div class="subject__info" *ngIf="subject.subject.coordinator !== ''">
-        <h4>Coordindador:</h4>
-        <p>
-          {{subject.subject.coordinator}}
-        </p>
+      <div class="subject__info">
+        <div class="" *ngIf="subject.subject.coordinator !== ''">
+          <h4>Coordindador:</h4>
+          <p>
+            {{subject.subject.coordinator}}
+          </p>
+        </div>
+        <div *ngIf="subject.subject.description !== ''">
+          <h4>Descripción:</h4>
+          <p>
+            {{subject.subject.description}}
+          </p>
+        </div>
+        <div *ngIf="subject.subject.bibliography.length > 0">
+          <h4>Bibliografía:</h4>
+          <ul>
+            <li *ngFor="let item of subject.subject.bibliography">
+              {{item}}
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="subject__info" *ngIf="subject.subject.description !== ''">
-        <h4>Descripción:</h4>
-        <p>
-          {{subject.subject.description}}
-        </p>
-      </div>
-      <div class="subject__info" *ngIf="subject.subject.bibliography.length > 0">
-        <h4>Bibliografía:</h4>
-        <ul>
-          <li *ngFor="let item of subject.subject.bibliography">
-            {{item}}
-          </li>
-        </ul>
-      </div>
+
+      <div class="horizontal-divisor"></div>
+
       <div class="subject__groups">
-        <h4>Grupos:</h4>
         <ul>
           <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
             (click)="goTo(group.name)">
@@ -53,6 +57,15 @@
           </li>
         </ul>
       </div>
+
+
+      <div>
+        <span *ngFor="let i of subject.groupMeta.teachers">
+          {{i}}
+        </span>
+      </div>
+
+
     </div>
   </div>
 

@@ -53,7 +53,7 @@ export class SubjectComponent implements OnChanges {
   }
 
   getGroup() {
-    this.spreadsheetsService.getGroup(
+    this.subject.groupMeta = this.spreadsheetsService.getGroup(
       this.subject.subject.spreadsheetId,
       this.subject.group.page
     );
