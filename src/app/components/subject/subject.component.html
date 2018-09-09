@@ -1,4 +1,4 @@
-<section class="card subject" id="subjectInfo">
+<section class="card" id="subjectInfo">
   <app-loading-bar [width]="widthLoadingBar"></app-loading-bar>
 
   <div *ngIf="subject">
@@ -21,52 +21,55 @@
 
     </h5>
     <div class="subject">
-      <div class="subject__info">
-        <div class="" *ngIf="subject.subject.coordinator !== ''">
-          <h4>Coordindador:</h4>
-          <p>
-            {{subject.subject.coordinator}}
-          </p>
-        </div>
-        <div *ngIf="subject.subject.description !== ''">
-          <h4>Descripción:</h4>
-          <p>
-            {{subject.subject.description}}
-          </p>
-        </div>
-        <div *ngIf="subject.subject.bibliography.length > 0">
-          <h4>Bibliografía:</h4>
-          <ul>
-            <li *ngFor="let item of subject.subject.bibliography">
-              {{item}}
-            </li>
-          </ul>
-        </div>
+      <div class="" *ngIf="subject.subject.coordinator !== ''">
+        <h4>Coordindador:</h4>
+        <p>
+          {{subject.subject.coordinator}}
+        </p>
       </div>
-
-      <div class="horizontal-divisor"></div>
-
-      <div class="subject__groups">
+      <div *ngIf="subject.subject.description !== ''">
+        <h4>Descripción:</h4>
+        <p>
+          {{subject.subject.description}}
+        </p>
+      </div>
+      <div *ngIf="subject.subject.bibliography.length > 0">
+        <h4>Bibliografía:</h4>
         <ul>
-          <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
-            (click)="goTo(group.name)">
-            <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
-              <span translate>grade.group</span> {{group.name | uppercase}}
-            </span>
-            <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)" translate>grade.subjects.{{group.name}}</span>
+          <li *ngFor="let item of subject.subject.bibliography">
+            {{item}}
           </li>
         </ul>
       </div>
-
-
-      <div>
-        <span *ngFor="let i of subject.groupMeta.teachers">
-          {{i}}
-        </span>
-      </div>
-
-
     </div>
+
+    <div class="horizontal-divisor"></div>
+
+    <div class="groups__list">
+      <ul>
+        <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
+          (click)="goTo(group.name)">
+          <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
+            <span translate>grade.group</span> {{group.name | uppercase}}
+          </span>
+          <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)" translate>grade.subjects.{{group.name}}</span>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="group">
+      <div *ngIf="subject.groupMeta.teachers.length > 0">
+        <h4>Profesores:</h4>
+        <ul>
+          <li *ngFor="let item of subject.groupMeta.teachers">
+            {{item}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
   </div>
 
 </section>

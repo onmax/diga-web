@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { NgProgress } from '@ngx-progressbar/core';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
 import { Quarter } from '../../models';
@@ -13,7 +14,9 @@ import { Observable } from 'rxjs';
 })
 export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
-  currentQuarter = '1';
+  currentQuarter: string;
+
+  loading = false;
 
   widthLoadingBar: number;
   widthLoadingBar$: Observable<number>;
@@ -22,14 +25,20 @@ export class GradoComponent implements OnInit {
     private spreadsheet: SpreadsheetsService,
     private router: Router,
     private appService: AppService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public progress: NgProgress
   ) {}
 
   ngOnInit() {
+    this.progress.start();
+    const month = new Date().getMonth();
+    this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
     this.loadingBar();
     this.spreadsheet.gradeData$.subscribe(
       data => {
         this.gradeData = data;
+        this.loading = true;
+
         console.log(data);
       },
       error => {
@@ -41,7 +50,8 @@ export class GradoComponent implements OnInit {
   loadingBar() {
     this.widthLoadingBar$ = this.appService.loadingBar$.gradeSubjects;
     this.widthLoadingBar$.subscribe(percentage => {
-      this.widthLoadingBar = percentage;
+      this.widthLoadingBar =
+        percentage < 25 || percentage === undefined ? 25 : percentage;
     });
   }
 

@@ -148,6 +148,7 @@ export class SpreadsheetsService {
     const groupData: GroupMeta = {
       teachers: []
     };
+    const ddd = {};
     console.time('Subject info');
     this.getJSON(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
@@ -156,12 +157,30 @@ export class SpreadsheetsService {
         data = data.body.feed.entry;
         console.log(data);
         data.map(e => {
+          const keys = Object.keys(e).filter(key => key.match(/gsx\$\w+/g));
+          keys.splice(keys.indexOf('gsx$grupo'), 1);
+          keys.map(key => {
+            if (e[key].$t.trim() !== '' || e[key].$t !== null) {
+              if (ddd[key.replace('gsx$', '')] === undefined) {
+                ddd[key.replace('gsx$', '')] = [];
+              }
+              ddd[key.replace('gsx$', '')].push(e[key].$t);
+            }
+          });
           if (e.gsx$profesores.$t.trim() !== '') {
             groupData.teachers.push(e.gsx$profesores.$t);
           }
         });
       }
     });
+
+    console.log(ddd);
+    for (const e in ddd) {
+      if (typeof ddd[e] === 'object') {
+        ddd[e].map(ee => ee !== '');
+      }
+    }
+    console.log(ddd);
     return groupData;
   }
 }

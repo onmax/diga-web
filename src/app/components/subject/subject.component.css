@@ -1,7 +1,3 @@
-.subject {
-  min-height: 100vh;
-}
-
 .title {
   margin-top: 20px;
 }
@@ -12,43 +8,50 @@
   color: #444;
 }
 
-.subject__info {
+#subjectInfo {
+  min-height: 100vh;
+}
+
+.subject {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.subject__info>div,
-.subject__groups {
+.subject>div,
+.groups__list {
   margin: 20px;
   font-size: 15px;
 }
 
-.subject__info>div h4,
-.subject__groups h4 {
+.subject h4,
+.group h4 {
   margin: 0;
 }
 
-.subject__info>div p {
+.subject p {
   margin: 5px 10px;
 }
 
-.subject__info>div ul {
+.subject ul,
+.group ul {
   list-style-type: square;
-  margin-left: -10px;
+  padding: 0;
+  margin: 5px 23px;
 }
 
-.subject__info>div ul li {
+.subject div ul li,
+.group div ul li {
   padding: 5px 0;
 }
 
-.subject__groups ul {
+.groups__list ul {
   display: flex;
   list-style: none;
   padding: 0;
 }
 
-.subject__groups ul li {
+.groups__list ul li {
   border: 1px solid var(--main-black);
   border-radius: 3px;
   padding: 5px 10px;
@@ -56,17 +59,17 @@
   transition: 0.3s all var(--transition);
 }
 
-.subject__groups ul li.active {
+.groups__list ul li.active {
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
 }
 
-.subject__groups ul li:not(:first-child) {
+.groups__list ul li:not(:first-child) {
   margin: 0 5px;
 }
 
-.subject__groups ul li:hover:not(.active) {
+.groups__list ul li:hover:not(.active) {
   background: #e5e6e8;
 }
 

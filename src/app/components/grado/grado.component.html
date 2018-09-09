@@ -40,54 +40,57 @@
     </div>
   </div>
 </section>-->
+<ng-progress></ng-progress>
 <section class="card">
   <app-loading-bar [width]="widthLoadingBar"></app-loading-bar>
 
   <h2 class="title">
     <span>Grado</span>
   </h2>
-  <div class="table-header">
-    <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
-      (click)="currentQuarter = quarter.quarter">
-      {{quarter.quarter}} ºCuatrimestre
+  <div class="table" *ngIf="loading">
+    <div class="table-header">
+      <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
+        (click)="currentQuarter = quarter.quarter">
+        {{quarter.quarter}} ºCuatrimestre
+      </div>
     </div>
-  </div>
-  <div *ngFor="let quarter of gradeData">
-    <div class="table-content" *ngIf="currentQuarter === quarter.quarter">
-      <div class="table-content__type" *ngFor="let type of quarter.types">
-        <span class="course">{{type.course}}º Curso</span>
-        <span *ngIf="small()"><br></span>
-        <span *ngIf="!small()"> - </span>
-        <span translate>grade.{{type.type}}</span>
-        <div class="table-content__subjects">
-          <div class="table-content__subject" (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)"
-            (click)="toogleSubject($event)" *ngFor="let subject of type.subjects">
-            <div class="table-content__subject-info">
-              <i class="material-icons">keyboard_arrow_right</i>
-              <div class="table-content__subject-code">
-                {{subject.code}}
+    <div *ngFor="let quarter of gradeData">
+      <div class="table-content" *ngIf="currentQuarter === quarter.quarter">
+        <div class="table-content__type" *ngFor="let type of quarter.types">
+          <span class="course">{{type.course}}º Curso</span>
+          <span *ngIf="small()"><br></span>
+          <span *ngIf="!small()"> - </span>
+          <span translate>grade.{{type.type}}</span>
+          <div class="table-content__subjects">
+            <div class="table-content__subject" (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)"
+              (click)="toogleSubject($event)" *ngFor="let subject of type.subjects">
+              <div class="table-content__subject-info">
+                <i class="material-icons">keyboard_arrow_right</i>
+                <div class="table-content__subject-code">
+                  {{subject.code}}
+                </div>
+                <div class="table-content__subject-name" translate>
+                  grade.subjects.{{subject.name}}
+                </div>
               </div>
-              <div class="table-content__subject-name" translate>
-                grade.subjects.{{subject.name}}
-              </div>
-            </div>
-            <div class="table-content__subjects-groups">
-              <div *ngFor="let group of subject.groups" [ngClass]="{'show-group-code': group.code !== '','not-show-group-code': group.code === ''}"
-                (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, subject.code )">
-                <span class="table-content__subject-code" *ngIf="group.code !== ''">
-                  {{group.code}}
-                </span>
-                <span *ngIf="['basica', 'intensificacion'].includes(type.type)">
-                  <span translate>
-                    grade.group
+              <div class="table-content__subjects-groups">
+                <div *ngFor="let group of subject.groups" [ngClass]="{'show-group-code': group.code !== '','not-show-group-code': group.code === ''}"
+                  (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, subject.code )">
+                  <span class="table-content__subject-code" *ngIf="group.code !== ''">
+                    {{group.code}}
                   </span>
-                  <span>
-                    {{group.name | uppercase}}
+                  <span *ngIf="['basica', 'intensificacion'].includes(type.type)">
+                    <span translate>
+                      grade.group
+                    </span>
+                    <span>
+                      {{group.name | uppercase}}
+                    </span>
                   </span>
-                </span>
-                <span *ngIf="!['basica', 'intensificacion'].includes(type.type)" translate>
-                  grade.subjects.{{group.name}}
-                </span>
+                  <span *ngIf="!['basica', 'intensificacion'].includes(type.type)" translate>
+                    grade.subjects.{{group.name}}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
