@@ -59,6 +59,20 @@
 
 
     <div class="group">
+      <div *ngFor="let object of subject.groupMeta | keyvalue">
+        <div>
+          <h4>{{object.key }}:</h4>
+          <ul>
+            <li *ngFor="let item of object.value">
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!--
+    <div class="group">
       <div *ngIf="subject.groupMeta.teachers.length > 0">
         <h4>Profesores:</h4>
         <ul>
@@ -67,7 +81,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div>-->
 
 
   </div>

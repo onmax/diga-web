@@ -10,9 +10,6 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// loading bar
-import { NgProgressModule } from '@ngx-progressbar/core';
-
 // components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,7 +38,6 @@ import { LoadingBarComponent } from './components/loading-bar/loading-bar.compon
     RoutingModule,
     HttpClientModule,
     HttpModule,
-    NgProgressModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

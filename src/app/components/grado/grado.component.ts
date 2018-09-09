@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { NgProgress } from '@ngx-progressbar/core';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
 import { Quarter } from '../../models';
@@ -25,12 +24,10 @@ export class GradoComponent implements OnInit {
     private spreadsheet: SpreadsheetsService,
     private router: Router,
     private appService: AppService,
-    private activatedRoute: ActivatedRoute,
-    public progress: NgProgress
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.progress.start();
     const month = new Date().getMonth();
     this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
     this.loadingBar();
@@ -38,7 +35,6 @@ export class GradoComponent implements OnInit {
       data => {
         this.gradeData = data;
         this.loading = true;
-
         console.log(data);
       },
       error => {

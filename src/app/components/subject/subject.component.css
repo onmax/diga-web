@@ -8,11 +8,8 @@
   color: #444;
 }
 
-#subjectInfo {
-  min-height: 100vh;
-}
-
-.subject {
+.subject,
+.group {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -27,6 +24,7 @@
 .subject h4,
 .group h4 {
   margin: 0;
+  text-transform: capitalize;
 }
 
 .subject p {

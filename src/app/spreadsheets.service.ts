@@ -4,13 +4,7 @@ import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { environment } from '../environments/environment';
-import {
-  Quarter,
-  Type,
-  GradeSubject,
-  SelectedSubject,
-  GroupMeta
-} from './models';
+import { Quarter, Type, GradeSubject, SelectedSubject } from './models';
 import { Http } from '@angular/http';
 
 import { AppService } from './app.service';
@@ -144,11 +138,8 @@ export class SpreadsheetsService {
     return coincidences[0];
   }
 
-  getGroup(id: string, page: string): GroupMeta {
-    const groupData: GroupMeta = {
-      teachers: []
-    };
-    const ddd = {};
+  getGroup(id: string, page: string) {
+    const groupData = {};
     console.time('Subject info');
     this.getJSON(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
@@ -161,26 +152,31 @@ export class SpreadsheetsService {
           keys.splice(keys.indexOf('gsx$grupo'), 1);
           keys.map(key => {
             if (e[key].$t.trim() !== '' || e[key].$t !== null) {
-              if (ddd[key.replace('gsx$', '')] === undefined) {
-                ddd[key.replace('gsx$', '')] = [];
+              if (
+                groupData[key.replace('gsx$', '')] === undefined &&
+                e[key].$t.trim() !== ''
+              ) {
+                groupData[key.replace('gsx$', '')] = [];
               }
-              ddd[key.replace('gsx$', '')].push(e[key].$t);
+              if (e[key].$t.trim() !== '') {
+                groupData[key.replace('gsx$', '')].push(e[key].$t);
+              }
             }
           });
-          if (e.gsx$profesores.$t.trim() !== '') {
-            groupData.teachers.push(e.gsx$profesores.$t);
-          }
         });
       }
     });
 
-    console.log(ddd);
-    for (const e in ddd) {
-      if (typeof ddd[e] === 'object') {
-        ddd[e].map(ee => ee !== '');
+    console.log(groupData);
+
+    for (const e in groupData) {
+      if (typeof groupData[e] === 'object') {
+        groupData[e].map(ee => ee !== '');
+      } else {
+        console.log(groupData[e], '??');
       }
     }
-    console.log(ddd);
+    console.log(groupData);
     return groupData;
   }
 }
