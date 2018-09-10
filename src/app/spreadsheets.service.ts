@@ -19,6 +19,11 @@ export class SpreadsheetsService {
 
   getJSON(id: string, n: number | string = 1) {
     const url = `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`;
+    return this.http.get<any>(url);
+  }
+
+  getJSONWithReport(id: string, n: number | string = 1) {
+    const url = `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`;
     return this.http.get<any>(url, {
       reportProgress: true,
       observe: 'events'
@@ -27,10 +32,7 @@ export class SpreadsheetsService {
 
   handleEvent(event, size: number = 1, isLoading: string): boolean {
     if (event.type === HttpEventType.DownloadProgress) {
-      console.log(event.loaded);
-
       const percentage: number = Math.round((event.loaded * 100) / size);
-      console.log(percentage + '%');
 
       this.appService.loadingBar$[isLoading].next(percentage);
     } else if (event.type === HttpEventType.Response) {
@@ -41,63 +43,65 @@ export class SpreadsheetsService {
   getAllSubjects(): Quarter[] {
     const all: Quarter[] = [];
     console.time('Grade info');
-    this.getJSON(environment.spreadsheets.subjects.all).subscribe(event => {
-      if (this.handleEvent(event, 74442, 'gradeSubjects')) {
-        console.timeEnd('Grade info');
-        let data: any = event;
-        data = data.body.feed.entry;
+    this.getJSONWithReport(environment.spreadsheets.subjects.all).subscribe(
+      event => {
+        if (this.handleEvent(event, 74442, 'gradeSubjects')) {
+          console.timeEnd('Grade info');
+          let data: any = event;
+          data = data.body.feed.entry;
 
-        let quarter: Quarter,
-          lastQuarter: string,
-          type: Type,
-          lastType,
-          subject: GradeSubject,
-          lastSubject;
+          let quarter: Quarter,
+            lastQuarter: string,
+            type: Type,
+            lastType,
+            subject: GradeSubject,
+            lastSubject;
 
-        data.map(e => {
-          if (e.gsx$quarter.$t !== lastQuarter) {
-            lastQuarter = e.gsx$quarter.$t;
-            quarter = {
-              quarter: lastQuarter,
-              types: []
-            };
-            all.push(quarter);
-          }
-          if (e.gsx$type.$t !== lastType) {
-            lastType = e.gsx$type.$t;
-            type = {
-              type: e.gsx$type.$t,
-              subjects: [],
-              course: parseInt(e.gsx$course.$t, 10)
-            };
-            quarter.types.push(type);
-          }
-          if (e.gsx$subject.$t !== lastSubject) {
-            lastSubject = e.gsx$subject.$t;
-            subject = {
-              name: lastSubject,
-              groups: [],
-              spreadsheetId: e.gsx$id.$t,
-              code: e.gsx$code.$t,
-              description: e.gsx$description.$t,
-              bibliography:
-                e.gsx$bibliography.$t.split(environment.split)[0] === ''
-                  ? []
-                  : e.gsx$bibliography.$t.split(environment.split),
-              coordinator: e.gsx$coordinator.$t,
-              course: e.gsx$course.$t
-            };
-            type.subjects.push(subject);
-          }
+          data.map(e => {
+            if (e.gsx$cuatrimestre.$t !== lastQuarter) {
+              lastQuarter = e.gsx$cuatrimestre.$t;
+              quarter = {
+                quarter: lastQuarter,
+                types: []
+              };
+              all.push(quarter);
+            }
+            if (e.gsx$tipo.$t !== lastType) {
+              lastType = e.gsx$tipo.$t;
+              type = {
+                type: e.gsx$tipo.$t,
+                subjects: [],
+                course: parseInt(e.gsx$curso.$t, 10)
+              };
+              quarter.types.push(type);
+            }
+            if (e.gsx$asignatura.$t !== lastSubject) {
+              lastSubject = e.gsx$asignatura.$t;
+              subject = {
+                name: lastSubject,
+                groups: [],
+                spreadsheetId: e.gsx$id.$t,
+                code: e.gsx$codigo.$t,
+                description: e.gsx$descripcion.$t,
+                bibliography:
+                  e.gsx$bibliografia.$t.split(environment.split)[0] === ''
+                    ? []
+                    : e.gsx$bibliografia.$t.split(environment.split),
+                coordinator: e.gsx$coordinador.$t,
+                course: e.gsx$curso.$t
+              };
+              type.subjects.push(subject);
+            }
 
-          subject.groups.push({
-            name: e.gsx$group.$t,
-            page: e.gsx$page.$t,
-            code: e.gsx$groupcode.$t
+            subject.groups.push({
+              name: e.gsx$grupo.$t,
+              page: e.gsx$pagina.$t,
+              code: e.gsx$codigogrupo.$t
+            });
           });
-        });
+        }
       }
-    });
+    );
     return all;
   }
   getSubject(data, p): SelectedSubject {
@@ -141,7 +145,7 @@ export class SpreadsheetsService {
   getGroup(id: string, page: string) {
     const groupData = {};
     console.time('Subject info');
-    this.getJSON(id, page).subscribe(event => {
+    this.getJSONWithReport(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
         console.timeEnd('Subject info');
         let data: any = event;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
@@ -19,6 +20,8 @@ export class GradoComponent implements OnInit {
 
   widthLoadingBar: number;
   widthLoadingBar$: Observable<number>;
+
+  pdf: string;
 
   constructor(
     private spreadsheet: SpreadsheetsService,
@@ -41,6 +44,12 @@ export class GradoComponent implements OnInit {
         console.error(error);
       }
     );
+    this.spreadsheet
+      .getJSON(environment.spreadsheets.subjects.all, 2)
+      .subscribe(
+        data =>
+          (this.pdf = (data as any).feed.entry[0].gsx$pdfconlainformacion.$t)
+      );
   }
 
   loadingBar() {
