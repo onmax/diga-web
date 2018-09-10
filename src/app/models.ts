@@ -8,6 +8,10 @@ export interface Teacher {
   link: string;
   docenteEn: Object[];
 }
+export interface Teachers {
+  title: string;
+  teachers: Teacher[];
+}
 export interface Quarter {
   quarter: string;
   types: Type[];

@@ -1,0 +1,175 @@
+.profesor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 250px;
+  margin: 3px 10px;
+}
+
+.info-profesor {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.nombre {
+  font-size: 12px;
+}
+
+.cargo {
+  font-size: 13px;
+  font-weight: bold;
+  color: #3e3e3e;
+}
+
+/*profesores*/
+/**************************SUBTITULO TIPO PROFESOR**************************/
+.titulo-tipo-profesor {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+/**************************TARJETAS PROFESORES**************************/
+.container-teachers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  grid-gap: 1rem;
+  margin-top: 10px;
+}
+
+.profesor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+  margin: 3px 10px;
+}
+
+.display-info {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-profesor {
+  min-width: 200px;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.img {
+  width: 60px;
+  height: 60px;
+  margin-right: 5px;
+  object-fit: cover;
+}
+
+.nombre {
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.nombre:hover {
+  text-decoration: underline;
+}
+
+.cv-profesor {
+  max-width: 175px;
+  line-height: 11px;
+  padding-bottom: 8px;
+  display: none;
+  overflow: hidden;
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 12px;
+}
+
+.cargo {
+  font-size: 11px;
+  color: #3e3e3e;
+}
+
+.correo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.mailto-profesor {
+  width: 100%;
+}
+
+.clipboard,
+.input-email {
+  background: #fff;
+  border: 0;
+  cursor: pointer;
+  color: #3e3e3e;
+  user-select: none;
+}
+
+.input-email {
+  width: 100%;
+  font-size: fit-width;
+}
+
+.clipboard {
+  font-size: 13px;
+}
+
+.more-info-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  text-transform: lowercase;
+  font-size: 11px;
+}
+
+.btn-docencia {
+  margin-left: 10px;
+}
+
+.enlace {
+  color: #292b2c !important;
+}
+
+.more-info-btns div:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hidden-info {
+  font-size: 10px;
+}
+
+.hidden-info div {
+  display: none;
+}
+
+.classes-list li {
+  padding-left: 5px;
+  list-style: none;
+}
+
+/****LINK COPIED***/
+.link-copied {
+  background-color: #3d3d3d;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 50px;
+  right: -250px;
+  color: #fff;
+  max-width: 250px;
+  z-index: 1007;
+  font-size: 15px;
+  line-height: 17px;
+  align-items: center;
+  padding: 15px 5px;
+  text-align: center;
+  padding: 20px;
+  transition: .5s all ease;
+}

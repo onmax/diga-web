@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Teacher } from '../../models';
+import { Teachers } from '../../models';
 import { environment } from '../,,/../../../environments/environment';
 @Component({
   selector: 'app-staff',
@@ -8,21 +8,41 @@ import { environment } from '../,,/../../../environments/environment';
   styleUrls: ['./staff.component.css']
 })
 export class StaffComponent implements OnInit {
-  catedraticos: Teacher[];
-  titulares: Teacher[];
-  titulares_interinos: Teacher[];
-  titulares_escuela_universitaria: Teacher[];
-  titulares_escuela_universitaria_interinos: Teacher[];
-  contratados_doctores: Teacher[];
-  ayudantes_doctores: Teacher[];
-  asociados: Teacher[];
-  tecnico_laboratorio: Teacher[];
-  fullList: Teacher[][] = [];
+  dir_sec = [
+    {
+      cargo: 'Director',
+      nombreCompleto: 'D. Javier Raposo Grau',
+      imagen: ''
+    },
+    {
+      cargo: 'Secretario académico',
+      nombreCompleto: 'D. Ángel Martínez Díaz',
+      imagen: ''
+    }
+  ];
+  secretaria = {
+    nombre: 'Dña. Eloisa Grano de Oro Manzano',
+    cargo: 'Secretaria',
+    correo: 'ideación.arquitectura@upm.es',
+    tel: '91 336 64 97'
+  };
+
+  catedraticos: Teachers;
+  titulares: Teachers;
+  titulares_interinos: Teachers;
+  titulares_escuela_universitaria: Teachers;
+  titulares_escuela_universitaria_interinos: Teachers;
+  contratados_doctores: Teachers;
+  ayudantes_doctores: Teachers;
+  asociados: Teachers;
+  tecnico_laboratorio: Teachers;
+  fullList: Teachers[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.fetchInfo();
+    console.log(this.fullList);
   }
   async fetchInfo() {
     this.catedraticos = await this.teachers('catedraticos', 1);
@@ -55,9 +75,8 @@ export class StaffComponent implements OnInit {
     console.log(this.fullList);
   }
 
-  teachers(title: string, n: number): Teacher[] {
-    const teachers = [];
-    teachers.push({ title });
+  teachers(title: string, n: number): Teachers {
+    const teachers: Teachers = { title, teachers: [] };
     const url = `https://spreadsheets.google.com/feeds/list/${
       environment.spreadsheets.teachers
     }/${n}/public/values?alt=json`;
@@ -76,9 +95,21 @@ export class StaffComponent implements OnInit {
           link: teacherRaw.gsx$link.$t,
           docenteEn: teacherRaw.gsx$docencia.$t.split(',')
         };
-        teachers.push(teacher);
+        teachers.teachers.push(teacher);
       });
     });
     return teachers;
+  }
+
+  show(e) {
+    const info = e.target.closest('.more-info');
+    // info.querySelector('.info-hidden').style
+  }
+  copied() {
+    const notification: any = document.querySelector('.link-copied');
+    notification.style('right', '50px');
+    setTimeout(function() {
+      notification.style('right', '-250px');
+    }, 3000);
   }
 }

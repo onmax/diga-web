@@ -1,9 +1,80 @@
-<h2 class="title">
-  <span>DIRECCIÓN</span>
-</h2>
-<h2 class="title">
-  <span>SECRETARÍA</span>
-</h2>
-<h2 class="title">
-  <span>PROFESORADO</span>
-</h2>
+<main>
+  <section>
+    <h2 class="title">
+      <span>DIRECCIÓN</span>
+    </h2>
+    <div class="container-teachers">
+      <div class="profesor" *ngFor="let profesor of dir_sec">
+        <div class="info-profesor">
+          <div class="cargo">{{profesor.cargo}}</div>
+          <div class="nombre">{{profesor.nombreCompleto}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+
+    <h2 class="title">
+      <span>SECRETARÍA</span>
+    </h2>
+    <div class="all-info">
+      <div class="info-profesor">
+        <div class="cargo">{{secretaria.cargo}}</div>
+        <div class="nombre">{{secretaria.nombre}}</div>
+        <div class="contacto">
+          <div class="correo">{{secretaria.correo}}</div>
+          <div class="tel">{{secretaria.tel}}</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+
+    <h2 class="title">
+      <span>PROFESORADO</span>
+    </h2>
+    <div class="results"></div>
+    <div class="wrapper" *ngFor="let teachers of fullList">
+      <h3 class="titulo-tipo-profesor" translate>{{teachers.title }}</h3>
+      <div class="container-teachers">
+        <div class="profesor" *ngFor="let teacher of teachers.teachers">
+          <div class="display-info">
+            <img class="img" src="./assets/personal/{{teacher.imagen}}" alt="">
+            <div class="info-profesor">
+              <div class="nombre" (click)="show(teacher.id, 'ref')">{{teacher.nombre}} {{teacher.apellidos}}</div>
+              <div class="info-hidden cv-profesor" id="{{teacher.id}}-ref"> {{teacher.curriculum}}</div>
+              <div class="correo">
+                <a class="mailto-profesor" href="mailto:{{teacher.correo}}">
+                  <input id="{{teacher.id}}-mail" readonly="readonly" class="input-email" value={{teacher.correo}}>
+                </a>
+                <button class="material-icons clipboard" attr.data-clipboard-target="#{{teacher.id}}-mail" (click)="copied()">content_copy</button>
+              </div>
+              <div class="more-info">
+                <div class="more-info-btns">
+                  <a href="http://{{teacher.link}}">
+                    <div class="enlace" translate>enlace</div>
+                  </a>
+                  <div class="btn-docencia" (click)="show($event)" translate>docencia</div>
+                </div>
+                <div class="hidden-info">
+                  <div class="info-hidden" id="{{teacher.id}}-doc">
+                    <ul class="classes-list">
+                      <li *ngFor="let clase of teacher.docenteEn">{{clase}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="link-copied">
+      Email copiado al portapapeles.
+    </div>
+  </section>
+
+</main>
