@@ -20,6 +20,11 @@ import { GradoComponent } from './components/grado/grado.component';
 import { SubjectComponent } from './components/subject/subject.component';
 import { StaffComponent } from './components/staff/staff.component';
 import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
+import { MemoriaComponent } from './memoria/memoria.component';
+import { PosgradoComponent } from './posgrado/posgrado.component';
+import { ExplorarComponent } from './explorar/explorar.component';
+import { GruposIdiComponent } from './grupos-idi/grupos-idi.component';
+import { InnovacionDocenteComponent } from './innovacion-docente/innovacion-docente.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,12 @@ import { LoadingBarComponent } from './components/loading-bar/loading-bar.compon
     GradoComponent,
     SubjectComponent,
     StaffComponent,
-    LoadingBarComponent
+    LoadingBarComponent,
+    MemoriaComponent,
+    PosgradoComponent,
+    ExplorarComponent,
+    GruposIdiComponent,
+    InnovacionDocenteComponent
   ],
   imports: [
     BrowserModule,

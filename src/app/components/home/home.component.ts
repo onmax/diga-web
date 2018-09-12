@@ -7,7 +7,7 @@ import DirectionReveal from 'direction-reveal';
   templateUrl: './home.component.html',
   styleUrls: [
     './home.component.css',
-    './swiper.min.css',
+    '../../swiper.min.css',
     './direction-reveal.css'
   ]
 })

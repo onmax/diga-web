@@ -1,0 +1,37 @@
+.memoria-container {
+  margin-left: 10px;
+}
+
+.year {
+  font-size: 17px;
+  font-weight: bold;
+  color: #3e3e3e;
+  margin-top: 10px;
+}
+
+.memoria-container__row {
+  display: grid;
+  grid-template: auto / 1fr 1fr 1fr 1fr;
+}
+
+.memoria-container__links {
+  margin-left: 10px;
+}
+
+.title-column {
+  font-size: 15px;
+  margin-top: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #3e3e3e;
+}
+
+.memorias-container__elem {
+  list-style: none;
+  margin-left: 10px;
+  margin-bottom: 0;
+}
+
+a {
+  color: #3e3e3e;
+}

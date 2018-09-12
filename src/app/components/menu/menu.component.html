@@ -28,10 +28,10 @@
           <a routerLink="/grado">
             <li>Grado</li>
           </a>
-          <a routerLink="/grado">
+          <a routerLink="/posgrado">
             <li>Posgrado</li>
           </a>
-          <a routerLink="/grado">
+          <a routerLink="/memoria">
             <li>Memoria</li>
           </a>
         </ul>
@@ -39,10 +39,10 @@
       <li>
         <span class="option" (click)="toggleSubmenu('research')">Investigación</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('research')}" id="research">
-          <a routerLink="/grado">
+          <a routerLink="/grupo-i-d+i">
             <li>Grupos I+D+i</li>
           </a>
-          <a routerLink="/grado">
+          <a routerLink="/innovacion-docente">
             <li>Grupos Innovación Docente</li>
           </a>
         </ul>
@@ -50,7 +50,7 @@
       <li>
         <span class="option" (click)="toggleSubmenu('explore')">Explorar</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('explore')}" id="explore">
-          <a routerLink="/grado">
+          <a routerLink="/explorar">
             <li>Noticias. Eventos</li>
           </a>
         </ul>

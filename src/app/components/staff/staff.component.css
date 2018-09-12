@@ -78,15 +78,23 @@
 
 .cv-profesor {
   max-width: 175px;
-  line-height: 11px;
-  padding-bottom: 8px;
-  display: none;
-  overflow: hidden;
-  padding-top: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 0;
+  padding: 0px;
   font-size: 12px;
+  line-height: 11px;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: .4s all var(--transition);
+  opacity: 0;
 }
+
+.cv-profesor__open {
+  max-height: 100px;
+  opacity: 1;
+
+}
+
+
 
 .cargo {
   font-size: 11px;
@@ -105,7 +113,7 @@
 
 .clipboard,
 .input-email {
-  background: #fff;
+  background: var(--main-bck);
   border: 0;
   cursor: pointer;
   color: #3e3e3e;
@@ -144,10 +152,13 @@
 
 .hidden-info {
   font-size: 10px;
+  overflow-y: hidden;
+  max-height: 0;
+  transition: .3s all ease;
 }
 
-.hidden-info div {
-  display: none;
+.show-classes {
+  max-height: inherit;
 }
 
 .classes-list li {
@@ -171,5 +182,9 @@
   padding: 15px 5px;
   text-align: center;
   padding: 20px;
-  transition: .5s all ease;
+  transition: 0.5s all ease;
+}
+
+a {
+  text-decoration: none;
 }

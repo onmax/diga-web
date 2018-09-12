@@ -1,0 +1,83 @@
+<section class="card">
+  <h2 class="title" id="grado" translate>
+    <span>master</span>
+  </h2>
+
+  <div class="table">
+    <div class="column">
+      <div class="title">master_universitario</div>
+      <ul>
+        <li *ngFor="let asignatura of masterUniversitario">
+          <a href="{{asignatura.link}}" target="_blank">
+            {{asignatura.nombre}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2 class="title" id="grado" translate>
+    <span translate>cursos_titulo_propio</span>
+  </h2>
+
+  <div class="table">
+    <div class="column">
+      <div class="title" translate>master_propio</div>
+      <ul>
+        <li *ngFor="let asignatura of masterUniversitario">
+          <a href="{{asignatura.link}}" target="_blank">
+            {{asignatura.nombre}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column">
+      <div class="title" translate>cursos_especialistas</div>
+      <ul>
+        <li *ngFor="let asignatura of masterUniversitario">
+          <a href="{{asignatura.link}}" target="_blank">
+            {{asignatura.nombre}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column">
+      <div class="title" translate>cursos</div>
+      <ul>
+        <li *ngFor="let asignatura of masterUniversitario">
+          <a href="{{asignatura.link}}" target="_blank">
+            {{asignatura.nombre}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="card">
+  <h2 class="title" id="grado" translate>
+    <span translate>doctorado</span>
+  </h2>
+
+  <div class="table">
+    <div class="column" *ngFor="let doctorado of doctorados">
+      <div class="title" translate>{{doctorado.nombre}}</div>
+      <ul>
+        <li>
+          <ul class="asignaturas-column__submenu">
+            <li *ngFor="let link of doctorado.links; let j = index">
+              <a href="{{link}}">{{doctorado.textolink[j]}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -101,15 +101,26 @@ export class StaffComponent implements OnInit {
     return teachers;
   }
 
-  show(e) {
-    const info = e.target.closest('.more-info');
-    // info.querySelector('.info-hidden').style
+  showCV(e) {
+    const teacher = e.target.closest('.info-profesor');
+    const cv = teacher.querySelector('.cv-profesor');
+    cv.classList.toggle('cv-profesor__open');
   }
-  copied() {
-    const notification: any = document.querySelector('.link-copied');
-    notification.style('right', '50px');
-    setTimeout(function() {
-      notification.style('right', '-250px');
-    }, 3000);
+
+  showClasses(e) {
+    const parent = e.target.closest('.more-info');
+    const classes = parent.querySelector('.hidden-info');
+    classes.classList.toggle('show-classes');
+  }
+  copy(email: string) {
+    (navigator as any).clipboard
+      .writeText(email)
+      .then(() => {
+        console.log('Email copied to clipboard');
+      })
+      .catch(err => {
+        // This can happen if the user denies clipboard permissions:
+        console.error('Could not copy text: ', err);
+      });
   }
 }

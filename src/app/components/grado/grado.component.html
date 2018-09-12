@@ -1,62 +1,20 @@
-<!--<section class="card">
-  <app-loading-bar></app-loading-bar>
-  <h2 class="title">
-    <span>Grado</span>
-  </h2>
-  <div class="semester" *ngFor="let quarter of gradeData">
-    <h4>
-      <span>{{quarter.quarter}}º </span>
-      <span translate>grade.quarter</span>
-    </h4>
-    <h6 class="course course-1">1º
-      <span translate>grade.course</span>
-    </h6>
-    <h6 class="course course-4">4º
-      <span translate>grade.course</span>
-    </h6>
-    <h6 class="course course-5">5º
-      <span translate>grade.course</span>
-    </h6>
-    <div *ngFor="let type of quarter.types" class="subjects {{ type.type }}-subjects">
-      <span translate>{{type.type === '' ? ('') : ('grade.' + type.type) }}</span>
-      <ul>
-        <li class="subject" *ngFor="let subject of type.subjects">
-          <div class="subject__info" (click)="toggleGroups($event)">
-            <span class="subject__code">{{subject.code}}</span>
-            <span>-</span>
-            <span translate>grade.subjects.{{subject.name}}</span>
-          </div>
-          <ul class="subjects__groups">
-            <li *ngFor="let group of subject.groups" (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, subject.code )">
-              <span class="subject__code" *ngIf="group.code !== ''">{{group.code}}-</span>
-              <span *ngIf="['basica', 'intensificacion'].includes(type.type)">
-                <span translate>grade.group</span> {{group.name | uppercase}}
-              </span>
-              <span *ngIf="!['basica', 'intensificacion'].includes(type.type)" translate>grade.subjects.{{group.name}}</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>-->
 <section class="card">
   <app-loading-bar [width]="widthLoadingBar"></app-loading-bar>
 
   <h2 class="title">
-    <span>Grado</span>
+    <span translate>grade.grade</span>
   </h2>
   <div class="table" *ngIf="loading">
     <div class="table-header">
       <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
         (click)="currentQuarter = quarter.quarter">
-        {{quarter.quarter}} ºCuatrimestre
+        {{quarter.quarter}} º<span translate>grade.quarter</span>
       </div>
     </div>
     <div *ngFor="let quarter of gradeData">
       <div class="table-content" *ngIf="currentQuarter === quarter.quarter">
         <div class="table-content__type" *ngFor="let type of quarter.types">
-          <span class="course">{{type.course}}º Curso</span>
+          <span class="course">{{type.course}}º <span translate>grade.course</span></span>
           <span *ngIf="small()"><br></span>
           <span *ngIf="!small()"> - </span>
           <span translate>grade.{{type.type}}</span>
@@ -97,7 +55,7 @@
       </div>
     </div>
 
-    <a href="{{pdf}}" target="_blank" class="see-pdf">*Ver la información de grado en PDF aquí.</a>
+    <a href="{{pdf}}" target="_blank" class="see-pdf" translate>grade.see_pdf</a>
   </div>
 </section>
 <app-subject [gradeData]="gradeData" *ngIf="showSubject()"></app-subject>

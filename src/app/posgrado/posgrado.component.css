@@ -1,0 +1,31 @@
+.column {
+  margin-top: 10px;
+  padding: 7px 20px;
+  font-size: 15px;
+}
+
+.column .title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+  padding-left: 15px;
+}
+
+.column li {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.column li a {
+  color: var(--main-black);
+  text-decoration: none;
+}
+
+.column li a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,24 @@
+.groups {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 280px);
+  grid-gap: 1rem;
+}
+
+.group-name {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 5px;
+  margin-bottom: 4px;
+}
+
+.info-group {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-group p {
+  margin-bottom: 0;
+}

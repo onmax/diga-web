@@ -1,0 +1,11 @@
+<h2 class="title" style="padding:10px 50px;">
+  <span>Grupos ID+i</span>
+</h2>
+<section class="groups" style="padding:10px 50px;">
+  <div *ngFor="let group of idGroups">
+    <h3 class="group-name">{{group.nombre}}</h3>
+    <div class="info-group">
+      <p *ngFor="let item of group.integrantes">{{item}}</p>
+    </div>
+  </div>
+</section>

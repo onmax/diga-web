@@ -2,6 +2,7 @@
   "diga": "Departamento de Ideación Gráfica Arquitectónica",
   "language": "English",
   "grade": {
+    "grade": "grado",
     "group": "Grupo",
     "quarter": "Cuatrimestre",
     "course": "Curso",
@@ -28,11 +29,12 @@
       "dibujar_configurar": "Dibujar / Configurar: Pintura, escultura, arquitectura",
       "construccion_espacio": "La Construcción del Espacio: una fenomenología de la mirada",
       "biomimicry": "BIOMIMICRY, Naturaleza y Arquitectura. Green Buildings.",
-      "formatos_experimentales": "Formatos experimentales en comunicación audio/visual",
+      "formatos_experimentales": "Formatos experimentales en comunicación audiovisual",
       "arquitectura_paisaje": "Arquitectura y Paisaje: el dibujo de apuntes",
       "dibujo_documentacion": "Dibujo y documentación de arquitectura, ciudad y paisaje.",
       "patrimonio": "Patrimonio, forma y construcción",
       "narrativa_lenguaje": "Narrativas y lenguajes híbridos para la Comunicación Arquitectónica"
-    }
+    },
+    "see_pdf": "*Ver la información de grado en PDF aquí."
   }
 }
