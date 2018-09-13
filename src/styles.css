@@ -43,6 +43,7 @@ main .card {
   margin: 25px;
   padding: 25px;
   position: relative;
+  overflow: hidden;
 }
 
 main .card:hover {

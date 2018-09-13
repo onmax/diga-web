@@ -6,18 +6,18 @@ import { Component, Input, OnChanges } from '@angular/core';
   styleUrls: ['./loading-bar.component.css']
 })
 export class LoadingBarComponent implements OnChanges {
-  transitionDuration = 0.3;
+  transitionDuration = .3;
   @Input()
-  width = 25;
+  width = 0;
   left = 0;
+  borderRadius = '4px 0 0 0';
   constructor() {}
 
   ngOnChanges() {
-    if (this.width === undefined) {
-      this.width = 50;
-    }
-    if (this.width === 100) {
+    if (this.width >= 96) {
+      this.borderRadius = '4px 4px 0 0';
       setTimeout(() => {
+        this.borderRadius = '0 4px 0 0';
         this.left = 100;
         this.width = 0;
       }, this.transitionDuration * 1000);
