@@ -36,5 +36,19 @@
       "narrativa_lenguaje": "Narrativas y lenguajes híbridos para la Comunicación Arquitectónica"
     },
     "see_pdf": "*Ver la información de grado en PDF aquí."
+  },
+  "staff": {
+    "direccion": "Dirección",
+    "secretaria": "Secretaría",
+    "profesorado": "Profesorado",
+    "catedraticos": "Catedráticos",
+    "titulares": "Titulares",
+    "titulares_interinos": "Titulares Interinos",
+    "titulares_escuela_universitaria": "Titular de Escuela Universitaria",
+    "titulares_escuela_universitaria_interinos": "Titular de Escuela Universitaria Interino",
+    "contratados_doctores": "Contratado Doctor",
+    "ayudantes_doctores": "Ayudante de Doctor",
+    "asociados": "Asociados",
+    "tecnico_laboratorio": "Técnico de laboratorio"
   }
 }

@@ -36,6 +36,19 @@
       "narrativa_lenguaje": "Narratives and hybrid languages ​​for Architectural Communication"
     },
     "see_pdf": "*See full information of grade in this PDF."
-
+  },
+  "staff": {
+    "direccion": "Direction",
+    "secretaria": "Secretary",
+    "profesorado": "Faculty",
+    "catedraticos": "Professor",
+    "titulares": "Associate Professor",
+    "titulares_interinos": "Interim Professor",
+    "titulares_escuela_universitaria": "Full University School Professor",
+    "titulares_escuela_universitaria_interinos": "Full University School Interim Professor",
+    "contratados_doctores": "Senior University Researchers",
+    "ayudantes_doctores": "Assistants of Senior University Researchers",
+    "asociados": "Associates",
+    "tecnico_laboratorio": "Laboratory Technician"
   }
 }

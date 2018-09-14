@@ -1,7 +1,7 @@
 <main>
   <section style="padding: 50px;">
     <h2 class="title">
-      <span>DIRECCIÓN</span>
+      <span translate>staff.direccion</span>
     </h2>
     <div class="container-teachers" style="padding: 10px;">
       <div class="profesor" *ngFor="let profesor of dir_sec">
@@ -16,7 +16,7 @@
   <section style="padding: 50px;">
 
     <h2 class="title">
-      <span>SECRETARÍA</span>
+      <span translate>staff.secretaria</span>
     </h2>
     <div class="all-info" style="padding: 10px; margin-left:32px">
       <div class="info-profesor">
@@ -34,10 +34,10 @@
   <section style="padding: 50px;">
 
     <h2 class="title">
-      <span>PROFESORADO</span>
+      <span translate>staff.profesorado</span>
     </h2>
     <div class="wrapper" *ngFor="let teachers of fullList" style="padding: 10px;">
-      <h3 class="titulo-tipo-profesor" translate>{{teachers.title }}</h3>
+      <h3 class="titulo-tipo-profesor" translate>staff.{{teachers.title}}</h3>
       <div class="container-teachers">
         <div class="profesor" *ngFor="let teacher of teachers.teachers">
           <div class="display-info">
