@@ -41,6 +41,13 @@
   max-width: 400px;
   text-align: justify;
   padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 992px) {
+  .description {
+    margin: 50px auto;
+  }
 }
 
 /* cards-home */
