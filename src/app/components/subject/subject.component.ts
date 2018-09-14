@@ -18,6 +18,8 @@ export class SubjectComponent implements OnChanges {
   widthLoadingBar: number;
   widthLoadingBar$: Observable<number>;
 
+  order = ['profesores', 'enlaces', 'avisos'];
+
   constructor(
     private spreadsheetsService: SpreadsheetsService,
     private appService: AppService,

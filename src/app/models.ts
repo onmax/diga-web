@@ -43,7 +43,12 @@ export interface SelectedSubject {
   type: string;
   subject: GradeSubject;
   group: Group;
-  groupMeta: object;
+  groupMeta: GroupMeta[];
+}
+
+export interface GroupMeta {
+  title: string;
+  values: string[];
 }
 
 export interface SubjectParams {

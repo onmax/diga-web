@@ -4,7 +4,13 @@ import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { environment } from '../environments/environment';
-import { Quarter, Type, GradeSubject, SelectedSubject } from './models';
+import {
+  Quarter,
+  Type,
+  GradeSubject,
+  SelectedSubject,
+  GroupMeta
+} from './models';
 import { Http } from '@angular/http';
 
 import { AppService } from './app.service';
@@ -142,45 +148,54 @@ export class SpreadsheetsService {
     return coincidences[0];
   }
 
-  getGroup(id: string, page: string) {
-    const groupData = {};
+  getGroup(id: string, page: string): GroupMeta[] {
+    let groupData: GroupMeta[] = [];
+    groupData.find(e => true);
     console.time('Subject info');
     this.getJSONWithReport(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
         console.timeEnd('Subject info');
         let data: any = event;
         data = data.body.feed.entry;
-        console.log(data);
         data.map(e => {
           const keys = Object.keys(e).filter(key => key.match(/gsx\$\w+/g));
           keys.splice(keys.indexOf('gsx$grupo'), 1);
           keys.map(key => {
             if (e[key].$t.trim() !== '' || e[key].$t !== null) {
               if (
-                groupData[key.replace('gsx$', '')] === undefined &&
-                e[key].$t.trim() !== ''
+                groupData.find(ee => ee.title === key.replace('gsx$', '')) ===
+                undefined
               ) {
-                groupData[key.replace('gsx$', '')] = [];
+                groupData.push({
+                  title: key.replace('gsx$', ''),
+                  values: []
+                });
               }
               if (e[key].$t.trim() !== '') {
-                groupData[key.replace('gsx$', '')].push(e[key].$t);
+                const index = groupData.findIndex(
+                  ee => ee.title === key.replace('gsx$', '')
+                );
+                groupData[index].values.push(e[key].$t.trim());
               }
             }
           });
         });
+        groupData = this.sort(groupData, 'profesores enlaces avisos');
       }
     });
 
-    console.log(groupData);
+    groupData.map(e => e.values.map(ee => ee !== ''));
 
-    for (const e in groupData) {
-      if (typeof groupData[e] === 'object') {
-        groupData[e].map(ee => ee !== '');
-      } else {
-        console.log(groupData[e], '??');
-      }
-    }
-    console.log(groupData);
+    console.log('Información del grupo', groupData);
+
     return groupData;
+  }
+
+  sort(fields: GroupMeta[], keys: string): GroupMeta[] {
+    const newFields = [];
+    keys.split(' ').map(key => {
+      newFields.push(fields.find(e => e.title === key));
+    });
+    return { ...newFields, ...fields };
   }
 }
