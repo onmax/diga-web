@@ -43,7 +43,7 @@
           <div class="display-info">
             <img class="img" src="./assets/personal/{{teacher.imagen}}" alt="">
             <div class="info-profesor">
-              <div class="nombre" (click)="showCV($event)">{{teacher.nombre}} {{teacher.apellidos}}</div>
+              <div class="nombre" (click)="showCV($event)">{{teacher.apellidos}}, {{teacher.nombre}}</div>
               <div class="info-hidden cv-profesor" id="{{teacher.id}}-ref"> {{teacher.curriculum}}</div>
               <div class="correo">
                 <a class="mailto-profesor" href="mailto:{{teacher.correo}}">
