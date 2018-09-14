@@ -1,11 +1,6 @@
-<div class="swiper-container">
+<div class="swiper-container" *ngIf="swiperImages">
   <div class="swiper-wrapper">
-    <img src="./assets/home/carousel/picture1.jpg" alt="" class="swiper-slide">
-    <img src="./assets/home/carousel/picture2.jpg" alt="" class="swiper-slide">
-    <img src="./assets/home/carousel/picture3.jpg" alt="" class="swiper-slide">
-    <img src="./assets/home/carousel/picture4.jpg" alt="" class="swiper-slide">
-    <img src="./assets/home/carousel/picture5.jpg" alt="" class="swiper-slide">
-    <img src="./assets/home/carousel/picture6.jpg" alt="" class="swiper-slide">
+    <img *ngFor="let img of swiperImages" src="./assets/home/carousel/{{img}}" alt="" class="swiper-slide">
   </div>
   <!-- Add Pagination -->
   <div class="swiper-pagination"></div>
@@ -29,10 +24,10 @@
     <img src="./assets/home/cards/staff.jpg" alt="Image" class="img-fluid">
     <h3 class="card-home__title">Direccion</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
-      <div class="card-home-options">
-        <div class="card-home__option">Dirección</div>
-        <div class="card-home__option">Secretaría</div>
-        <div class="card-home__option">Profesorado</div>
+      <div class="card-home__options">
+        <a routerLink="/direccion-profesorado">Dirección</a>
+        <a routerLink="/direccion-profesorado">Secretaría</a>
+        <a routerLink="/direccion-profesorado">Profesorado</a>
       </div>
     </div>
   </a>
@@ -41,10 +36,10 @@
     <img src="./assets/home/cards/teaching.png" alt="Image" class="img-fluid">
     <h3 class="card-home__title">Docencia</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
-      <div class="card-home-options">
-        <div class="card-home__option">Grado</div>
-        <div class="card-home__option">Posgrado</div>
-        <div class="card-home__option">Memoria</div>
+      <div class="card-home__options">
+        <a routerLink="/grado">Grado</a>
+        <a routerLink="/posgrado">Posgrado</a>
+        <a routerLink="/memoria">Memoria</a>
       </div>
     </div>
   </a>
@@ -53,9 +48,9 @@
     <img src="./assets/home/cards/research.png" alt="Image" class="img-fluid">
     <h3 class="card-home__title">Investigación</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
-      <div class="card-home-options">
-        <div class="card-home__option">Grupos i+D+i</div>
-        <div class="card-home__option">Grupos Innovación Docente</div>
+      <div class="card-home__options">
+        <a routerLink="/grupo-i-d+i">Grupos i+D+i</a>
+        <a routerLink="/innovacion-docente">Grupos Innovación Docente</a>
       </div>
     </div>
   </a>
@@ -64,8 +59,8 @@
     <img src="./assets/home/cards/explore.jpg" alt="Image" class="img-fluid">
     <h3 class="card-home__title">Explorar</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
-      <div class="card-home-options">
-        <div class="card-home__option">Noticas. Eventos</div>
+      <div class="card-home__options">
+        <a routerLink="/explorar">Noticas. Eventos</a>
       </div>
     </div>
   </a>

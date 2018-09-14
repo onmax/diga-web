@@ -57,6 +57,11 @@ main .card:hover {
   app-root {
     display: inherit;
   }
+
+  main {
+    margin-top: var(--header-height);
+    padding: 10px 0;
+  }
 }
 
 /*Titulos*/

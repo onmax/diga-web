@@ -12,6 +12,7 @@ import DirectionReveal from 'direction-reveal';
   ]
 })
 export class HomeComponent implements OnInit {
+  swiperImages: string[];
   fixDirectionReveal = '0';
 
   constructor() {}
@@ -31,20 +32,19 @@ export class HomeComponent implements OnInit {
 
     setTimeout(() => {
       this.fixDirectionReveal = '.3s';
+      const swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-next',
+          prevEl: '.swiper-prev'
+        }
+      });
     }, 300);
-
-    const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-next',
-        prevEl: '.swiper-prev'
-      }
-    });
   }
 }

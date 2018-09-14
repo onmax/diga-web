@@ -1,6 +1,7 @@
 .swiper-container {
   max-width: 500px;
   height: 254px;
+  margin-bottom: 25px;
 }
 
 .swiper-slide {
@@ -39,7 +40,7 @@
 .description {
   max-width: 400px;
   text-align: justify;
-  margin: 25px auto;
+  padding: 0 20px;
 }
 
 /* cards-home */
@@ -48,6 +49,8 @@
   grid-template-columns: repeat(auto-fit, minmax(0, 200px));
   grid-gap: 20px;
   justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 40px;
 }
 
 .cards-home .card-home {
@@ -111,7 +114,7 @@
   margin: 0;
 }
 
-.card-home-options {
+.card-home__options {
   height: calc(100% - 39px);
   display: flex;
   flex-direction: column;
@@ -119,10 +122,12 @@
   text-align: center;
 }
 
-.card-home__option {
+.card-home__options>a {
   padding: 15px 0;
+  color: #fff;
+  text-decoration: none;
 }
 
-.card-home__option:hover {
+.card-home__options>a:hover {
   text-decoration: underline;
 }
