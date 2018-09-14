@@ -24,7 +24,7 @@ export class StaffComponent implements OnInit {
     nombre: 'Dña. Eloisa Grano de Oro Manzano',
     cargo: 'Secretaria',
     correo: 'ideación.arquitectura@upm.es',
-    tel: '91 336 64 97'
+    tel: '91 067 50 50'
   };
 
   catedraticos: Teachers;
@@ -91,7 +91,7 @@ export class StaffComponent implements OnInit {
             teacherRaw.gsx$apellido1.$t + ' ' + teacherRaw.gsx$apellido2.$t,
           correo: teacherRaw.gsx$correo.$t,
           curriculum: teacherRaw.gsx$cv.$t,
-          imagen: teacherRaw.gsx$imagenid.$t,
+          imagen: teacherRaw.gsx$imagenid.$t.replace('ñ', 'n'),
           link: teacherRaw.gsx$link.$t,
           docenteEn: teacherRaw.gsx$docencia.$t.split(',')
         };
