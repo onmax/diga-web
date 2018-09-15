@@ -129,8 +129,18 @@ export class GradoComponent implements OnInit {
     const icon = subject.querySelector('i');
     icon.classList.toggle('open');
     icon.classList.toggle('rotate');
-    groups.style.maxHeight =
-      groups.style.maxHeight === '' ? `${groups.children.length * 32}px` : '';
+
+    // Calculate the height
+    let height: string | number = 0;
+    if (groups.style.maxHeight === '') {
+      for (const group of groups.children) {
+        height = height + group.clientHeight;
+      }
+      height = height + 'px';
+    } else {
+      height = '';
+    }
+    groups.style.maxHeight = height;
 
     for (const group of groups.children) {
       if (['', '0'].includes(group.style.opacity)) {
