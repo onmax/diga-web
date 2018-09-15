@@ -1,20 +1,3 @@
-.semester {
-  margin-top: 25px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 26px auto auto;
-  grid-template-areas: 't t t t''c1 c1 c4 c5''s1 s2 s3 s4';
-  /*t:title, c: course(1,4,5), s:subject(1,2,3,4)*/
-}
-
-@media screen and (max-width: 992px) {
-  section.semester {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-/* alterntive */
 .table-header {
   margin-top: 20px;
   width: 100%;
@@ -45,6 +28,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   transition: 3s all ease;
+  color: var(--main-black);
 }
 
 .table-content .table-content__type {

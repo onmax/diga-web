@@ -31,20 +31,84 @@
 }
 
 /*New*/
-.content {
-  margin: 20px 10px;
+.table-content {
   color: var(--main-black);
 }
 
-.content h5 {
-  font-size: 16px;
-  margin: 0;
-  margin: 10px 0;
+.table-header {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 15px;
+  display: flex;
+  border-bottom: 2px solid var(--primary);
 }
 
-.content h6 {
+.table-header__option {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 2px 2px 0 0;
+}
+
+.table-header__option:hover:not(.selected) {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.table-header__option.selected {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.table-content {
+  color: var(--main-black);
+}
+
+
+
+.table-content h5 span {
+  background: var(--primary);
+  color: var(--white);
+  padding: 6px 12px;
+  border-radius: 1px;
+}
+
+.table-content h6 {
   font-size: 12px;
   margin: 5px 15px;
   text-transform: uppercase;
+}
 
+ul {
+  margin: 0;
+  margin-bottom: 13px;
+  list-style: none;
+  cursor: default;
+}
+
+ul li {
+  padding: 5px 0;
+}
+
+ul li a,
+ul li span {
+  font-size: 13px;
+}
+
+ul li a {
+  transition: 0.3s all cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding: 0 3px;
+  border-left: 3px solid transparent;
+}
+
+ul li a:hover {
+  border-left: 3px solid var(--primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
 }

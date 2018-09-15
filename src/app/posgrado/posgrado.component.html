@@ -85,26 +85,34 @@
 
 <section class="card">
   <h2 class="title" id="grado" translate>
-    <span>posgrado</span>
+    <span translate>posgrade.posgrade</span>
   </h2>
 
-  <div class="content" *ngFor="let type of posgradeData">
-    <h5>{{type.title}}</h5>
-    <div class="options" *ngFor="let studies of type.studies">
-      <h6>{{studies.title}}</h6>
-      <ul>
-        <li *ngFor="let item of studies.options">
-          <a *ngIf="item.link !== ''" href="{{item.link}}">{{item.title}}</a>
-          <div *ngIf="item.link === ''" class="links">
-            <span>{{item.title}}</span>
-            <ul>
-              <li *ngFor="let link of item.linkList">
-                <a href="{{link.url}}">{{link.text}}</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+  <div class="table-header">
+    <div class="table-header__option" *ngFor="let item of posgradeData" [ngClass]="{'selected': item.title == currentSelected}"
+      (click)="currentSelected = item.title">
+      <span translate>posgrade.{{item.title}}</span>
+    </div>
+  </div>
+
+  <div class="table-content" *ngFor="let type of posgradeData">
+    <div *ngIf="currentSelected === type.title">
+      <div class="options" *ngFor="let studies of type.studies">
+        <h6 translate>posgrade.{{studies.title}}</h6>
+        <ul>
+          <li *ngFor="let item of studies.options">
+            <a *ngIf="item.link !== ''" href="{{item.link}}" translate>posgrade.{{item.title}}</a>
+            <div *ngIf="item.link === ''" class="links">
+              <span translate>posgrade.{{item.title}}</span>
+              <ul>
+                <li *ngFor="let link of item.linkList">
+                  <a href="{{link.url}}" translate>{{link.text}}</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
