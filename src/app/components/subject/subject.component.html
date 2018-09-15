@@ -49,10 +49,10 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}"
           (click)="goTo(group.name)">
-          <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
+          <span *ngIf="['troncal', 'intensificacion'].includes(subject.type)">
             <span translate>grade.group</span> {{group.name | uppercase}}
           </span>
-          <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>grade.subjects.{{group.name}}</span></span>
+          <span *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>grade.subjects.{{group.name}}</span></span>
         </div>
       </div>
     </div>

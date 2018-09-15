@@ -6,10 +6,11 @@
     "group": "Group",
     "quarter": "Quarter",
     "course": "Course",
-    "basica": "Basic",
+    "troncal": "Core",
     "obligatoria_diversificable": "Mandatory Divaaersifiable",
     "opcional": "Optional",
     "intensificacion": "Intensification",
+    "tfg": "Trabajo Fin de Grado",
     "subjects": {
       "gda_1": "GAD 1",
       "gda_2": "GAD 2",
@@ -33,7 +34,8 @@
       "arquitectura_paisaje": "Architecture and Landscape: the drawing of notes",
       "dibujo_documentacion": "Dibujo y documentación de arquitectura, ciudad y paisaje",
       "patrimonio": "Drawing and documentation of architecture, city and landscape",
-      "narrativa_lenguaje": "Narratives and hybrid languages ​​for Architectural Communication"
+      "narrativa_lenguaje": "Narratives and hybrid languages ​​for Architectural Communication",
+      "tfg": "TFG"
     },
     "see_pdf": "*See full information of grade in this PDF."
   },

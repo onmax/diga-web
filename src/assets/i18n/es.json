@@ -2,15 +2,17 @@
   "diga": "Departamento de Ideación Gráfica Arquitectónica",
   "language": "English",
   "explore": "Explorar",
+  "tfg": "Trabajo Fin de Grado",
   "grade": {
     "grade": "grado",
     "group": "Grupo",
     "quarter": "Cuatrimestre",
     "course": "Curso",
-    "basica": "Básicas",
+    "troncal": "Troncal",
     "obligatoria_diversificable": "Obligatorias Diversificables",
     "opcional": "Optativas",
     "intensificacion": "Intensificación",
+    "tfg": "Trabajo Fin de Grado",
     "subjects": {
       "gda_1": "GDA 1",
       "gda_2": "GDA 2",
@@ -34,7 +36,9 @@
       "arquitectura_paisaje": "Arquitectura y Paisaje: el dibujo de apuntes",
       "dibujo_documentacion": "Dibujo y documentación de arquitectura, ciudad y paisaje.",
       "patrimonio": "Patrimonio, forma y construcción",
-      "narrativa_lenguaje": "Narrativas y lenguajes híbridos para la Comunicación Arquitectónica"
+      "narrativa_lenguaje": "Narrativas y lenguajes híbridos para la Comunicación Arquitectónica",
+      "tfg": "TFG"
+
     },
     "see_pdf": "*Ver la información de grado en PDF aquí."
   },

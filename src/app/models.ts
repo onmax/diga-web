@@ -35,6 +35,7 @@ export interface GradeSubject {
   bibliography: string[];
   coordinator: string;
   course: string;
+  links?: LinkList[];
 }
 
 export interface Group {

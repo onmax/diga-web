@@ -139,6 +139,16 @@
   font-size: 12px;
 }
 
+.table-content__subjects-groups .links {
+  margin-left: 25px;
+  text-transform: capitalize;
+}
+
+.table-content__subjects-groups .links a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .see-pdf {
   font-size: 12px;
   font-weight: bold;

@@ -12,7 +12,8 @@ import {
   GroupMeta,
   Posgrade,
   PosgradeStudies,
-  PosgradeOptions
+  PosgradeOptions,
+  LinkList
 } from './models';
 
 import { AppService } from './app.service';
@@ -96,16 +97,23 @@ export class SpreadsheetsService {
                     ? []
                     : e.gsx$bibliografia.$t.trim().split(environment.split),
                 coordinator: e.gsx$coordinador.$t.trim(),
-                course: e.gsx$curso.$t.trim()
+                course: e.gsx$curso.$t.trim(),
+                links: []
               };
               type.subjects.push(subject);
             }
-
-            subject.groups.push({
-              name: e.gsx$grupo.$t.trim(),
-              page: e.gsx$pagina.$t.trim(),
-              code: e.gsx$codigogrupo.$t.trim()
-            });
+            if (e.gsx$grupo.$t.trim() === '') {
+              subject.links.push({
+                url: e.gsx$url.$t.trim(),
+                text: e.gsx$texto.$t.trim()
+              });
+            } else {
+              subject.groups.push({
+                name: e.gsx$grupo.$t.trim(),
+                page: e.gsx$pagina.$t.trim(),
+                code: e.gsx$codigogrupo.$t.trim()
+              });
+            }
           });
         }
       }
@@ -119,7 +127,7 @@ export class SpreadsheetsService {
       quarter.types.map(type => {
         type.subjects.map(subject => {
           subject.groups.map(group => {
-            const groupP = ['basica', 'intensificacion'].includes(type.type)
+            const groupP = ['troncal', 'intensificacion'].includes(type.type)
               ? p.group.split('_')[1]
               : p.group;
 

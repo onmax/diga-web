@@ -84,7 +84,7 @@ export class SubjectComponent implements OnChanges {
       .pipe(take(1))
       .toPromise()
       .then(p => {
-        if (['basica', 'intensificacion'].includes(p.type)) {
+        if (['troncal', 'intensificacion'].includes(p.type)) {
           group = `grupo_${group}`;
 
           this.router.navigate([

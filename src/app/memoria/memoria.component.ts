@@ -13,7 +13,7 @@ export class MemoriaComponent implements OnInit {
       year: '2017-2018',
       dpto: 'link-pdf',
       grado: {
-        basicas: [
+        troncal: [
           ['link-gda1', 'Geometría y Dibujo de Arquitectura 1'],
           ['link-dai1', 'Dibujo, Análisis e Ideación 1'],
           ['link', 'Geometría y Dibujo de Arquitectura 2']
