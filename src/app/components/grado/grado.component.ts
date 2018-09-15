@@ -45,7 +45,7 @@ export class GradoComponent implements OnInit {
       }
     );
     this.spreadsheet
-      .getJSON(environment.spreadsheets.subjects.all, 2)
+      .getJSON(environment.spreadsheets.grade.subjects, 2)
       .subscribe(
         data =>
           (this.pdf = (data as any).feed.entry[0].gsx$pdfconlainformacion.$t)

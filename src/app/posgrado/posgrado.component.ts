@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SpreadsheetsService } from '../spreadsheets.service';
 
 interface Doctorado {
   nombre: string;
@@ -17,12 +18,13 @@ export class PosgradoComponent implements OnInit {
   cursos: object[];
   doctorados: Doctorado[];
 
-  constructor() {
+  constructor(private spreadsheet: SpreadsheetsService) {
     this.masterUniversitario = this.setInfo(1);
     this.masterPropio = this.setInfo(2);
     this.cursoEspecialista = this.setInfo(3);
     this.cursos = this.setInfo(4);
     this.doctorados = this.setDoctoradoInfo(5);
+    this.spreadsheet.getPosgradeData();
   }
 
   setDoctoradoInfo(n: number): Doctorado[] {

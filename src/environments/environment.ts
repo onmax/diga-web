@@ -7,10 +7,11 @@ export const environment = {
   split: '*!*',
   spreadsheets: {
     teachers: '1jE75JDa39O0ZWu-91fuzF3CFQhtZ1Kv6jzDK_p42apg',
-    subjects: {
-      all: '1rgMuzgnO4ruJTSzJgKnhjP_L3S6WKrh9DQFB83tDy5k',
-      firstCuarter: '1hmXByLguRRq8_Mcq50YbTyp0WzwlIKmQ8uEVYluwIhI',
-      secondCuarter: '1O_Q0U0rVeyEPVIcGaIdYPqpeNI-3j7ogfFwM4lMpPzo'
+    grade: {
+      subjects: '1rgMuzgnO4ruJTSzJgKnhjP_L3S6WKrh9DQFB83tDy5k'
+    },
+    posgrade: {
+      subjects: '12sfy79wCfcfQpOTYxw6d17Ewqe7IlSL3RWKpVDVoVHk'
     }
   }
 };

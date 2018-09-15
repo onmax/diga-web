@@ -1,3 +1,4 @@
+// Staff
 export interface Teacher {
   id: number;
   nombre: string;
@@ -12,15 +13,19 @@ export interface Teachers {
   title: string;
   teachers: Teacher[];
 }
+
+// Grade
 export interface Quarter {
   quarter: string;
   types: Type[];
 }
+
 export interface Type {
   type: string;
   course: number;
   subjects: GradeSubject[];
 }
+
 export interface GradeSubject {
   code: number;
   name: string;
@@ -38,6 +43,11 @@ export interface Group {
   code: string;
 }
 
+export interface GroupMeta {
+  title: string;
+  values: string[];
+}
+
 export interface SelectedSubject {
   quarter: string;
   type: string;
@@ -46,14 +56,30 @@ export interface SelectedSubject {
   groupMeta: GroupMeta[];
 }
 
-export interface GroupMeta {
-  title: string;
-  values: string[];
-}
-
 export interface SubjectParams {
   quarter: string;
   type: string;
   subject: string;
   group: string;
+}
+
+// Posgrade
+export interface Posgrade {
+  title: string;
+  studies: PosgradeStudies[];
+}
+
+export interface PosgradeStudies {
+  title: string;
+  options: PosgradeOptions[];
+}
+export interface PosgradeOptions {
+  title: string;
+  linkList: LinkList[];
+  link: string;
+}
+
+export interface LinkList {
+  text: string;
+  url: string;
 }

@@ -9,17 +9,22 @@ import {
   Type,
   GradeSubject,
   SelectedSubject,
-  GroupMeta
+  GroupMeta,
+  Posgrade,
+  PosgradeStudies,
+  PosgradeOptions,
+  LinkList
 } from './models';
 import { Http } from '@angular/http';
 
 import { AppService } from './app.service';
+import { worker } from 'cluster';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpreadsheetsService {
-  gradeData$: Observable<Quarter[]> = of(this.getAllSubjects());
+  gradeData$: Observable<Quarter[]> = of(this.getGradeData());
 
   constructor(private http: HttpClient, private appService: AppService) {}
 
@@ -46,9 +51,9 @@ export class SpreadsheetsService {
     }
     return false;
   }
-  getAllSubjects(): Quarter[] {
+  getGradeData(): Quarter[] {
     const all: Quarter[] = [];
-    this.getJSONWithReport(environment.spreadsheets.subjects.all).subscribe(
+    this.getJSONWithReport(environment.spreadsheets.grade.subjects).subscribe(
       event => {
         if (this.handleEvent(event, 74442, 'gradeSubjects')) {
           let data: any = event;
@@ -57,50 +62,51 @@ export class SpreadsheetsService {
           let quarter: Quarter,
             lastQuarter: string,
             type: Type,
-            lastType,
+            lastType: string,
             subject: GradeSubject,
-            lastSubject;
+            lastSubject: string;
 
           data.map(e => {
-            if (e.gsx$cuatrimestre.$t !== lastQuarter) {
-              lastQuarter = e.gsx$cuatrimestre.$t;
+            if (e.gsx$cuatrimestre.$t.trim() !== lastQuarter) {
+              lastQuarter = e.gsx$cuatrimestre.$t.trim();
               quarter = {
                 quarter: lastQuarter,
                 types: []
               };
               all.push(quarter);
             }
-            if (e.gsx$tipo.$t !== lastType) {
-              lastType = e.gsx$tipo.$t;
+            if (e.gsx$tipo.$t.trim() !== lastType) {
+              lastType = e.gsx$tipo.$t.trim();
               type = {
-                type: e.gsx$tipo.$t,
+                type: e.gsx$tipo.$t.trim(),
                 subjects: [],
-                course: parseInt(e.gsx$curso.$t, 10)
+                course: parseInt(e.gsx$curso.$t.trim(), 10)
               };
               quarter.types.push(type);
             }
-            if (e.gsx$asignatura.$t !== lastSubject) {
-              lastSubject = e.gsx$asignatura.$t;
+            if (e.gsx$asignatura.$t.trim() !== lastSubject) {
+              lastSubject = e.gsx$asignatura.$t.trim();
               subject = {
                 name: lastSubject,
                 groups: [],
-                spreadsheetId: e.gsx$id.$t,
-                code: e.gsx$codigo.$t,
-                description: e.gsx$descripcion.$t,
+                spreadsheetId: e.gsx$id.$t.trim(),
+                code: e.gsx$codigo.$t.trim(),
+                description: e.gsx$descripcion.$t.trim(),
                 bibliography:
-                  e.gsx$bibliografia.$t.split(environment.split)[0] === ''
+                  e.gsx$bibliografia.$t.trim().split(environment.split)[0] ===
+                  ''
                     ? []
-                    : e.gsx$bibliografia.$t.split(environment.split),
-                coordinator: e.gsx$coordinador.$t,
-                course: e.gsx$curso.$t
+                    : e.gsx$bibliografia.$t.trim().split(environment.split),
+                coordinator: e.gsx$coordinador.$t.trim(),
+                course: e.gsx$curso.$t.trim()
               };
               type.subjects.push(subject);
             }
 
             subject.groups.push({
-              name: e.gsx$grupo.$t,
-              page: e.gsx$pagina.$t,
-              code: e.gsx$codigogrupo.$t
+              name: e.gsx$grupo.$t.trim(),
+              page: e.gsx$pagina.$t.trim(),
+              code: e.gsx$codigogrupo.$t.trim()
             });
           });
         }
@@ -157,7 +163,7 @@ export class SpreadsheetsService {
           const keys = Object.keys(e).filter(key => key.match(/gsx\$\w+/g));
           keys.splice(keys.indexOf('gsx$grupo'), 1);
           keys.map(key => {
-            if (e[key].$t.trim() !== '' || e[key].$t !== null) {
+            if (e[key].$t.trim() !== '' || e[key].$t.trim() !== null) {
               if (
                 groupData.find(ee => ee.title === key.replace('gsx$', '')) ===
                 undefined
@@ -191,5 +197,65 @@ export class SpreadsheetsService {
       newFields.push(fields.find(e => e.title === key));
     });
     return { ...newFields, ...fields };
+  }
+
+  getPosgradeData() {
+    const all: Posgrade[] = [];
+    this.getJSONWithReport(
+      environment.spreadsheets.posgrade.subjects
+    ).subscribe(event => {
+      if (this.handleEvent(event, 20000, 'gradeSubjects')) {
+        let data: any = event;
+        data = data.body.feed.entry;
+
+        let posgrade: Posgrade,
+          lastPosgrade: string,
+          studies: PosgradeStudies,
+          lastStudies: string,
+          posgradeLinks: PosgradeOptions,
+          lastLinks: string;
+
+        data.map(row => {
+          if (row.gsx$estudios.$t.trim() !== lastPosgrade) {
+            lastPosgrade = row.gsx$estudios.$t.trim();
+            posgrade = {
+              title: row.gsx$estudios.$t.trim(),
+              studies: []
+            };
+            all.push(posgrade);
+          }
+          if (row.gsx$tipo.$t.trim() !== lastStudies) {
+            lastStudies = row.gsx$tipo.$t.trim();
+            studies = {
+              title: row.gsx$tipo.$t.trim(),
+              options: []
+            };
+            posgrade.studies.push(studies);
+          }
+          if (row.gsx$nombre.$t.trim() !== lastLinks) {
+            lastLinks = row.gsx$nombre.$t.trim();
+            posgradeLinks = {
+              title: row.gsx$nombre.$t.trim(),
+              link: '',
+              linkList: []
+            };
+            studies.options.push(posgradeLinks);
+          }
+          // Has options
+          if (row.gsx$links.$t.trim() !== '') {
+            posgradeLinks.linkList.push({
+              url: row.gsx$links.$t.trim(),
+              text:
+                row.gsx$textolinks.$t.trim() === ''
+                  ? row.gsx$links.$t.trim()
+                  : row.gsx$textolinks.$t.trim()
+            });
+          } else {
+            posgradeLinks.link = row.gsx$link.$t.trim();
+          }
+        });
+        console.log(all);
+      }
+    });
   }
 }
