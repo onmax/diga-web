@@ -94,6 +94,7 @@
   padding-left: 3px;
   padding-right: 4px;
   font-size: 13.5px;
+  white-space: nowrap;
 }
 
 .table-content__subject-name {

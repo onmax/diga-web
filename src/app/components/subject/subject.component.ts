@@ -1,16 +1,17 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
+import { take } from 'rxjs/operators';
 import { AppService } from '../../app.service';
-import { Observable } from 'rxjs';
+import { Observable, fromEventPattern } from 'rxjs';
 import Swiper from 'swiper';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.css', '../../swiper.min.css']
 })
-export class SubjectComponent implements OnChanges, OnInit {
+export class SubjectComponent implements OnChanges {
   @Input()
   gradeData: Quarter[];
 
@@ -28,7 +29,6 @@ export class SubjectComponent implements OnChanges, OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
   ngOnChanges() {
     this.getSubject();
   }
@@ -79,12 +79,45 @@ export class SubjectComponent implements OnChanges, OnInit {
   }
 
   goTo(group: string) {
-    this.activatedRoute.params.subscribe(p => {
-      if (['basica', 'intensificacion'].includes(p.type)) {
-        group = `grupo_${group}`;
-        this.router.navigate([p.quarter, p.type, p.subject, group, '1']);
-      }
-      this.router.navigate([p.quarter, p.type, p.subject, group, p.code]);
-    });
+    this.activatedRoute.params
+      .pipe(take(1))
+      .toPromise()
+      .then(p => {
+        if (['basica', 'intensificacion'].includes(p.type)) {
+          group = `grupo_${group}`;
+
+          this.router.navigate([
+            'grado',
+            p.quarter,
+            p.type,
+            p.subject,
+            group,
+            '1'
+          ]);
+        } else {
+          this.router.navigate([
+            'grado',
+            '/' + p.quarter,
+            p.type,
+            p.subject,
+            group,
+            p.code
+          ]);
+        }
+      });
+  }
+
+  isLink(str: string): boolean {
+    const regex = /(https?:\/\/|www)[^\s]+/gm;
+    return regex.exec(str) !== null;
+  }
+
+  addHtpp(str: string): string {
+    const regex = /(www)[^\s]+/gm;
+    if (regex.exec(str) === null) {
+      return str;
+    } else {
+      return 'http://' + str;
+    }
   }
 }

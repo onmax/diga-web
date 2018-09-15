@@ -83,3 +83,7 @@
   opacity: .2;
   height: 1px;
 }
+
+.group div ul li a {
+  color: inherit;
+}
