@@ -62,6 +62,8 @@ main .card:hover {
 
   main .card {
     width: inherit;
+    margin: 10px;
+    padding: 15px;
   }
 
   main {
