@@ -34,6 +34,17 @@ export class GradoComponent implements OnInit {
     const month = new Date().getMonth();
     this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
     this.loadingBar();
+    this.fetchData();
+
+    this.spreadsheet
+      .getJSON(environment.spreadsheets.grade.subjects, 2)
+      .subscribe(
+        data =>
+          (this.pdf = (data as any).feed.entry[0].gsx$pdfconlainformacion.$t)
+      );
+  }
+
+  fetchData() {
     this.spreadsheet.gradeData$.subscribe(
       data => {
         this.gradeData = data;
@@ -44,12 +55,6 @@ export class GradoComponent implements OnInit {
         console.error(error);
       }
     );
-    this.spreadsheet
-      .getJSON(environment.spreadsheets.grade.subjects, 2)
-      .subscribe(
-        data =>
-          (this.pdf = (data as any).feed.entry[0].gsx$pdfconlainformacion.$t)
-      );
   }
 
   loadingBar() {
@@ -144,6 +149,7 @@ export class GradoComponent implements OnInit {
     }
     groups.style.maxHeight = height;
 
+    // Animation
     for (const group of groups.children) {
       if (['', '0'].includes(group.style.opacity)) {
         setTimeout(() => {

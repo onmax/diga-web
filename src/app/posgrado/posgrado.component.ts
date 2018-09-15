@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpreadsheetsService } from '../spreadsheets.service';
+import { Posgrade } from '../models';
 
 interface Doctorado {
   nombre: string;
@@ -12,6 +13,9 @@ interface Doctorado {
   styleUrls: ['./posgrado.component.css']
 })
 export class PosgradoComponent implements OnInit {
+  posgradeData: Posgrade[];
+  loading = false;
+
   masterPropio: object[];
   masterUniversitario: object[];
   cursoEspecialista: object[];
@@ -69,5 +73,20 @@ export class PosgradoComponent implements OnInit {
     return json;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.spreadsheet.posgradeData$.subscribe(
+      data => {
+        this.posgradeData = data;
+        this.loading = true;
+        console.log('Información de posgrado', data);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 }

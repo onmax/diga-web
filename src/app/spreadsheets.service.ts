@@ -12,19 +12,17 @@ import {
   GroupMeta,
   Posgrade,
   PosgradeStudies,
-  PosgradeOptions,
-  LinkList
+  PosgradeOptions
 } from './models';
-import { Http } from '@angular/http';
 
 import { AppService } from './app.service';
-import { worker } from 'cluster';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpreadsheetsService {
   gradeData$: Observable<Quarter[]> = of(this.getGradeData());
+  posgradeData$: Observable<Posgrade[]> = of(this.getPosgradeData());
 
   constructor(private http: HttpClient, private appService: AppService) {}
 
@@ -199,7 +197,7 @@ export class SpreadsheetsService {
     return { ...newFields, ...fields };
   }
 
-  getPosgradeData() {
+  getPosgradeData(): Posgrade[] {
     const all: Posgrade[] = [];
     this.getJSONWithReport(
       environment.spreadsheets.posgrade.subjects
@@ -254,8 +252,8 @@ export class SpreadsheetsService {
             posgradeLinks.link = row.gsx$link.$t.trim();
           }
         });
-        console.log(all);
       }
     });
+    return all;
   }
 }
