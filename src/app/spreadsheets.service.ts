@@ -48,11 +48,9 @@ export class SpreadsheetsService {
   }
   getAllSubjects(): Quarter[] {
     const all: Quarter[] = [];
-    console.time('Grade info');
     this.getJSONWithReport(environment.spreadsheets.subjects.all).subscribe(
       event => {
         if (this.handleEvent(event, 74442, 'gradeSubjects')) {
-          console.timeEnd('Grade info');
           let data: any = event;
           data = data.body.feed.entry;
 
@@ -151,10 +149,8 @@ export class SpreadsheetsService {
   getGroup(id: string, page: string): GroupMeta[] {
     let groupData: GroupMeta[] = [];
     groupData.find(e => true);
-    console.time('Subject info');
     this.getJSONWithReport(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
-        console.timeEnd('Subject info');
         let data: any = event;
         data = data.body.feed.entry;
         data.map(e => {
@@ -185,8 +181,6 @@ export class SpreadsheetsService {
     });
 
     groupData.map(e => e.values.map(ee => ee !== ''));
-
-    console.log('Información del grupo', groupData);
 
     return groupData;
   }

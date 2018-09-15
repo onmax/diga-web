@@ -41,7 +41,7 @@ export class SubjectComponent implements OnChanges {
   }
 
   getSubject() {
-    this.activatedRoute.params.subscribe(p => {
+    this.activatedRoute.params.pipe(take(1)).subscribe(p => {
       this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
       if (this.subject === undefined) {
         setTimeout(() => {
@@ -70,6 +70,7 @@ export class SubjectComponent implements OnChanges {
       this.subject.subject.spreadsheetId,
       this.subject.group.page
     );
+    console.log('Información del grupo', this.subject.groupMeta);
   }
 
   scrollToView() {

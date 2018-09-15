@@ -38,7 +38,7 @@ export class GradoComponent implements OnInit {
       data => {
         this.gradeData = data;
         this.loading = true;
-        console.log(data);
+        console.log('Información de grado', data);
       },
       error => {
         console.error(error);
@@ -79,6 +79,8 @@ export class GradoComponent implements OnInit {
     if (['basica', 'intensificacion'].includes(type)) {
       group = `grupo_${group}`;
     }
+
+    console.log('grado', `cuatrimestre_${quarter}`, type, subject, group, code);
 
     this.router.navigate([
       'grado',
