@@ -44,6 +44,7 @@ main .card {
   padding: 25px;
   position: relative;
   overflow: hidden;
+  width: calc(100vw - 317px)
 }
 
 main .card:hover {
@@ -57,6 +58,10 @@ main .card:hover {
 
   app-root {
     display: inherit;
+  }
+
+  main .card {
+    width: inherit;
   }
 
   main {

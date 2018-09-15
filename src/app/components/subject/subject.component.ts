@@ -1,15 +1,16 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
 import { AppService } from '../../app.service';
 import { Observable } from 'rxjs';
+import Swiper from 'swiper';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
-  styleUrls: ['./subject.component.css']
+  styleUrls: ['./subject.component.css', '../../swiper.min.css']
 })
-export class SubjectComponent implements OnChanges {
+export class SubjectComponent implements OnChanges, OnInit {
   @Input()
   gradeData: Quarter[];
 
@@ -27,6 +28,7 @@ export class SubjectComponent implements OnChanges {
     private router: Router
   ) {}
 
+  ngOnInit() {}
   ngOnChanges() {
     this.getSubject();
   }
@@ -49,8 +51,17 @@ export class SubjectComponent implements OnChanges {
       } else {
         this.getGroup();
         this.scrollToView();
+        setTimeout(() => {
+          const swiper = new Swiper('.groups__list', {
+            spaceBetween: 5
+          });
+          document.querySelectorAll('.swiper-slide>span').forEach((span, i) => {
+            (document.querySelectorAll('.swiper-slide')[i] as any).style.width =
+              (span as any).offsetWidth + 'px';
+          });
+        });
+        console.log('Información de asignatura:', this.subject);
       }
-      console.log(this.subject);
     });
   }
 

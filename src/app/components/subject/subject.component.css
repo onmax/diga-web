@@ -43,31 +43,36 @@
   padding: 5px 0;
 }
 
-.groups__list ul {
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+.groups__list:hover {
+  cursor: pointer;
+}
+
+.swiper-wrapper {
   display: flex;
   list-style: none;
   padding: 0;
 }
 
-.groups__list ul li {
+.swiper-wrapper>div {
   border: 1px solid var(--main-black);
   border-radius: 3px;
   padding: 5px 10px;
-  cursor: pointer;
-  transition: 0.3s all var(--transition);
+  white-space: nowrap;
 }
 
-.groups__list ul li.active {
+.swiper-wrapper>div.active {
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
 }
 
-.groups__list ul li:not(:first-child) {
-  margin: 0 5px;
-}
-
-.groups__list ul li:hover:not(.active) {
+.swiper-wrapper>div:hover:not(.active) {
   background: #e5e6e8;
 }
 

@@ -46,16 +46,17 @@
     <div class="horizontal-divisor"></div>
 
     <div class="groups__list">
-      <ul>
-        <li *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name}"
           (click)="goTo(group.name)">
           <span *ngIf="['basica', 'intensificacion'].includes(subject.type)">
             <span translate>grade.group</span> {{group.name | uppercase}}
           </span>
-          <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)" translate>grade.subjects.{{group.name}}</span>
-        </li>
-      </ul>
+          <span *ngIf="!['basica', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>grade.subjects.{{group.name}}</span></span>
+        </div>
+      </div>
     </div>
+
 
 
     <div class="group">
@@ -71,5 +72,6 @@
       </div>
     </div>
   </div>
+
 
 </section>
