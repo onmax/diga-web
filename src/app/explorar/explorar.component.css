@@ -27,7 +27,7 @@
   margin-top: 0;
   height: calc(100%);
   padding: 0 20px;
-  color: var(--white);
+  color: var(--primary);
   display: flex;
   align-items: center;
 }
@@ -39,11 +39,28 @@
 
 .swiper-button-next {
   right: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, .4) 0%, transparent 100%);
+  background: linear-gradient(to left, rgba(0, 0, 0, .2) 0%, transparent 100%);
 }
 
 .swiper-button-prev {
   left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, .2) 0%, transparent 100%);
+}
+
+@media screen and (max-width: 992px) {
+  .swiper-slide {
+    max-width: 250px;
+  }
+
+  .swiper-button-next i,
+  .swiper-button-prev i {
+    display: none;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    background: none;
+  }
 }
 
 .img {
