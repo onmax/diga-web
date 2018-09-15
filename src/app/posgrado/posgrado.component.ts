@@ -36,4 +36,11 @@ export class PosgradoComponent implements OnInit {
       }
     );
   }
+
+  leaveSubject(e) {
+    e.target.style.backgroundSize = '0% 6%';
+  }
+  overSubject(e) {
+    e.target.style.backgroundSize = '100% 6%';
+  }
 }

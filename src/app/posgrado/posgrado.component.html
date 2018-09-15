@@ -101,17 +101,23 @@
         <h6 translate>posgrade.{{studies.title}}</h6>
         <ul>
           <li *ngFor="let item of studies.options">
-            <a *ngIf="item.link !== ''" href="{{item.link}}" translate>posgrade.{{item.title}}</a>
-            <div *ngIf="item.link === ''" class="links">
+            <a *ngIf="item.link !== ''" href="{{item.link}}">
+              <p (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)" translate>posgrade.{{item.title}}</p>
+            </a>
+            <div class="links" *ngIf="item.link === ''">
               <span translate>posgrade.{{item.title}}</span>
               <ul>
                 <li *ngFor="let link of item.linkList">
-                  <a href="{{link.url}}" translate>{{link.text}}</a>
+                  <a href="{{link.url}}">
+                    <p (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)" translate>{{link.text}}</p>
+                  </a>
                 </li>
               </ul>
             </div>
           </li>
         </ul>
+
+
       </div>
     </div>
   </div>

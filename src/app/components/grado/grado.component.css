@@ -82,7 +82,7 @@
 }
 
 .table-content__subject-name {
-  color: black;
+  color: var(--main-black);
   font-size: 14px;
   line-height: 1.3;
   text-decoration: none;
