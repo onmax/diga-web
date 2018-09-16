@@ -13,10 +13,15 @@ import {
   Posgrade,
   PosgradeStudies,
   PosgradeOptions,
-  LinkList
+  LinkList,
+  ReportArray,
+  Report,
+  ReportColumn
 } from './models';
 
 import { AppService } from './app.service';
+import { log } from 'util';
+import { _localeFactory } from '@angular/core/src/application_module';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +30,7 @@ export class SpreadsheetsService {
   gradeData$: Observable<Quarter[]> = of(this.getGradeData());
   gradeLinks$: Observable<LinkList[]> = of(this.getGradeLinks());
   posgradeData$: Observable<Posgrade[]> = of(this.getPosgradeData());
+  report$: Observable<ReportArray[]> = of(this.getReports());
 
   constructor(private http: HttpClient, private appService: AppService) {}
 
@@ -43,8 +49,8 @@ export class SpreadsheetsService {
 
   handleEvent(event, size: number = 1, isLoading: string): boolean {
     if (event.type === HttpEventType.DownloadProgress) {
-      const percentage: number = Math.round((event.loaded * 100) / size);
-
+      const percentage: number =
+        size < 100 ? size * 100 : Math.round((event.loaded * 100) / size);
       this.appService.loadingBar$[isLoading].next(percentage);
     } else if (event.type === HttpEventType.Response) {
       return true;
@@ -281,5 +287,99 @@ export class SpreadsheetsService {
       }
     });
     return all;
+  }
+
+  getReports(): ReportArray[] {
+    const arr = [];
+    this.getJSON(environment.spreadsheets.reports).subscribe(dataFirstPage => {
+      const pages = [];
+      dataFirstPage.feed.entry.map(e => pages.push(e.gsx$pagina.$t));
+
+      pages.map(n => {
+        const reportYear: ReportArray[] = [];
+        this.getJSONWithProgress(environment.spreadsheets.reports, n).subscribe(
+          event => {
+            if (
+              this.handleEvent(
+                event,
+                parseInt(n, 10) / pages.length,
+                'gradeSubjects'
+              )
+            ) {
+              let data: any = event;
+              const year: string = data.body.feed.title.$t;
+
+              let type: ReportArray = { title: '', reports: [] },
+                lastType: string,
+                column: ReportColumn[] = [],
+                reports: Report[],
+                lastColumn: string;
+
+              data = data.body.feed.entry;
+
+              data.map((row, index) => {
+                if (row.gsx$tipo.$t.trim() === 'general') {
+                  type = {
+                    title: row.gsx$tipo.$t.trim(),
+                    reports: [
+                      {
+                        title: row.gsx$texto.$t.trim(),
+                        url: row.gsx$url.$t.trim()
+                      }
+                    ]
+                  };
+                  reportYear.push(type);
+                } else {
+                  if (
+                    row.gsx$tipo.$t.trim() !== lastType ||
+                    data.length - 1 === index
+                  ) {
+                    if (reports !== undefined) {
+                      if (data.length - 1 === index) {
+                        reports.push({
+                          title: row.gsx$columna.$t.trim(),
+                          column
+                        });
+                      }
+                      type = {
+                        title: lastType,
+                        reports
+                      };
+                      reportYear.push(type);
+                    }
+                    reports = [];
+                    lastType = row.gsx$tipo.$t.trim();
+                  }
+                  if (
+                    row.gsx$columna.$t.trim() !== lastColumn ||
+                    data.length - 1 === index
+                  ) {
+                    if (data.length - 1 === index) {
+                      column.push({
+                        title: row.gsx$asignatura.$t.trim(),
+                        url: row.gsx$url.$t.trim()
+                      });
+                    }
+                    lastColumn = row.gsx$columna.$t.trim();
+                    reports.push({
+                      title: row.gsx$columna.$t.trim(),
+                      column
+                    });
+                    column = [];
+                  }
+
+                  column.push({
+                    title: row.gsx$asignatura.$t.trim(),
+                    url: row.gsx$url.$t.trim()
+                  });
+                }
+              });
+              arr.push(reportYear);
+            }
+          }
+        );
+      });
+    });
+    return arr;
   }
 }

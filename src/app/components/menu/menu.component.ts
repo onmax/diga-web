@@ -43,6 +43,12 @@ export class MenuComponent implements OnInit {
       this.submenuOptions = ['staff', 'teaching', 'research', 'explore'];
     } else if (['grado', 'posgrado', 'memoria'].includes(url)) {
       this.submenuOptions = ['teaching'];
+    } else if (['direccion-profesorado'].includes(url)) {
+      this.submenuOptions = ['staff'];
+    } else if (['grupo-i-d%2Bi', 'innovacion-docente'].includes(url)) {
+      this.submenuOptions = ['research'];
+    } else if (['explorar'].includes(url)) {
+      this.submenuOptions = ['explore'];
     } else {
       this.submenuOptions = [];
     }

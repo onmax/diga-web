@@ -83,3 +83,18 @@ export interface LinkList {
   text: string;
   url: string;
 }
+
+// report
+export interface ReportArray {
+  title: string;
+  reports: Report[];
+}
+export interface Report {
+  title: string;
+  url?: LinkList;
+  column?: ReportColumn[];
+}
+export interface ReportColumn {
+  title: string;
+  url: LinkList[];
+}

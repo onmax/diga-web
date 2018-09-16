@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SpreadsheetsService } from '../spreadsheets.service';
+import { log } from 'util';
 
 @Component({
   selector: 'app-memoria',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class MemoriaComponent implements OnInit {
   y2017_2018: Object;
   allyears: Object[];
-  constructor() {
+  constructor(private spreadsheetsService: SpreadsheetsService) {
     this.y2017_2018 = {
       year: '2017-2018',
       dpto: 'link-pdf',
@@ -52,5 +54,9 @@ export class MemoriaComponent implements OnInit {
     this.allyears = [this.y2017_2018];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.spreadsheetsService.report$.subscribe(data => {
+      console.log(data);
+    });
+  }
 }
