@@ -1,69 +1,12 @@
-<div class="section-title" style="padding:10px 50px ;">
+<section class="card">
   <h2 class="title">
     <span>Memoria</span>
   </h2>
-</div>
-<div class="memoria-container" style="padding: 10px 50px">
-  <div class="memoria-year" *ngFor="let info of allyears">
-    <div class="year">{{info.year}}</div>
-    <div class="memoria-container__links">
-      <a href="{{info.dpto}}">Memoria del departamento</a>
-      <div class="memoria-container__links-grado">
-        <div class="title-column">grado</div>
-        <div class="memoria-container__row">
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>asignaturas_basicas</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.grado.basicas">
-                <a href="{{elem[0]}}">{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>asignaturas_obligatorias</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.grado.diversificable">
-                <a href="{{elem[0]}}">{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>asignaturas_optativas</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.grado.optativas">
-                <a href="{{elem[0]}}">{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>intensificacion</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.grado.intensificacion">
-                <a href="{{elem[0]}}">{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="title-column" style="margin-top:20px;">posgrado</div>
-        <div class="memoria-container__row">
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>master_universitario</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.posgrado.master_universitario">
-                <a href="{{elem[0]}}" translate>{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-          <div class="memoria-container__column">
-            <h3 class="title-column" translate>master_propio</h3>
-            <ul class="memorias-container__elem">
-              <li *ngFor="let elem of info.posgrado.master_propio">
-                <a href="{{elem[0]}}" translate>{{elem[1]}}</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div class="table-header">
+    <div class="table-header__option" *ngFor="let item of reportData; let i = index" [ngClass]="{'selected': currentSelected === i}"
+      (click)="currentSelected = i">
+      <span translate>{{item.year}}</span>
     </div>
   </div>
-</div>
+
+</section>
