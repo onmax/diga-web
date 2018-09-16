@@ -329,17 +329,21 @@ export class SpreadsheetsService {
               };
               reportYear.push(type);
             } else {
+              column.push({
+                title: row.gsx$asignatura.$t.trim(),
+                url: row.gsx$url.$t.trim()
+              });
               if (
                 row.gsx$tipo.$t.trim() !== lastType ||
                 data.length - 1 === index
               ) {
+                if (data.length - 1 === index) {
+                  reports[reports.length - 1].column.push({
+                    title: row.gsx$asignatura.$t.trim(),
+                    url: row.gsx$url.$t.trim()
+                  });
+                }
                 if (reports !== undefined) {
-                  if (data.length - 1 === index) {
-                    reports.push({
-                      title: row.gsx$columna.$t.trim(),
-                      column
-                    });
-                  }
                   type = {
                     title: lastType,
                     reports
@@ -353,12 +357,6 @@ export class SpreadsheetsService {
                 row.gsx$columna.$t.trim() !== lastColumn ||
                 data.length - 1 === index
               ) {
-                if (data.length - 1 === index) {
-                  column.push({
-                    title: row.gsx$asignatura.$t.trim(),
-                    url: row.gsx$url.$t.trim()
-                  });
-                }
                 lastColumn = row.gsx$columna.$t.trim();
                 if (column.length > 0) {
                   reports.push({
@@ -368,11 +366,6 @@ export class SpreadsheetsService {
                 }
                 column = [];
               }
-
-              column.push({
-                title: row.gsx$asignatura.$t.trim(),
-                url: row.gsx$url.$t.trim()
-              });
             }
           });
           arr.push({
