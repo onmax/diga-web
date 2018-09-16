@@ -4,7 +4,22 @@
   <h2 class="title">
     <span translate>grade.grade</span>
   </h2>
+
+  <div class="links">
+    <div class="subtitle">Links de interés</div>
+    <ul>
+      <li *ngFor="let link of links">
+        <a target="_blank" href="{{link.url}}">
+          <span>
+            {{link.text}}
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
   <div class="table" *ngIf="loading">
+    <div class="subtitle">Tabla de asignaturas</div>
     <div class="table-header">
       <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
         (click)="currentQuarter = quarter.quarter">

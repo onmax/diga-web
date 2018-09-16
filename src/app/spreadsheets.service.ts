@@ -23,6 +23,7 @@ import { AppService } from './app.service';
 })
 export class SpreadsheetsService {
   gradeData$: Observable<Quarter[]> = of(this.getGradeData());
+  gradeLinks$: Observable<LinkList[]> = of(this.getGradeLinks());
   posgradeData$: Observable<Posgrade[]> = of(this.getPosgradeData());
 
   constructor(private http: HttpClient, private appService: AppService) {}
@@ -32,7 +33,7 @@ export class SpreadsheetsService {
     return this.http.get<any>(url);
   }
 
-  getJSONWithReport(id: string, n: number | string = 1) {
+  getJSONWithProgress(id: string, n: number | string = 1) {
     const url = `https://spreadsheets.google.com/feeds/list/${id}/${n}/public/values?alt=json`;
     return this.http.get<any>(url, {
       reportProgress: true,
@@ -50,9 +51,31 @@ export class SpreadsheetsService {
     }
     return false;
   }
+
+  getGradeLinks(): LinkList[] {
+    const links: LinkList[] = [];
+    this.getJSON(environment.spreadsheets.grade.subjects, 2).subscribe(data => {
+      const row = data.feed.entry[0];
+      links.push(
+        {
+          text: 'Planificación docente',
+          url: row.gsx$planificaciondocente.$t
+        },
+        {
+          text: 'Calendario escolar',
+          url: row.gsx$calendarioescolar.$t
+        },
+        {
+          text: 'Calendario de exámenes',
+          url: row.gsx$calendariodeexamenes.$t
+        }
+      );
+    });
+    return links;
+  }
   getGradeData(): Quarter[] {
     const all: Quarter[] = [];
-    this.getJSONWithReport(environment.spreadsheets.grade.subjects).subscribe(
+    this.getJSONWithProgress(environment.spreadsheets.grade.subjects).subscribe(
       event => {
         if (this.handleEvent(event, 74442, 'gradeSubjects')) {
           let data: any = event;
@@ -161,7 +184,7 @@ export class SpreadsheetsService {
   getGroup(id: string, page: string): GroupMeta[] {
     let groupData: GroupMeta[] = [];
     groupData.find(e => true);
-    this.getJSONWithReport(id, page).subscribe(event => {
+    this.getJSONWithProgress(id, page).subscribe(event => {
       if (this.handleEvent(event, 3439, 'gradeSubject')) {
         let data: any = event;
         data = data.body.feed.entry;
@@ -207,7 +230,7 @@ export class SpreadsheetsService {
 
   getPosgradeData(): Posgrade[] {
     const all: Posgrade[] = [];
-    this.getJSONWithReport(
+    this.getJSONWithProgress(
       environment.spreadsheets.posgrade.subjects
     ).subscribe(event => {
       if (this.handleEvent(event, 20000, 'gradeSubjects')) {

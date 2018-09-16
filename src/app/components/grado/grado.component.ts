@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
-import { Quarter } from '../../models';
+import { Quarter, LinkList } from '../../models';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,6 +21,8 @@ export class GradoComponent implements OnInit {
   widthLoadingBar: number;
   widthLoadingBar$: Observable<number>;
 
+  links: LinkList[];
+
   pdf: string;
 
   constructor(
@@ -30,18 +32,17 @@ export class GradoComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const month = new Date().getMonth();
     this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
     this.loadingBar();
-    this.fetchData();
+    await this.fetchLinks();
+    await this.fetchData();
+  }
 
-    this.spreadsheet
-      .getJSON(environment.spreadsheets.grade.subjects, 2)
-      .subscribe(
-        data =>
-          (this.pdf = (data as any).feed.entry[0].gsx$pdfconlainformacion.$t)
-      );
+  fetchLinks() {
+    this.spreadsheet.gradeLinks$.subscribe(data => (this.links = data));
+    console.log(this.links);
   }
 
   fetchData() {

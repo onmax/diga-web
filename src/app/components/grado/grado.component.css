@@ -1,5 +1,49 @@
-.table-header {
+.subtitle {
   margin-top: 20px;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.links ul {
+  padding: 0;
+  margin: 0;
+  margin-left: 20px;
+  margin-top: 5px;
+
+}
+
+.links ul li {
+  padding: 4px 0;
+  font-size: 14px;
+
+}
+
+.links ul li a {
+  text-decoration: none;
+  color: var(--main-black);
+
+}
+
+.links ul li a span {
+  line-height: 1.3;
+  background-image: linear-gradient(to right,
+    var(--main-black) 0,
+    var(--main-black) 100%);
+  background-position: 0 16px;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background 0.5s;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.links ul li a span:hover {
+  background-size: 100% 100%;
+}
+
+.table-header {
+  margin-top: 10px;
   width: 100%;
   font-size: 15px;
   display: flex;
