@@ -85,6 +85,10 @@ export interface LinkList {
 }
 
 // report
+export interface AllReports {
+  year: string;
+  content: ReportArray;
+}
 export interface ReportArray {
   title: string;
   reports: Report[];

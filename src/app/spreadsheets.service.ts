@@ -14,6 +14,7 @@ import {
   PosgradeStudies,
   PosgradeOptions,
   LinkList,
+  AllReports,
   ReportArray,
   Report,
   ReportColumn
@@ -30,7 +31,7 @@ export class SpreadsheetsService {
   gradeData$: Observable<Quarter[]> = of(this.getGradeData());
   gradeLinks$: Observable<LinkList[]> = of(this.getGradeLinks());
   posgradeData$: Observable<Posgrade[]> = of(this.getPosgradeData());
-  report$: Observable<ReportArray[]> = of(this.getReports());
+  report$: Observable<AllReports[]> = of(this.getReports());
 
   constructor(private http: HttpClient, private appService: AppService) {}
 
@@ -289,7 +290,7 @@ export class SpreadsheetsService {
     return all;
   }
 
-  getReports(): ReportArray[] {
+  getReports(): AllReports[] {
     const arr = [];
     this.getJSON(environment.spreadsheets.reports).subscribe(dataFirstPage => {
       const pages = [];
@@ -374,7 +375,10 @@ export class SpreadsheetsService {
                   });
                 }
               });
-              arr.push(reportYear);
+              arr.push({
+                year,
+                content: reportYear
+              });
             }
           }
         );
