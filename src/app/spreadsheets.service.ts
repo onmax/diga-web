@@ -301,7 +301,7 @@ export class SpreadsheetsService {
         );
       });
 
-      const reportYear: ReportArray[] = [];
+      let reportYear: ReportArray[] = [];
       concat(...observables).subscribe(event => {
         if (this.handleEvent(event, 1 / observables.length, 'gradeSubjects')) {
           let data: any = event;
@@ -376,6 +376,7 @@ export class SpreadsheetsService {
             year,
             content: reportYear
           });
+          reportYear = [];
         }
       });
     });

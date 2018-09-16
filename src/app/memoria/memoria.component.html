@@ -9,4 +9,16 @@
     </div>
   </div>
 
+  <div class="table-content" *ngFor="let type of reportData; let i = index">
+    <div *ngIf="currentSelected === i">
+      <div *ngFor="let row of type.content">
+        <div class="general-report" *ngIf="row.title === 'general'">
+          <h6>
+            {{row.reports[0].title}}
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
