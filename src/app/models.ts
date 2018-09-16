@@ -32,7 +32,6 @@ export interface GradeSubject {
   spreadsheetId: string;
   groups: Group[];
   description: string;
-  bibliography: string[];
   coordinator: string;
   course: string;
   links?: LinkList[];

@@ -23,8 +23,6 @@ export class GradoComponent implements OnInit {
 
   links: LinkList[];
 
-  pdf: string;
-
   constructor(
     private spreadsheet: SpreadsheetsService,
     private router: Router,
@@ -85,8 +83,6 @@ export class GradoComponent implements OnInit {
     if (['troncal', 'intensificacion'].includes(type)) {
       group = `grupo_${group}`;
     }
-
-    console.log('grado', `cuatrimestre_${quarter}`, type, subject, group, code);
 
     this.router.navigate([
       'grado',

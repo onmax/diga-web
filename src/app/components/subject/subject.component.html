@@ -33,14 +33,6 @@
           {{subject.subject.description}}
         </p>
       </div>
-      <div *ngIf="subject.subject.bibliography.length > 0">
-        <h4>Bibliografía:</h4>
-        <ul>
-          <li *ngFor="let item of subject.subject.bibliography">
-            {{item}}
-          </li>
-        </ul>
-      </div>
     </div>
 
     <div class="horizontal-divisor"></div>

@@ -114,11 +114,6 @@ export class SpreadsheetsService {
                 spreadsheetId: e.gsx$id.$t.trim(),
                 code: e.gsx$codigo.$t.trim(),
                 description: e.gsx$descripcion.$t.trim(),
-                bibliography:
-                  e.gsx$bibliografia.$t.trim().split(environment.split)[0] ===
-                  ''
-                    ? []
-                    : e.gsx$bibliografia.$t.trim().split(environment.split),
                 coordinator: e.gsx$coordinador.$t.trim(),
                 course: e.gsx$curso.$t.trim(),
                 links: []
