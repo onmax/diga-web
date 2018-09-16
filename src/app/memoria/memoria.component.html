@@ -1,21 +1,36 @@
 <section class="card">
   <h2 class="title">
-    <span>Memoria</span>
+    <span translate>teaching.report</span>
   </h2>
   <div class="table-header">
     <div class="table-header__option" *ngFor="let item of reportData; let i = index" [ngClass]="{'selected': currentSelected === i}"
       (click)="currentSelected = i">
-      <span translate>{{item.year}}</span>
+      <span>{{item.year}}</span>
     </div>
   </div>
 
   <div class="table-content" *ngFor="let type of reportData; let i = index">
     <div *ngIf="currentSelected === i">
       <div *ngFor="let row of type.content">
-        <div class="general-report" *ngIf="row.title === 'general'">
-          <h6>
-            {{row.reports[0].title}}
-          </h6>
+        <div *ngIf="row.title === 'general'" class="general-report">
+          <h4 translate>
+            teaching.{{row.reports[0].title}}
+          </h4>
+        </div>
+        <div *ngIf="row.title !== 'general'" class="report-section">
+          <h4>{{row.title}}</h4>
+          <div class="grid">
+            <div class="column" *ngFor="let column of row.reports">
+              <h6 translate>teaching.{{column.title}}</h6>
+              <div class="list">
+                <ul>
+                  <li *ngFor="let link of column.column">
+                    <a target="_blank" href="{{link.url}}" translate>teaching.{{link.title}}</a>
+                  <li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

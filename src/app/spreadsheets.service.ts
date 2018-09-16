@@ -21,6 +21,7 @@ import {
 } from './models';
 
 import { AppService } from './app.service';
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -359,10 +360,12 @@ export class SpreadsheetsService {
                   });
                 }
                 lastColumn = row.gsx$columna.$t.trim();
-                reports.push({
-                  title: row.gsx$columna.$t.trim(),
-                  column
-                });
+                if (column.length > 0) {
+                  reports.push({
+                    title: row.gsx$columna.$t.trim(),
+                    column
+                  });
+                }
                 column = [];
               }
 

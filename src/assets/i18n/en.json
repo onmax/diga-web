@@ -52,5 +52,9 @@
     "ayudantes_doctores": "Assistants of Senior University Researchers",
     "asociados": "Associates",
     "tecnico_laboratorio": "Laboratory Technician"
+  },
+  "report": {
+    "report": "Report",
+    "memoria_dpto": "Department report"
   }
 }

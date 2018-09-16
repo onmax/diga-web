@@ -1,26 +1,26 @@
 <section class="card">
   <h2 class="title" id="grado" translate>
-    <span translate>posgrade.posgrade</span>
+    <span translate>teaching.posgrade</span>
   </h2>
 
   <div class="table-header">
     <div class="table-header__option" *ngFor="let item of posgradeData" [ngClass]="{'selected': item.title == currentSelected}"
       (click)="currentSelected = item.title">
-      <span translate>posgrade.{{item.title}}</span>
+      <span translate>teaching.{{item.title}}</span>
     </div>
   </div>
 
   <div class="table-content" *ngFor="let type of posgradeData">
     <div *ngIf="currentSelected === type.title">
       <div class="options" *ngFor="let studies of type.studies">
-        <h6 translate>posgrade.{{studies.title}}</h6>
+        <h6 translate>teaching.{{studies.title}}</h6>
         <ul>
           <li *ngFor="let item of studies.options">
             <a *ngIf="item.link !== ''" href="{{item.link}}">
-              <p (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)" translate>posgrade.{{item.title}}</p>
+              <p (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)" translate>teaching.{{item.title}}</p>
             </a>
             <div class="links" *ngIf="item.link === ''">
-              <span translate>posgrade.{{item.title}}</span>
+              <span translate>teaching.{{item.title}}</span>
               <ul>
                 <li *ngFor="let link of item.linkList">
                   <a href="{{link.url}}">

@@ -2,7 +2,7 @@
   <app-loading-bar [width]="widthLoadingBar"></app-loading-bar>
 
   <h2 class="title">
-    <span translate>grade.grade</span>
+    <span translate>teaching.grade</span>
   </h2>
 
   <div class="links">
@@ -23,17 +23,17 @@
     <div class="table-header">
       <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
         (click)="currentQuarter = quarter.quarter">
-        {{quarter.quarter}} º<span translate>grade.quarter</span>
+        {{quarter.quarter}} º<span translate>teaching.quarter</span>
       </div>
     </div>
     <div *ngFor="let quarter of gradeData">
       <div class="table-content" *ngIf="currentQuarter === quarter.quarter">
         <div class="table-content__type" *ngFor="let type of quarter.types">
           <div>
-            <span class="course">{{type.course}}º <span translate>grade.course</span></span>
+            <span class="course">{{type.course}}º <span translate>teaching.course</span></span>
             <span *ngIf="small()"><br></span>
             <span *ngIf="!small()"> - </span>
-            <span translate>grade.{{type.type}}</span>
+            <span translate>teaching.{{type.type}}</span>
             <div class="table-content__subjects">
               <div class="table-content__subject" (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)"
                 (click)="toogleSubject($event)" *ngFor="let subject of type.subjects">
@@ -43,7 +43,7 @@
                     {{subject.code}}
                   </div>
                   <div class="table-content__subject-name" translate>
-                    grade.subjects.{{subject.name}}
+                    teaching.{{subject.name}}
                   </div>
                 </div>
                 <div class="table-content__subjects-groups">
@@ -54,7 +54,7 @@
                     </span>
                     <span *ngIf="['troncal', 'intensificacion'].includes(type.type) && subject.name !== 'tfg'">
                       <span translate>
-                        grade.group
+                        teaching.group
                       </span>
                       <span>
                         {{group.name | uppercase}}
@@ -62,7 +62,7 @@
                     </span>
                     <span *ngIf="!['troncal', 'intensificacion'].includes(type.type)  && subject.name !== 'tfg'"
                       translate>
-                      grade.subjects.{{group.name}}
+                      teaching.{{group.name}}
                     </span>
                   </div>
                   <div *ngFor="let item of subject.links" class="links">

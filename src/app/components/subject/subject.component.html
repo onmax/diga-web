@@ -3,12 +3,12 @@
 
   <div *ngIf="subject">
     <h2 class="title" translate>
-      grade.subjects.{{subject.subject.name}}
+      teaching.{{subject.subject.name}}
     </h2>
     <h5 class="subtitle">
       Asignaturas&nbsp;
       <span translate>
-        grade.{{subject.type}}
+        teaching.{{subject.type}}
       </span>
       -
       <span>
@@ -42,9 +42,9 @@
         <div class="swiper-slide" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}"
           (click)="goTo(group.name)">
           <span *ngIf="['troncal', 'intensificacion'].includes(subject.type)">
-            <span translate>grade.group</span> {{group.name | uppercase}}
+            <span translate>teaching.group</span> {{group.name | uppercase}}
           </span>
-          <span *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>grade.subjects.{{group.name}}</span></span>
+          <span *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>teaching.{{group.name}}</span></span>
         </div>
       </div>
     </div>
