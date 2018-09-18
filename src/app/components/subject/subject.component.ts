@@ -81,9 +81,8 @@ export class SubjectComponent implements OnChanges {
 
   goTo(group: string) {
     this.activatedRoute.params
-      .pipe(take(1))
-      .toPromise()
-      .then(p => {
+      // .pipe(take(1))
+      .subscribe(p => {
         if (['troncal', 'intensificacion'].includes(p.type)) {
           group = `grupo_${group}`;
 
@@ -98,14 +97,15 @@ export class SubjectComponent implements OnChanges {
         } else {
           this.router.navigate([
             'grado',
-            '/' + p.quarter,
+            p.quarter,
             p.type,
             p.subject,
             group,
             p.code
           ]);
         }
-      });
+      })
+      .unsubscribe();
   }
 
   isLink(str: string): boolean {
