@@ -6,6 +6,8 @@ import { take } from 'rxjs/operators';
 import { AppService } from '../../app.service';
 import { Observable, fromEventPattern } from 'rxjs';
 import Swiper from 'swiper';
+import { log } from 'util';
+import { _localeFactory } from '@angular/core/src/application_module';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
@@ -30,6 +32,8 @@ export class SubjectComponent implements OnChanges {
   ) {}
 
   ngOnChanges() {
+    console.log("Cambiando asigntaura");
+    
     this.getSubject();
   }
 
@@ -83,6 +87,8 @@ export class SubjectComponent implements OnChanges {
     this.activatedRoute.params
       // .pipe(take(1))
       .subscribe(p => {
+        console.log(p);
+        
         if (['troncal', 'intensificacion'].includes(p.type)) {
           group = `grupo_${group}`;
 
@@ -104,6 +110,9 @@ export class SubjectComponent implements OnChanges {
             p.code
           ]);
         }
+        setTimeout(() => {
+          this.getSubject();
+        }, 50);
       })
       .unsubscribe();
   }

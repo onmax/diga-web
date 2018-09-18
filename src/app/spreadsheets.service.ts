@@ -64,15 +64,15 @@ export class SpreadsheetsService {
       const row = data.feed.entry[0];
       links.push(
         {
-          text: 'Planificación docente',
+          text: 'planificacion_docente',
           url: row.gsx$planificaciondocente.$t
         },
         {
-          text: 'Calendario escolar',
+          text: 'calendario_escolar',
           url: row.gsx$calendarioescolar.$t
         },
         {
-          text: 'Calendario de exámenes',
+          text: 'calendario_de_examenes',
           url: row.gsx$calendariodeexamenes.$t
         }
       );

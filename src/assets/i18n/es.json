@@ -5,6 +5,11 @@
   "tfg": "Trabajo Fin de Grado",
   "teaching": {
     "grade": "grado",
+    "links_of_interest": "Links de interés",
+    "planificacion_docente":"Planificación docente",
+    "calendario_escolar": "Calendario escolar",
+    "calendario_de_examenes": "Calendario de exámenes",
+    "subject_trable":"Tabla de asignaturas",
     "group": "Grupo",
     "quarter": "Cuatrimestre",
     "course": "Curso",
