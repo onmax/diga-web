@@ -7,7 +7,7 @@
   --main-bck: #f5f6f7;
   --white: #EBEDEF;
   --error: #cc0000;
-  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition: cubic-bezier(0.4, 0.75, 0.32, 0.96);
 }
 
 html,

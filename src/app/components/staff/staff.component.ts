@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Teachers } from '../../models';
+
 import { environment } from '../,,/../../../environments/environment';
+
+import { Teachers } from '../../models';
+
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',

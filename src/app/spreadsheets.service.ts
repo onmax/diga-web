@@ -3,7 +3,11 @@ import { HttpClient, HttpRequest, HttpEventType } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { concat } from 'rxjs';
+
+import { AppService } from './app.service';
+
 import { environment } from '../environments/environment';
+
 import {
   Quarter,
   Type,
@@ -20,8 +24,6 @@ import {
   ReportColumn
 } from './models';
 
-import { AppService } from './app.service';
-import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'

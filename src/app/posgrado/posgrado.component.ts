@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SpreadsheetsService } from '../spreadsheets.service';
+
 import { Posgrade } from '../models';
 
 interface Doctorado {

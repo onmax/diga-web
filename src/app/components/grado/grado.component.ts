@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
+
 import { Quarter, LinkList } from '../../models';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-grado',
