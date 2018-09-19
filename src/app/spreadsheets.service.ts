@@ -146,7 +146,6 @@ export class SpreadsheetsService {
   }
   getSubject(data, p): SelectedSubject {
     let coincidences = [];
-
     data.map(quarter => {
       quarter.types.map(type => {
         type.subjects.map(subject => {
@@ -178,9 +177,9 @@ export class SpreadsheetsService {
         return e.group.code === p.code;
       });
     }
-
     return coincidences[0];
   }
+  
 
   getGroup(id: string, page: string): GroupMeta[] {
     let groupData: GroupMeta[] = [];

@@ -44,35 +44,31 @@
 }
 
 
-.swiper-container {
-  width: 100%;
-  height: 100%;
+.groups__list{
+  display: flex;
+  flex-wrap: wrap;
 }
-
 .groups__list:hover {
   cursor: pointer;
 }
 
-.swiper-wrapper {
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
 
-.swiper-wrapper>div {
+.groups__list>div {
   border: 1px solid var(--main-black);
   border-radius: 3px;
   padding: 5px 10px;
   white-space: nowrap;
+  margin: 5px;
+  font-size: 13px;
 }
 
-.swiper-wrapper>div.active {
+.groups__list>div.active {
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
 }
 
-.swiper-wrapper>div:hover:not(.active) {
+.groups__list>div:hover:not(.active) {
   background: #e5e6e8;
 }
 

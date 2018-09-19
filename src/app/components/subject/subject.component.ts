@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
@@ -6,14 +6,13 @@ import { take } from 'rxjs/operators';
 import { AppService } from '../../app.service';
 import { Observable, fromEventPattern } from 'rxjs';
 import Swiper from 'swiper';
-import { log } from 'util';
 import { _localeFactory } from '@angular/core/src/application_module';
 @Component({
   selector: 'app-subject',
   templateUrl: './subject.component.html',
   styleUrls: ['./subject.component.css', '../../swiper.min.css']
 })
-export class SubjectComponent implements OnChanges {
+export class SubjectComponent implements OnInit {
   @Input()
   gradeData: Quarter[];
 
@@ -31,9 +30,7 @@ export class SubjectComponent implements OnChanges {
     private router: Router
   ) {}
 
-  ngOnChanges() {
-    console.log("Cambiando asigntaura");
-    
+  ngOnInit() {
     this.getSubject();
   }
 
@@ -45,7 +42,7 @@ export class SubjectComponent implements OnChanges {
   }
 
   getSubject() {
-    this.activatedRoute.params.pipe(take(1)).subscribe(p => {
+    this.activatedRoute.params.subscribe(p => {
       this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
       if (this.subject === undefined) {
         setTimeout(() => {
@@ -54,11 +51,11 @@ export class SubjectComponent implements OnChanges {
         }, 100);
       } else {
         this.getGroup();
-        this.scrollToView();
         setTimeout(() => {
-          const swiper = new Swiper('.groups__list', {
-            spaceBetween: 5
-          });
+          this.scrollToView();
+          //const swiper = new Swiper('.groups__list', {
+            //spaceBetween: 5
+          //});
           document.querySelectorAll('.swiper-slide>span').forEach((span, i) => {
             (document.querySelectorAll('.swiper-slide')[i] as any).style.width =
               (span as any).offsetWidth + 'px';
@@ -83,33 +80,18 @@ export class SubjectComponent implements OnChanges {
       .scrollIntoView({ behavior: 'smooth' });
   }
 
-  goTo(group: string) {
+  goTo(group: string, code: string = '1') {
     this.activatedRoute.params
       // .pipe(take(1))
       .subscribe(p => {
-        console.log(p);
-        
-        if (['troncal', 'intensificacion'].includes(p.type)) {
-          group = `grupo_${group}`;
-
-          this.router.navigate([
-            'grado',
-            p.quarter,
-            p.type,
-            p.subject,
-            group,
-            '1'
-          ]);
-        } else {
-          this.router.navigate([
-            'grado',
-            p.quarter,
-            p.type,
-            p.subject,
-            group,
-            p.code
-          ]);
-        }
+        this.router.navigate([
+          'grado',
+          p.quarter,
+          p.type,
+          p.subject,
+          group,
+          code
+        ]);
         setTimeout(() => {
           this.getSubject();
         }, 50);

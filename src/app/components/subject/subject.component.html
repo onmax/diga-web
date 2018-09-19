@@ -37,15 +37,14 @@
 
     <div class="horizontal-divisor"></div>
 
+    <div class="swiper-wrapper">
+      </div>
     <div class="groups__list">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}"
-          (click)="goTo(group.name)">
-          <span *ngIf="['troncal', 'intensificacion'].includes(subject.type)">
+        <div class="group" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}">
+          <span (click)="goTo('grupo_' + group.name)" *ngIf="['troncal', 'intensificacion'].includes(subject.type)">
             <span translate>teaching.group</span> {{group.name | uppercase}}
           </span>
-          <span *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>teaching.{{group.name}}</span></span>
-        </div>
+          <span (click)="goTo(group.name, group.code)" *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>teaching.{{group.name}}</span></span>
       </div>
     </div>
 

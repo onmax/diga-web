@@ -39,7 +39,7 @@ export class GradoComponent implements OnInit {
 
   fetchLinks() {
     this.spreadsheet.gradeLinks$.subscribe(data => (this.links = data));
-    console.log(this.links);
+    console.log('Links de interés: ', this.links);
   }
 
   fetchData() {
