@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Injectable({
   providedIn: 'root'
 })

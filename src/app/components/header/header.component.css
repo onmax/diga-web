@@ -30,7 +30,25 @@ header.mobile {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+header.pc h1 span {
+  line-height: 1.3;
+  background-image: linear-gradient(to right,
+    var(--main-black) 0,
+    var(--main-black) 100%);
+  background-position: 0 38px;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background 0.5s;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+header.pc h1 span:hover {
+  background-size: 100% 100%;
 }
 
 header.mobile h1,
