@@ -152,7 +152,7 @@ export class SpreadsheetsService {
       quarter.types.map(type => {
         type.subjects.map(subject => {
           subject.groups.map(group => {
-            const groupP = ['troncal', 'intensificacion'].includes(type.type)
+            const groupP = ['básica', 'intensificacion'].includes(type.type)
               ? p.group.split('_')[1]
               : p.group;
 
@@ -181,7 +181,6 @@ export class SpreadsheetsService {
     }
     return coincidences[0];
   }
-  
 
   getGroup(id: string, page: string): GroupMeta[] {
     let groupData: GroupMeta[] = [];

@@ -52,7 +52,7 @@
                     <span class="table-content__subject-code" *ngIf="group.code !== '' && subject.name !== 'tfg'">
                       {{group.code}}
                     </span>
-                    <span *ngIf="['troncal', 'intensificacion'].includes(type.type) && subject.name !== 'tfg'">
+                    <span *ngIf="['básica', 'intensificacion'].includes(type.type) && subject.name !== 'tfg'">
                       <span translate>
                         teaching.group
                       </span>
@@ -60,7 +60,7 @@
                         {{group.name | uppercase}}
                       </span>
                     </span>
-                    <span *ngIf="!['troncal', 'intensificacion'].includes(type.type) && subject.name !== 'tfg'"
+                    <span *ngIf="!['básica', 'intensificacion'].includes(type.type) && subject.name !== 'tfg'"
                       translate>
                       teaching.{{group.name}}
                     </span>

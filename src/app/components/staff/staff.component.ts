@@ -14,17 +14,17 @@ export class StaffComponent implements OnInit {
   dir_sec = [
     {
       cargo: 'Director',
-      nombreCompleto: 'D. Raposo Grau, Javier',
+      nombreCompleto: 'Raposo Grau, Javier',
       imagen: ''
     },
     {
       cargo: 'Secretario académico',
-      nombreCompleto: 'D. Martínez Díaz, Ángel',
+      nombreCompleto: 'Martínez Díaz, Ángel',
       imagen: ''
     }
   ];
   secretaria = {
-    nombre: 'Dña Grano de Oro Manzano, Eloisa',
+    nombre: 'Grano de Oro Manzano, Eloisa',
     cargo: 'Secretaria',
     correo: 'ideación.arquitectura@upm.es',
     tel: '91 067 50 50'

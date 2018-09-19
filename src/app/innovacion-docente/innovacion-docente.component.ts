@@ -10,12 +10,12 @@ export class InnovacionDocenteComponent implements OnInit {
   constructor() {
     this.idGroups = [
       {
-        nombre: 'Grupo Innovación Docente 1',
+        nombre: 'Grupo 1',
         integrantes: ['Persona 1', 'Person2'],
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
-        nombre: 'Grupo Innovación Docente 1',
+        nombre: 'Grupo 1',
         integrantes: ['Persona 3', 'Persona 4'],
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       }

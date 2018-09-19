@@ -41,10 +41,10 @@
       </div>
     <div class="groups__list">
         <div class="group" *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}">
-          <span (click)="goTo('grupo_' + group.name)" *ngIf="['troncal', 'intensificacion'].includes(subject.type)">
+          <span (click)="goTo('grupo_' + group.name)" *ngIf="['básica', 'intensificacion'].includes(subject.type)">
             <span translate>teaching.group</span> {{group.name | uppercase}}
           </span>
-          <span (click)="goTo(group.name, group.code)" *ngIf="!['troncal', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>teaching.{{group.name}}</span></span>
+          <span (click)="goTo(group.name, group.code)" *ngIf="!['básica', 'intensificacion'].includes(subject.type)">{{group.code}}. <span translate>teaching.{{group.name}}</span></span>
       </div>
     </div>
 

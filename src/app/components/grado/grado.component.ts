@@ -80,7 +80,7 @@ export class GradoComponent implements OnInit {
     group: string,
     code: string
   ) {
-    if (['troncal', 'intensificacion'].includes(type)) {
+    if (['básica', 'intensificacion'].includes(type)) {
       group = `grupo_${group}`;
     }
 
