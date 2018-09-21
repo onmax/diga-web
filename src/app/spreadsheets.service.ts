@@ -106,7 +106,11 @@ export class SpreadsheetsService {
               };
               all.push(quarter);
             }
-            if (e.gsx$tipo.$t.trim() !== lastType) {
+            if (
+              e.gsx$tipo.$t.trim() !== lastType ||
+              e.gsx$curso.$t.trim() !== lastCourse
+            ) {
+              lastCourse = e.gsx$curso.$t.trim();
               lastType = e.gsx$tipo.$t.trim();
               type = {
                 type: e.gsx$tipo.$t.trim(),
@@ -115,12 +119,8 @@ export class SpreadsheetsService {
               };
               quarter.types.push(type);
             }
-            if (
-              e.gsx$asignatura.$t.trim() !== lastSubject
-              // ||
-              // e.gsx$curso.$t.trim() !== lastCourse
-            ) {
-              lastCourse = e.gsx$curso.$t.trim();
+
+            if (e.gsx$asignatura.$t.trim() !== lastSubject) {
               lastSubject = e.gsx$asignatura.$t.trim();
               subject = {
                 name: lastSubject,
@@ -313,6 +313,9 @@ export class SpreadsheetsService {
             posgradeLinks.link = row.gsx$link.$t.trim();
           }
         });
+        all.map(t =>
+          t.studies.map(s => s.options.sort((a, b) => (a < b ? 1 : -1)))
+        );
       }
     });
     return all;

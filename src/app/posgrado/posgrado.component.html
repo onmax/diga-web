@@ -23,7 +23,7 @@
               <span translate>teaching.{{item.title}}</span>
               <ul>
                 <li *ngFor="let link of item.linkList">
-                  <a href="{{link.url}}">
+                  <a href="{{link.url}}" target="_blank">
                     <p (mouseleave)="leaveSubject($event)" (mouseenter)="overSubject($event)" translate>{{link.text}}</p>
                   </a>
                 </li>
