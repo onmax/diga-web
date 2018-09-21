@@ -23,7 +23,7 @@ import {
   Report,
   ReportColumn
 } from './models';
-
+import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -90,6 +90,7 @@ export class SpreadsheetsService {
           data = data.body.feed.entry;
 
           let quarter: Quarter,
+            lastCourse: string,
             lastQuarter: string,
             type: Type,
             lastType: string,
@@ -114,7 +115,12 @@ export class SpreadsheetsService {
               };
               quarter.types.push(type);
             }
-            if (e.gsx$asignatura.$t.trim() !== lastSubject) {
+            if (
+              e.gsx$asignatura.$t.trim() !== lastSubject
+              // ||
+              // e.gsx$curso.$t.trim() !== lastCourse
+            ) {
+              lastCourse = e.gsx$curso.$t.trim();
               lastSubject = e.gsx$asignatura.$t.trim();
               subject = {
                 name: lastSubject,
@@ -142,8 +148,31 @@ export class SpreadsheetsService {
             }
           });
         }
+
+        all.map(q =>
+          q.types.map(t =>
+            t.subjects.sort((a, b) => {
+              t.subjects.map(s =>
+                // Sort group by code if it has code, otherwise, order by name
+                s.groups.sort(
+                  (c, d) =>
+                    c.code !== ''
+                      ? c.code < d.code
+                        ? 1
+                        : -1
+                      : c.name < d.name
+                        ? -1
+                        : 1
+                )
+              );
+              // Sort subjects by code.
+              return a < b ? 1 : -1;
+            })
+          )
+        );
       }
     );
+
     return all;
   }
   getSubject(data, p): SelectedSubject {
