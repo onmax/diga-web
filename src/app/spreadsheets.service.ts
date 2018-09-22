@@ -405,16 +405,23 @@ export class SpreadsheetsService {
           });
           reportYear = [];
         }
-        arr.map(y => y.content.map(t => {
-          if (t.title === 'posgrado') {
-            t.reports.map((p, index) => {
-              if (['titulos_universitarios', 'doctorado'].includes(p.title)) {
-                t.reports.splice(index, 1);
-                t.reports.push(p);
+        arr.map(y =>
+          y.content.map(t => {
+            if (t.title === 'posgrado') {
+              t.reports.map((p, index) => {
+                if (['titulos_universitarios', 'doctorado'].includes(p.title)) {
+                  t.reports.splice(index, 1);
+                  t.reports.push(p);
+                }
+              });
+            }
+            t.reports.map(r => {
+              if (r.column !== undefined) {
+                r.column.sort((a, b) => (a.title < b.title ? 1 : -1));
               }
             });
-          }
-        }));
+          })
+        );
       });
     });
     return arr;

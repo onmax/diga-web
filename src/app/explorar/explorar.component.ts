@@ -16,29 +16,24 @@ export class ExplorarComponent implements OnInit {
   initSwiper() {
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 2.5,
-      centeredSlides: false,
-      autoHeight: true,
       spaceBetween: 15,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
+      slidesPerGroup: 2,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       },
       breakpoints: {
-        // when window width is <= 320px
         500: {
-          slidesPerView: 1.3
+          slidesPerView: 1.3,
+          slidesPerGroup: 1
         },
-        // when window width is <= 480px
         800: {
-          slidesPerView: 2.3
+          slidesPerView: 2.3,
+          slidesPerGroup: 2
         },
-        // when window width is <= 640px
         1000: {
-          slidesPerView: 3.3
+          slidesPerView: 3.3,
+          slidesPerGroup: 3
         }
       }
     });

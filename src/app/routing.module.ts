@@ -17,14 +17,13 @@ const routes: Routes = [
   { path: 'posgrado', component: PosgradoComponent },
   { path: 'explorar', component: ExplorarComponent },
   { path: 'memoria', component: MemoriaComponent },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'grado', component: GradoComponent },
   { path: 'direccion-profesorado', component: StaffComponent },
   {
     path: 'grado/:quarter/:type/:subject/:group/:code',
     component: GradoComponent
-  },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  }
 ];
 
 @NgModule({
