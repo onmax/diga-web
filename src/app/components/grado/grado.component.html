@@ -4,7 +4,10 @@
     <span translate>teaching.grade</span>
   </h2>
 
-  <div class="links">
+  <app-loading *ngIf="loading"></app-loading>
+
+
+  <div class="links" *ngIf="!loading">
     <div class="subtitle" translate>teaching.links_of_interest</div>
     <ul>
       <li *ngFor="let link of links">
@@ -17,7 +20,7 @@
     </ul>
   </div>
 
-  <div class="table" *ngIf="loading">
+  <div class="table" *ngIf="!loading">
     <div class="subtitle" translate>teaching.subject_trable</div>
     <div class="table-header">
       <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"

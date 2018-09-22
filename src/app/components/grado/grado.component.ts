@@ -15,7 +15,7 @@ export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
   currentQuarter: string;
 
-  loading = false;
+  loading: boolean;
 
   links: LinkList[];
 
@@ -26,11 +26,12 @@ export class GradoComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     const month = new Date().getMonth();
     this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
-    await this.fetchLinks();
-    await this.fetchData();
+    this.loading = true;
+    this.fetchLinks();
+    this.fetchData();
   }
 
   fetchLinks() {
@@ -42,7 +43,7 @@ export class GradoComponent implements OnInit {
     this.spreadsheet.gradeData$.subscribe(
       data => {
         this.gradeData = data;
-        this.loading = true;
+        this.loading = false;
         console.log('Información de grado', data);
       },
       error => {
