@@ -22,16 +22,18 @@ export class PosgradoComponent implements OnInit {
   }
 
   fetchData() {
-    this.spreadsheet.posgradeData$.subscribe(
-      data => {
-        this.posgradeData = data;
-        this.loading = true;
-        console.log('Información de posgrado', data);
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    this.spreadsheet.posgradeData$
+      .subscribe(
+        data => {
+          this.posgradeData = data;
+          this.loading = true;
+          console.log('Información de posgrado', data);
+        },
+        error => {
+          console.error(error);
+        }
+      )
+      .unsubscribe();
   }
 
   leaveSubject(e) {

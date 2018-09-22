@@ -11,9 +11,11 @@ import { AppService } from '../../app.service';
 export class MenuComponent implements OnInit {
   submenuOptions: string[] = [];
   constructor(private appService: AppService, private router: Router) {
-    router.events.subscribe(() => {
-      this.setSubmenus();
-    });
+    router.events
+      .subscribe(() => {
+        this.setSubmenus();
+      })
+      .unsubscribe();
   }
 
   ngOnInit() {

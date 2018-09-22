@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
@@ -11,7 +11,7 @@ import { Quarter, LinkList } from '../../models';
   templateUrl: './grado.component.html',
   styleUrls: ['./grado.component.css', './subject-list.css']
 })
-export class GradoComponent implements OnInit {
+export class GradoComponent implements OnInit, OnDestroy {
   gradeData: Quarter[] = [];
   currentQuarter: string;
 
@@ -33,23 +33,26 @@ export class GradoComponent implements OnInit {
     this.fetchLinks();
     this.fetchData();
   }
-
   fetchLinks() {
-    this.spreadsheet.gradeLinks$.subscribe(data => (this.links = data));
+    this.spreadsheet.gradeLinks$
+      .subscribe(data => (this.links = data))
+      .unsubscribe();
     console.log('Links de interés: ', this.links);
   }
 
   fetchData() {
-    this.spreadsheet.gradeData$.subscribe(
-      data => {
-        this.gradeData = data;
-        this.loading = false;
-        console.log('Información de grado', data);
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    this.spreadsheet.gradeData$
+      .subscribe(
+        data => {
+          this.gradeData = data;
+          this.loading = false;
+          console.log('Información de grado', data);
+        },
+        error => {
+          console.error(error);
+        }
+      )
+      .unsubscribe();
   }
 
   small(): boolean {
@@ -84,9 +87,11 @@ export class GradoComponent implements OnInit {
 
   showSubject() {
     let show;
-    this.activatedRoute.params.subscribe(p => {
-      show = ![p.quarter, p.type, p.subject, p.group].includes(undefined);
-    });
+    this.activatedRoute.params
+      .subscribe(p => {
+        show = ![p.quarter, p.type, p.subject, p.group].includes(undefined);
+      })
+      .unsubscribe();
     return show;
   }
 

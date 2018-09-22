@@ -15,14 +15,16 @@ export class MemoriaComponent implements OnInit {
   constructor(private spreadsheetsService: SpreadsheetsService) {}
 
   ngOnInit() {
-    this.spreadsheetsService.report$.subscribe(data => {
-      this.reportData = data as any;
-      this.reportData.sort(
-        (a, b) =>
-          parseInt(a.year.split('-')[0], 10) -
-          parseInt(b.year.split('-')[0], 10)
-      );
-      console.log('Información de memoria', this.reportData);
-    });
+    this.spreadsheetsService.report$
+      .subscribe(data => {
+        this.reportData = data as any;
+        this.reportData.sort(
+          (a, b) =>
+            parseInt(a.year.split('-')[0], 10) -
+            parseInt(b.year.split('-')[0], 10)
+        );
+        console.log('Información de memoria', this.reportData);
+      })
+      .unsubscribe();
   }
 }

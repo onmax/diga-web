@@ -23,7 +23,6 @@ import {
   Report,
   ReportColumn
 } from './models';
-import { log } from 'util';
 
 @Injectable({
   providedIn: 'root'

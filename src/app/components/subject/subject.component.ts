@@ -36,25 +36,30 @@ export class SubjectComponent implements OnInit {
 
   getSubject() {
     this.loading = true;
-    this.activatedRoute.params.subscribe(p => {
-      this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
-      if (this.subject === undefined) {
-        setTimeout(() => {
-          this.getSubject();
-          return;
-        }, 100);
-      } else {
-        this.getGroup();
-        setTimeout(() => {
-          this.scrollToView();
-          document.querySelectorAll('.swiper-slide>span').forEach((span, i) => {
-            (document.querySelectorAll('.swiper-slide')[i] as any).style.width =
-              (span as any).offsetWidth + 'px';
+    this.activatedRoute.params
+      .subscribe(p => {
+        this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
+        if (this.subject === undefined) {
+          setTimeout(() => {
+            this.getSubject();
+            return;
+          }, 100);
+        } else {
+          this.getGroup();
+          setTimeout(() => {
+            this.scrollToView();
+            document
+              .querySelectorAll('.swiper-slide>span')
+              .forEach((span, i) => {
+                (document.querySelectorAll('.swiper-slide')[
+                  i
+                ] as any).style.width = (span as any).offsetWidth + 'px';
+              });
           });
-        });
-        console.log('Información de asignatura:', this.subject);
-      }
-    });
+          console.log('Información de asignatura:', this.subject);
+        }
+      })
+      .unsubscribe();
   }
 
   getGroup() {
@@ -76,7 +81,6 @@ export class SubjectComponent implements OnInit {
 
   goTo(group: string, code: string = '1') {
     this.activatedRoute.params
-      // .pipe(take(1))
       .subscribe(p => {
         console.log(code);
 
