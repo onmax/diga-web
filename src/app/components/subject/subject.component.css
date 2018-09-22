@@ -10,16 +10,18 @@
 
 .subject,
 .group {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .subject>div,
-.groups__list {
+.groups__list,
+.group>div {
   margin: 20px;
   font-size: 15px;
 }
+
+
 
 .subject h4,
 .group h4 {
@@ -43,11 +45,11 @@
   padding: 5px 0;
 }
 
-
-.groups__list{
+.groups__list {
   display: flex;
   flex-wrap: wrap;
 }
+
 .groups__list:hover {
   cursor: pointer;
 }

@@ -69,18 +69,13 @@ ul {
 }
 
 .submenu {
-  margin-bottom: 10px;
-  height: 0;
-  visibility: hidden;
-  margin-top: -10px;
-  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.7s all cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .show {
-  height: inherit;
-  visibility: visible;
-  margin-top: 0;
-  opacity: 1;
+  max-height: 80px;
 }
 
 .submenu a li {

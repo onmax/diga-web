@@ -78,6 +78,8 @@ export class SubjectComponent implements OnInit {
     this.activatedRoute.params
       // .pipe(take(1))
       .subscribe(p => {
+        console.log(code);
+
         this.router.navigate([
           'grado',
           p.quarter,
