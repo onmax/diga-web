@@ -25,6 +25,7 @@ import { ExplorarComponent } from './explorar/explorar.component';
 import { GruposIdiComponent } from './grupos-idi/grupos-idi.component';
 import { InnovacionDocenteComponent } from './innovacion-docente/innovacion-docente.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LoadingComponent } from './loading/loading.component';
     ExplorarComponent,
     GruposIdiComponent,
     InnovacionDocenteComponent,
-    LoadingComponent
+    LoadingComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+.err {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3 {
+  font-weight: 400;
+}

@@ -11,6 +11,8 @@ import { ExplorarComponent } from './explorar/explorar.component';
 import { GruposIdiComponent } from './grupos-idi/grupos-idi.component';
 import { InnovacionDocenteComponent } from './innovacion-docente/innovacion-docente.component';
 
+import { ErrorComponent } from './error/error.component';
+
 const routes: Routes = [
   { path: 'innovacion-docente', component: InnovacionDocenteComponent },
   { path: 'grupo-i-d+i', component: GruposIdiComponent },
@@ -23,6 +25,10 @@ const routes: Routes = [
   {
     path: 'grado/:quarter/:type/:subject/:group/:code',
     component: GradoComponent
+  },
+  {
+    path: '**',
+    component: ErrorComponent
   }
 ];
 
