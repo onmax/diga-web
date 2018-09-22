@@ -43,11 +43,11 @@ export class MenuComponent implements OnInit {
     let url = this.router.url;
     url = url.substring(1);
     if (url === 'home') {
-      this.submenuOptions = ['staff', 'teaching', 'research', 'explore'];
+      this.submenuOptions = ['personal', 'teaching', 'research', 'explore'];
     } else if (['grado', 'posgrado', 'memoria'].includes(url)) {
       this.submenuOptions = ['teaching'];
     } else if (['direccion-profesorado'].includes(url)) {
-      this.submenuOptions = ['staff'];
+      this.submenuOptions = ['personal'];
     } else if (['grupo-i-d%2Bi', 'innovacion-docente'].includes(url)) {
       this.submenuOptions = ['research'];
     } else if (['explorar'].includes(url)) {

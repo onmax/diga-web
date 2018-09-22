@@ -6,11 +6,11 @@ import { environment } from '../,,/../../../environments/environment';
 import { Teachers } from '../../models';
 
 @Component({
-  selector: 'app-staff',
-  templateUrl: './staff.component.html',
-  styleUrls: ['./staff.component.css']
+  selector: 'app-personal',
+  templateUrl: './personal.component.html',
+  styleUrls: ['./personal.component.css']
 })
-export class StaffComponent implements OnInit {
+export class personalComponent implements OnInit {
   dir_sec = [
     {
       cargo: 'Director',
