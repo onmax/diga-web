@@ -21,6 +21,8 @@ export class SubjectComponent implements OnInit {
 
   order = ['profesores', 'enlaces', 'avisos'];
 
+  loading: boolean;
+
   constructor(
     private spreadsheetsService: SpreadsheetsService,
     private appService: AppService,
@@ -33,6 +35,7 @@ export class SubjectComponent implements OnInit {
   }
 
   getSubject() {
+    this.loading = true;
     this.activatedRoute.params.subscribe(p => {
       this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
       if (this.subject === undefined) {
@@ -59,6 +62,9 @@ export class SubjectComponent implements OnInit {
       this.subject.subject.spreadsheetId,
       this.subject.group.page
     );
+    setTimeout(() => {
+      this.loading = false;
+    }, 1500);
     console.log('Información del grupo', this.subject.groupMeta);
   }
 

@@ -1,4 +1,5 @@
 <section class="card" id="subjectInfo">
+
   <div *ngIf="subject">
     <h2 class="title" translate>
       teaching.{{subject.subject.name}}
@@ -46,8 +47,9 @@
           <span translate>teaching.{{group.name}}</span></span>
       </div>
     </div>
+    <app-loading *ngIf="loading"></app-loading>
 
-    <div class="group">
+    <div class="group" [ngStyle]="{'opacity': loading ? 0 : 1}">
       <div *ngFor="let object of subject.groupMeta">
         <div>
           <h4>{{object.title}}:</h4>
