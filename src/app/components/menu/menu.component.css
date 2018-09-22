@@ -45,8 +45,8 @@ aside {
   color: #fff;
   line-height: 1.4;
   background-image: linear-gradient(to right,
-    var(--main-black) 0,
-    var(--main-black) 100%);
+    var(--white) 0,
+    var(--white) 100%);
   background-position: 0 17.5px;
   background-size: 0% 100%;
   background-repeat: no-repeat;

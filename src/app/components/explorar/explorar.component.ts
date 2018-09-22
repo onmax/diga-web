@@ -5,7 +5,7 @@ import Swiper from 'swiper';
 @Component({
   selector: 'app-explorar',
   templateUrl: './explorar.component.html',
-  styleUrls: ['../swiper.min.css', './explorar.component.css']
+  styleUrls: ['../../swiper.min.css', './explorar.component.css']
 })
 export class ExplorarComponent implements OnInit {
   constructor() {}

@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SpreadsheetsService } from '../spreadsheets.service';
+import { SpreadsheetsService } from '../../spreadsheets.service';
 
-import { Posgrade } from '../models';
+import { Posgrade } from '../../models';
 
-interface Doctorado {
-  nombre: string;
-  links: object[];
-  textolink: object[];
-}
 @Component({
   selector: 'app-posgrado',
   templateUrl: './posgrado.component.html',

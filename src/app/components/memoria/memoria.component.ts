@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SpreadsheetsService } from '../spreadsheets.service';
+import { SpreadsheetsService } from '../../spreadsheets.service';
 
-import { AllReports, Report } from '../models';
+import { AllReports, Report } from '../../models';
 
 @Component({
   selector: 'app-memoria',
