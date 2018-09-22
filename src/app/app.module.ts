@@ -24,6 +24,7 @@ import { PosgradoComponent } from './posgrado/posgrado.component';
 import { ExplorarComponent } from './explorar/explorar.component';
 import { GruposIdiComponent } from './grupos-idi/grupos-idi.component';
 import { InnovacionDocenteComponent } from './innovacion-docente/innovacion-docente.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { InnovacionDocenteComponent } from './innovacion-docente/innovacion-doce
     PosgradoComponent,
     ExplorarComponent,
     GruposIdiComponent,
-    InnovacionDocenteComponent
+    InnovacionDocenteComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

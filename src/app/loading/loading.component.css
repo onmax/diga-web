@@ -1,0 +1,59 @@
+.dots {
+  display: flex;
+  justify-content: center;
+}
+
+.dots div {
+  --d: 15px;
+  margin: 0 var(--d);
+  background: var(--primary);
+  height: var(--d);
+  width: var(--d);
+  border-radius: 50%;
+  --timing: 1s;
+  transform-origin: calc(var(--d) * 2);
+
+}
+
+.dots div:nth-child(1) {
+  animation: arcTop var(--timing) cubic-bezier(.53, .29, .21, .78) .3s infinite;
+}
+
+
+.dots div:nth-child(2) {
+  animation: arcBottom var(--timing) cubic-bezier(.53, .29, .21, .78) .3s infinite;
+}
+
+.dots div:nth-child(3) {
+  animation: mid var(--timing) cubic-bezier(.53, .29, .21, .78) .3s infinite;
+}
+
+@keyframes arcTop {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes arcBottom {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+@keyframes mid {
+  0% {
+    transform: translate(0)
+  }
+
+  100% {
+    transform: translate(calc(var(--d) * -6));
+  }
+}
