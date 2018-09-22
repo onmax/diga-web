@@ -130,11 +130,26 @@
 }
 
 .card-home__options>a {
-  padding: 15px 0;
-  color: #fff;
   text-decoration: none;
+  color: #fff;
+  padding: 15px 0;
 }
 
-.card-home__options>a:hover {
-  text-decoration: underline;
+.card-home__options>a span {
+  line-height: 1.3;
+  background-image: linear-gradient(to right,
+    var(--white) 0,
+    var(--white) 100%);
+  background-position: 0 1.04em;
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background 0.5s;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.card-home__options>a span:hover {
+  background-size: 100% 100%;
+
 }
