@@ -1,6 +1,8 @@
 <div class="swiper-container" *ngIf="swiperImages">
   <div class="swiper-wrapper">
-    <img *ngFor="let img of swiperImages" src="./assets/home/carousel/{{img}}" alt="" class="swiper-slide">
+    <div class="img-container swiper-slide" *ngFor="let img of swiperImages">
+      <img src="./assets/home/carousel/{{img}}" alt="" class="">
+    </div>
   </div>
   <!-- Add Pagination -->
   <div class="swiper-pagination"></div>

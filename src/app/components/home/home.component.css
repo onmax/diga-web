@@ -1,11 +1,21 @@
 .swiper-container {
   max-width: 500px;
-  height: 254px;
+  height: auto;
   margin-bottom: 25px;
+  max-height: 500px;
 }
 
 .swiper-slide {
-  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  background: #dce1e2;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  max-height: 500px;
+  object-fit: contain;
 }
 
 .swiper-controls {

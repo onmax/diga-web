@@ -13,7 +13,14 @@ import DirectionReveal from 'direction-reveal';
   ]
 })
 export class HomeComponent implements OnInit {
-  swiperImages: string[];
+  swiperImages: string[] = [
+    'picture1.jpg',
+    'picture2.jpg',
+    'picture3.jpg',
+    'picture4.jpg',
+    'picture5.jpg',
+    'picture6.jpg'
+  ];
   fixDirectionReveal = '0';
 
   constructor() {}
@@ -34,6 +41,7 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.fixDirectionReveal = '.3s';
       const swiper = new Swiper('.swiper-container', {
+        autoHeight: true,
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
