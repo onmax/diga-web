@@ -12,11 +12,6 @@ export class AppService {
   screenPX: number;
   currentLang = 'es';
 
-  loadingBar$ = {
-    gradeSubjects: new Subject<number>(),
-    gradeSubject: new Subject<number>()
-  };
-
   constructor(private translateService: TranslateService) {
     this.setWidth();
   }

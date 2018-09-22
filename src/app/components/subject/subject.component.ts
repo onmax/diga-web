@@ -2,10 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { Quarter, SelectedSubject } from '../../models';
-import { take } from 'rxjs/operators';
 import { AppService } from '../../app.service';
-import { Observable, fromEventPattern } from 'rxjs';
-import Swiper from 'swiper';
+import { Observable } from 'rxjs';
 import { _localeFactory } from '@angular/core/src/application_module';
 @Component({
   selector: 'app-subject',
@@ -34,13 +32,6 @@ export class SubjectComponent implements OnInit {
     this.getSubject();
   }
 
-  loadingBar() {
-    this.widthLoadingBar$ = this.appService.loadingBar$.gradeSubject;
-    this.widthLoadingBar$.subscribe(percentage => {
-      this.widthLoadingBar = percentage;
-    });
-  }
-
   getSubject() {
     this.activatedRoute.params.subscribe(p => {
       this.subject = this.spreadsheetsService.getSubject(this.gradeData, p);
@@ -53,9 +44,6 @@ export class SubjectComponent implements OnInit {
         this.getGroup();
         setTimeout(() => {
           this.scrollToView();
-          //const swiper = new Swiper('.groups__list', {
-            //spaceBetween: 5
-          //});
           document.querySelectorAll('.swiper-slide>span').forEach((span, i) => {
             (document.querySelectorAll('.swiper-slide')[i] as any).style.width =
               (span as any).offsetWidth + 'px';

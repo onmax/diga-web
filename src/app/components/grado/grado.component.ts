@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
 import { AppService } from '../../app.service';
@@ -18,9 +17,6 @@ export class GradoComponent implements OnInit {
 
   loading = false;
 
-  widthLoadingBar: number;
-  widthLoadingBar$: Observable<number>;
-
   links: LinkList[];
 
   constructor(
@@ -33,7 +29,6 @@ export class GradoComponent implements OnInit {
   async ngOnInit() {
     const month = new Date().getMonth();
     this.currentQuarter = month === 0 || month >= 8 ? '1' : '2';
-    this.loadingBar();
     await this.fetchLinks();
     await this.fetchData();
   }
@@ -54,14 +49,6 @@ export class GradoComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  loadingBar() {
-    this.widthLoadingBar$ = this.appService.loadingBar$.gradeSubjects;
-    this.widthLoadingBar$.subscribe(percentage => {
-      this.widthLoadingBar =
-        percentage < 25 || percentage === undefined ? 25 : percentage;
-    });
   }
 
   small(): boolean {
