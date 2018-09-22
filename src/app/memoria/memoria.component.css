@@ -34,6 +34,10 @@
 
 }
 
+.report-section {
+  margin-top: 30px;
+}
+
 .table-content .report-section h4 {
   text-transform: uppercase;
   font-size: 12px;
@@ -116,5 +120,10 @@
   h6 {
     margin: 10px 8px;
   }
+}
 
+@media screen and (min-width:992px) {
+  .fix-posgrade {
+    grid-row: end;
+  }
 }

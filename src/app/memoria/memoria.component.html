@@ -20,33 +20,18 @@
         <div *ngIf="row.title !== 'general'" class="report-section">
           <h4>{{row.title}}</h4>
           <div class="grid">
-            <div class="column" *ngFor="let column of row.reports">
-              <div class="column-item" *ngIf="!['titulos_universitarios', 'doctorado'].includes(column.title)">
-                <h6 translate>teaching.{{column.title}}</h6>
-                <div class="list">
-                  <ul>
-                    <li *ngFor="let link of column.column">
-                      <a target="_blank" href="{{link.url}}" translate>teaching.{{link.title}}</a>
-                    <li>
-                  </ul>
-                </div>
+            <div class="column" *ngFor="let column of row.reports" [ngClass]="{'fix-posgrade':['titulos_universitarios', 'doctorado'].includes(column.title)}">
+              <h6 translate>teaching.{{column.title}}</h6>
+              <div class="
+              list">
+                <ul>
+                  <li *ngFor="let link of column.column">
+                    <a target="_blank" href="{{link.url}}" translate>teaching.{{link.title}}</a>
+                  <li>
+                </ul>
               </div>
             </div>
           </div>
-          <div class="grid">
-              <div class="column" *ngFor="let column of row.reports">
-                <div class="column-item" *ngIf="['titulos_universitarios', 'doctorado'].includes(column.title)">
-                  <h6 translate>teaching.{{column.title}}</h6>
-                  <div class="list">
-                    <ul>
-                      <li *ngFor="let link of column.column">
-                        <a target="_blank" href="{{link.url}}" translate>teaching.{{link.title}}</a>
-                      <li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
         </div>
       </div>
     </div>

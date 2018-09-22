@@ -15,6 +15,7 @@ aside {
   aside {
     max-width: inherit;
     width: 80vw;
+    box-shadow: none;
   }
 }
 
