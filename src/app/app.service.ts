@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   providedIn: 'root'
 })
 export class AppService {
-  mobileMenu = false;
+  mobileMenu$ = new BehaviorSubject<boolean>(false);
   screenWidth: string;
   screenPX: number;
   currentLang = 'es';
@@ -15,7 +15,6 @@ export class AppService {
   constructor(private translateService: TranslateService) {
     this.setWidth();
   }
-
   setLang() {
     this.translateService.setDefaultLang(this.currentLang);
   }

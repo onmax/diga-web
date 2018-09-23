@@ -57,10 +57,12 @@ export class MenuComponent implements OnInit {
     }
   }
   isOpen() {
-    return this.appService.mobileMenu;
+    let bool: boolean;
+    this.appService.mobileMenu$.subscribe(b => (bool = b)).unsubscribe();
+    return bool;
   }
   closeMenu() {
-    this.appService.mobileMenu = false;
+    this.appService.mobileMenu$.next(false);
   }
   switchLanguage() {
     this.appService.switchLanguage();

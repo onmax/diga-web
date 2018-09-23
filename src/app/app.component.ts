@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
     this.appService.setWidth();
   }
   isOpen() {
-    return this.appService.mobileMenu;
+    let bool: boolean;
+    this.appService.mobileMenu$.subscribe(b => (bool = b));
+    return bool;
   }
 }

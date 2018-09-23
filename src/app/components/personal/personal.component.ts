@@ -10,7 +10,7 @@ import { Teachers } from '../../models';
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.css']
 })
-export class personalComponent implements OnInit {
+export class PersonalComponent implements OnInit {
   dir_sec = [
     {
       cargo: 'Director',

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
 
+import { take } from 'rxjs/operators';
+import { log } from 'util';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,9 +19,11 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleMobileMenu() {
-    this.appService.mobileMenu = !this.appService.mobileMenu;
+    let bool: boolean;
+    this.appService.mobileMenu$.subscribe(b => (bool = b));
+    this.appService.mobileMenu$.next(!bool);
   }
   closeMenu() {
-    this.appService.mobileMenu = false;
+    this.appService.mobileMenu$.next(false);
   }
 }

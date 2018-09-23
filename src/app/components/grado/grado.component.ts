@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SpreadsheetsService } from '../../spreadsheets.service';
@@ -11,7 +11,7 @@ import { Quarter, LinkList } from '../../models';
   templateUrl: './grado.component.html',
   styleUrls: ['./grado.component.css', './subject-list.css']
 })
-export class GradoComponent implements OnInit, OnDestroy {
+export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
   currentQuarter: string;
 
