@@ -21,9 +21,11 @@
     "quarter": "Quarter",
     "course": "Course",
     "básica": "Basic",
-    "obligatoria_diversificable": "Mandatory Divaaersifiable",
-    "opcional": "Optional",
+    "obligatoria_diversificable": "Mandatory Diversifiable",
+    "optativa": "Optional",
     "intensificacion": "Intensification",
+    "coordinador":"Coordinator",
+    "descripcion": "Desription",
     "tfg": "End of degree project",
     "obligatoria": "Obligatory",
     "gda_1": "GAD 1",
@@ -76,7 +78,7 @@
   "personal": {
     "direccion": "Direction",
     "secretaria": "Secretary",
-    "profesorado": "Faculty",
+    "profesorado": "Teachers",
     "catedraticos": "Professor",
     "titulares": "Associate Professor",
     "titulares_interinos": "Interim Professor",
@@ -85,6 +87,7 @@
     "contratados_doctores": "Senior University Researchers",
     "ayudantes_doctores": "Assistants of Senior University Researchers",
     "asociados": "Associates",
-    "tecnico_laboratorio": "Laboratory Technician"
+    "tecnico_laboratorio": "Laboratory Technician",
+    "enlace": "Link"
   }
 }

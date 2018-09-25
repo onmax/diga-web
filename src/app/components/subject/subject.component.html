@@ -21,13 +21,13 @@
     </h5>
     <div class="subject">
       <div class="" *ngIf="subject.subject.coordinator !== ''">
-        <h4>Coordindador:</h4>
+        <h4><span translate>docencia.coordinador</span>:</h4>
         <p>
           {{subject.subject.coordinator}}
         </p>
       </div>
       <div *ngIf="subject.subject.description !== ''">
-        <h4>Descripción:</h4>
+        <h4><span translate>docencia.descripcion</span>:</h4>
         <p>
           {{subject.subject.description}}
         </p>

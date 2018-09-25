@@ -24,6 +24,8 @@
     "obligatoria_diversificable": "Obligatorias Diversificables",
     "optativa": "Optativas",
     "intensificacion": "Intensificación",
+    "coordinador":"Coordinador",
+    "descripcion": "Descripción",
     "obligatoria": "Obligatoria",
     "gda_1": "GDA 1",
     "gda_2": "GDA 2",
@@ -85,6 +87,7 @@
     "contratados_doctores": "Contratado Doctor",
     "ayudantes_doctores": "Ayudante de Doctor",
     "asociados": "Asociados",
-    "tecnico_laboratorio": "Técnico de laboratorio"
+    "tecnico_laboratorio": "Técnico de laboratorio",
+    "enlace": "Enlace"
   }
 }
