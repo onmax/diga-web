@@ -2,7 +2,7 @@
   <div class="menu-header">
     <div class="menu-header__logo" *ngIf="getWidthStatus() === 'large'"></div>
     <div class="menu-header__links">
-      <a href="http://">
+      <a href="http://etsamadrid.aq.upm.es/">
         <span>
           ETSAM
         </span>
@@ -17,49 +17,49 @@
   <nav>
     <ul class="pages">
       <li>
-        <span class="option" (click)="toggleSubmenu('personal')">Direccion</span>
+        <span class="option" (click)="toggleSubmenu('personal')" translate>direccion</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('personal')}" id="personal">
           <a routerLink="/direccion-profesorado">
-            <li>Direccion</li>
+            <li translate>direccion</li>
           </a>
           <a routerLink="/direccion-profesorado">
-            <li>Secretaria</li>
+            <li translate>secretaria</li>
           </a>
           <a routerLink="/direccion-profesorado">
-            <li>Profesorado</li>
+            <li translate>profesorado</li>
           </a>
         </ul>
       </li>
       <li>
-        <span class="option" (click)="toggleSubmenu('teaching')">Docencia</span>
+        <span class="option" (click)="toggleSubmenu('teaching')" translate>docencia.titulo</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('teaching')}" id="teaching">
           <a routerLink="/grado">
-            <li>Grado</li>
+            <li translate>docencia.grado</li>
           </a>
           <a routerLink="/posgrado">
-            <li>Posgrado</li>
+            <li translate>docencia.posgrado</li>
           </a>
           <a routerLink="/memoria">
-            <li>Memoria</li>
+            <li translate>docencia.report</li>
           </a>
         </ul>
       </li>
       <li>
-        <span class="option" (click)="toggleSubmenu('research')">Investigación</span>
+        <span class="option" (click)="toggleSubmenu('research')" translate>investigacion</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('research')}" id="research">
           <a routerLink="/grupo-i-d+i">
-            <li>I+D+i</li>
+            <li translate>IDi</li>
           </a>
           <a routerLink="/innovacion-docente">
-            <li>Innovación Docente</li>
+            <li translate>innovacion_docente</li>
           </a>
         </ul>
       </li>
       <li>
-        <span class="option" (click)="toggleSubmenu('explore')" translate>explore</span>
+        <span class="option" (click)="toggleSubmenu('explore')" translate>explorar</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('explore')}" id="explore">
           <a routerLink="/explorar">
-            <li>Noticias. Eventos</li>
+            <li translate>noticias_eventos</li>
           </a>
         </ul>
       </li>
