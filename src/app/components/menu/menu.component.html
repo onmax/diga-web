@@ -19,13 +19,13 @@
       <li>
         <span class="option" (click)="toggleSubmenu('personal')" translate>direccion</span>
         <ul class="submenu" [ngClass]="{'show':submenuOptions.includes('personal')}" id="personal">
-          <a routerLink="/direccion-profesorado">
+          <a routerLink="/direccion-profesorado/direccion">
             <li translate>direccion</li>
           </a>
-          <a routerLink="/direccion-profesorado">
+          <a routerLink="/direccion-profesorado/secretaria">
             <li translate>secretaria</li>
           </a>
-          <a routerLink="/direccion-profesorado">
+          <a routerLink="/direccion-profesorado/profesorado">
             <li translate>profesorado</li>
           </a>
         </ul>

@@ -9,7 +9,7 @@ import { Quarter, LinkList } from '../../models';
 @Component({
   selector: 'app-grado',
   templateUrl: './grado.component.html',
-  styleUrls: ['./grado.component.css', './subject-list.css']
+  styleUrls: ['./grado.component.css']
 })
 export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];

@@ -18,7 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GradoComponent } from './components/grado/grado.component';
 import { SubjectComponent } from './components/subject/subject.component';
-import { personalComponent } from './components/personal/personal.component';
+import { PersonalComponent } from './components/personal/personal.component';
 import { MemoriaComponent } from './components/memoria/memoria.component';
 import { PosgradoComponent } from './components/posgrado/posgrado.component';
 import { ExplorarComponent } from './components/explorar/explorar.component';
@@ -36,7 +36,7 @@ import { ErrorComponent } from './components/error/error.component';
     HomeComponent,
     GradoComponent,
     SubjectComponent,
-    personalComponent,
+    PersonalComponent,
     MemoriaComponent,
     PosgradoComponent,
     ExplorarComponent,
