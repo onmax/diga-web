@@ -31,7 +31,10 @@ export class SubjectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getSubject();
+    this.activatedRoute.params
+      .subscribe(p => {
+        this.getSubject();
+      });
   }
 
   getSubject() {
@@ -82,8 +85,6 @@ export class SubjectComponent implements OnInit {
   goTo(group: string, code: string = '1') {
     this.activatedRoute.params
       .subscribe(p => {
-        console.log(code);
-
         this.router.navigate([
           'grado',
           p.quarter,

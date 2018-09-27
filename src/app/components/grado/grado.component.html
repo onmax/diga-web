@@ -49,7 +49,7 @@
                 </div>
                 <div class="table-content__subjects-groups">
                   <div *ngFor="let group of subject.groups" [ngClass]="{'show-group-code': group.code !== '','not-show-group-code': group.code === ''}"
-                    (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, group.code )">
+                    (click)="selectSubject(quarter.quarter,type.type, subject.name, group.name, group.code)">
                     <span class="table-content__subject-code" *ngIf="group.code !== '' && subject.name !== 'tfg'">
                       {{group.code}}
                     </span>
