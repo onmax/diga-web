@@ -1,5 +1,5 @@
 <main>
-  <section style="padding: 50px;">
+  <section style="padding: 50px;" id="direccion">
     <h2 class="title">
       <span translate>personal.direccion</span>
     </h2>
@@ -13,7 +13,7 @@
     </div>
   </section>
 
-  <section style="padding: 50px;">
+  <section style="padding: 50px;" id="secretaria">
 
     <h2 class="title">
       <span translate>personal.secretaria</span>
@@ -37,7 +37,7 @@
     </div>
   </section>
 
-  <section style="padding: 50px;">
+  <section style="padding: 50px;" id="profesorado">
 
     <h2 class="title">
       <span translate>personal.profesorado</span>
@@ -50,7 +50,7 @@
             <img class="img" src="./assets/personal/{{teacher.imagen}}" alt="">
             <div class="info-profesor">
               <div class="nombre" (click)="showCV($event)">{{teacher.apellidos}}, {{teacher.nombre}}</div>
-              <div class="info-hidden cv-profesor" id="{{teacher.id}}-ref"> {{teacher.curriculum}}</div>
+              <div class="info-hidden cv-profesor"> {{teacher.curriculum}}</div>
               <div class="correo">
                 <a class="mailto-profesor" href="mailto:{{teacher.correo}}">
                   <input readonly="readonly" class="input-email" value={{teacher.correo}}>
@@ -60,11 +60,11 @@
               <div class="more-info">
                 <div class="more-info-btns">
                   <a href="http://{{teacher.link}}">
-                    <div class="enlace" translate>enlace</div>
+                    <div class="enlace" translate>personal.enlace</div>
                   </a>
-                  <div class="btn-docencia" (click)="showClasses($event)" translate>docencia</div>
+                  <div class="btn-docencia" (click)="showClasses($event)" translate>docencia.titulo</div>
                 </div>
-                <div class="hidden-info" id="{{teacher.id}}-doc">
+                <div class="hidden-info">
                   <ul class="classes-list">
                     <li *ngFor="let clase of teacher.docenteEn">{{clase}}</li>
                   </ul>

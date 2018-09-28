@@ -1,6 +1,6 @@
 <section class="card">
   <h2 class="title">
-    <span translate>teaching.report</span>
+    <span translate>docencia.report</span>
   </h2>
   <div class="table-header">
     <div class="table-header__option" *ngFor="let item of reportData; let i = index" [ngClass]="{'selected': currentSelected === i}"
@@ -14,19 +14,19 @@
       <div *ngFor="let row of type.content">
         <div *ngIf="row.title === 'general'" class="general-report">
           <h4 translate>
-            teaching.{{row.reports[0].title}}
+            docencia.{{row.reports[0].title}}
           </h4>
         </div>
         <div *ngIf="row.title !== 'general'" class="report-section">
           <h4>{{row.title}}</h4>
           <div class="grid">
             <div class="column" *ngFor="let column of row.reports" [ngClass]="{'fix-posgrade':['titulos_universitarios', 'doctorado'].includes(column.title)}">
-              <h6 translate>teaching.{{column.title}}</h6>
+              <h6 translate>docencia.{{column.title}}</h6>
               <div class="
               list">
                 <ul>
                   <li *ngFor="let link of column.column">
-                    <a target="_blank" href="{{link.url}}" translate>teaching.{{link.title}}</a>
+                    <a target="_blank" href="{{link.url}}" translate>docencia.{{link.title}}</a>
                   <li>
                 </ul>
               </div>

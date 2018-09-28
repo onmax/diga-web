@@ -21,7 +21,11 @@ const routes: Routes = [
   { path: 'memoria', component: MemoriaComponent },
   { path: '', component: HomeComponent },
   { path: 'grado', component: GradoComponent },
+<<<<<<< HEAD
   { path: 'direccion-profesorado', component: PersonalComponent },
+=======
+  { path: 'direccion-profesorado/:section', component: PersonalComponent },
+>>>>>>> 060cfb0fcdd9f079474e9ebd68dca26b6f4ccc0e
   {
     path: 'grado/:quarter/:type/:subject/:group/:code',
     component: GradoComponent

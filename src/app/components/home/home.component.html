@@ -7,11 +7,21 @@
   <!-- Add Pagination -->
   <div class="swiper-pagination"></div>
   <!-- Add Arrows -->
+<<<<<<< HEAD
   <div class="swiper-button-next">
     <i class="material-icons">keyboard_arrow_right</i>
   </div>
   <div class="swiper-button-prev">
     <i class="material-icons">keyboard_arrow_left</i>
+=======
+  <div class="swiper-controls">
+    <div class="swiper-button-next">
+      <i class="material-icons">keyboard_arrow_right</i>
+    </div>
+    <div class="swiper-button-prev">
+      <i class="material-icons">keyboard_arrow_left</i>
+    </div>
+>>>>>>> 060cfb0fcdd9f079474e9ebd68dca26b6f4ccc0e
   </div>
 </div>
 
@@ -26,35 +36,35 @@
 <div class="cards-home">
   <a href="#" class="card-home">
     <img src="./assets/home/cards/personal.jpg" alt="Image" class="img-fluid">
-    <h3 class="card-home__title">Direccion</h3>
+    <h3 class="card-home__title" translate>direccion</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
       <div class="card-home__options">
-        <a routerLink="/direccion-profesorado">
-          <span>Dirección</span>
+        <a routerLink="/direccion-profesorado/direccion">
+          <span translate>direccion</span>
         </a>
-        <a routerLink="/direccion-profesorado">
-          <span>Secretaría</span>
+        <a routerLink="/direccion-profesorado/secretaria">
+          <span translate>secretaria</span>
         </a>
-        <a routerLink="/direccion-profesorado">
-          <span>Profesorado</span>
+        <a routerLink="/direccion-profesorado/profesorado">
+          <span translate>profesorado</span>
         </a>
       </div>
     </div>
   </a>
 
   <a href="#" class="card-home">
-    <img src="./assets/home/cards/teaching.png" alt="Image" class="img-fluid">
-    <h3 class="card-home__title">Docencia</h3>
+    <img src="./assets/home/cards/docencia.png" alt="Image" class="img-fluid">
+    <h3 class="card-home__title" translate>docencia.titulo</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
       <div class="card-home__options">
         <a routerLink="/grado">
-          <span>Grado</span>
+          <span translate>docencia.grado</span>
         </a>
         <a routerLink="/posgrado">
-          <span>Posgrado</span>
+          <span translate>docencia.posgrado</span>
         </a>
         <a routerLink="/memoria">
-          <span>Memoria</span>
+          <span translate>docencia.report</span>
         </a>
       </div>
     </div>
@@ -62,14 +72,14 @@
 
   <a href="#" class="card-home">
     <img src="./assets/home/cards/research.png" alt="Image" class="img-fluid">
-    <h3 class="card-home__title">Investigación</h3>
+    <h3 class="card-home__title" translate>investigacion</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
       <div class="card-home__options">
         <a routerLink="/grupo-i-d+i">
-          <span>i+D+i</span>
+          <span translate>IDi</span>
         </a>
         <a routerLink="/innovacion-docente">
-          <span>Innovación Docente</span>
+          <span translate>innovacion_docente</span>
         </a>
       </div>
     </div>
@@ -77,11 +87,11 @@
 
   <a href="#" class="card-home">
     <img src="./assets/home/cards/explore.jpg" alt="Image" class="img-fluid">
-    <h3 class="card-home__title">Explorar</h3>
+    <h3 class="card-home__title" translate>explorar</h3>
     <div class="card-home__overlay card-home__anim--in" [ngStyle]="{'animation-duration': fixDirectionReveal}">
       <div class="card-home__options">
         <a routerLink="/explorar">
-          <span>Noticas. Eventos</span>
+          <span translate>noticias_eventos</span>
         </a>
       </div>
     </div>

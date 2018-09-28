@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { BehaviorSubject } from 'rxjs';
+=======
+>>>>>>> 060cfb0fcdd9f079474e9ebd68dca26b6f4ccc0e
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -30,6 +33,7 @@ export class AppService {
     }
     console.log(this.translateService);
   }
+
 
   setWidth() {
     this.screenPX = window.innerWidth;

@@ -2,12 +2,12 @@
 
   <div *ngIf="subject">
     <h2 class="title" translate>
-      teaching.{{subject.subject.name}}
+      docencia.{{subject.subject.name}}
     </h2>
     <h5 class="subtitle">
       Asignaturas&nbsp;
       <span translate>
-        teaching.{{subject.type}}
+        docencia.{{subject.type}}
       </span>
       -
       <span>
@@ -21,13 +21,13 @@
     </h5>
     <div class="subject">
       <div class="" *ngIf="subject.subject.coordinator !== ''">
-        <h4>Coordindador:</h4>
+        <h4><span translate>docencia.coordinador</span>:</h4>
         <p>
           {{subject.subject.coordinator}}
         </p>
       </div>
       <div *ngIf="subject.subject.description !== ''">
-        <h4>Descripción:</h4>
+        <h4><span translate>docencia.descripcion</span>:</h4>
         <p>
           {{subject.subject.description}}
         </p>
@@ -41,10 +41,10 @@
     <div class="groups__list">
       <div *ngFor="let group of subject.subject.groups" [ngClass]="{'active':subject.group.name === group.name && subject.group.code === group.code}">
         <span (click)="goTo('grupo_' + group.name)" *ngIf="['básica', 'intensificacion'].includes(subject.type)">
-          <span translate>teaching.group</span> {{group.name | uppercase}}
+          <span translate>docencia.group</span> {{group.name | uppercase}}
         </span>
         <span (click)="goTo(group.name, group.code)" *ngIf="!['básica', 'intensificacion'].includes(subject.type)">{{group.code}}.
-          <span translate>teaching.{{group.name}}</span></span>
+          <span translate>docencia.{{group.name}}</span></span>
       </div>
     </div>
     <app-loading *ngIf="loading"></app-loading>

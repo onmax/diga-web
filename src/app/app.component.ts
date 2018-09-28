@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AppService } from './app.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.appService.setLang();
   }
+
   setWidth() {
     this.appService.setWidth();
   }

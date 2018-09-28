@@ -9,7 +9,7 @@ import { Quarter, LinkList } from '../../models';
 @Component({
   selector: 'app-grado',
   templateUrl: './grado.component.html',
-  styleUrls: ['./grado.component.css', './subject-list.css']
+  styleUrls: ['./grado.component.css']
 })
 export class GradoComponent implements OnInit {
   gradeData: Quarter[] = [];
@@ -74,7 +74,6 @@ export class GradoComponent implements OnInit {
     if (['básica', 'intensificacion'].includes(type)) {
       group = `grupo_${group}`;
     }
-
     this.router.navigate([
       'grado',
       `cuatrimestre_${quarter}`,
@@ -83,7 +82,7 @@ export class GradoComponent implements OnInit {
       group,
       code
     ]);
-  }
+    }
 
   showSubject() {
     let show;

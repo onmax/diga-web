@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 import { environment } from '../,,/../../../environments/environment';
 
@@ -14,7 +15,7 @@ export class PersonalComponent implements OnInit {
   dir_sec = [
     {
       cargo: 'Director',
-      nombreCompleto: 'Raposo Grau, Javier',
+      nombreCompleto: 'Raposo Grau, Javier Francisco',
       imagen: ''
     },
     {
@@ -41,11 +42,15 @@ export class PersonalComponent implements OnInit {
   tecnico_laboratorio: Teachers;
   fullList: Teachers[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.fetchInfo();
     console.log(this.fullList);
+    this.activatedRoute.params.subscribe(p => {
+      const section = document.getElementById(p.section);
+      window.scroll(0, section.offsetTop);
+    });
   }
   async fetchInfo() {
     this.catedraticos = await this.teachers('catedraticos', 1);
