@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit {
           clickable: true
         },
         navigation: {
-          nextEl: '.swiper-next',
-          prevEl: '.swiper-prev'
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         }
       });
     }, 300);

@@ -20,6 +20,7 @@ export class AppService {
   }
 
   switchLanguage() {
+    console.log(this.translateService);
     if (this.currentLang === 'es') {
       this.currentLang = 'en';
       this.translateService.use('en');
@@ -27,6 +28,7 @@ export class AppService {
       this.currentLang = 'es';
       this.translateService.use('es');
     }
+    console.log(this.translateService);
   }
 
   setWidth() {

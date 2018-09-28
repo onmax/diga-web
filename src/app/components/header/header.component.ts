@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../../app.service';
-
-import { take } from 'rxjs/operators';
-import { log } from 'util';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +8,16 @@ import { log } from 'util';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private appService: AppService) {}
+  url: string;
+  constructor(private appService: AppService, private router: Router) {
+    this.url = this.router.url;
+    this.router.events.subscribe(path => {
+      if (path instanceof NavigationStart) {
+        this.url = path.url;
+        console.log(this.url !== '/');
+      }
+    });
+  }
 
   ngOnInit() {}
 
