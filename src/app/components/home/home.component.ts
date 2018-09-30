@@ -52,11 +52,7 @@ export class HomeComponent implements OnInit {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
-<<<<<<< HEAD
         }
-=======
-        },
->>>>>>> 060cfb0fcdd9f079474e9ebd68dca26b6f4ccc0e
       });
     }, 300);
   }

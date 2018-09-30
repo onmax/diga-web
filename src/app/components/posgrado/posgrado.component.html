@@ -4,13 +4,13 @@
   </h2>
 
   <div class="table-header">
-    <div class="table-header__option" *ngFor="let item of posgradoData" [ngClass]="{'selected': item.title == currentSelected}"
+    <div class="table-header__option" *ngFor="let item of posgradeData" [ngClass]="{'selected': item.title == currentSelected}"
       (click)="currentSelected = item.title">
       <span translate>docencia.{{item.title}}</span>
     </div>
   </div>
 
-  <div class="table-content" *ngFor="let type of posgradoData">
+  <div class="table-content" *ngFor="let type of posgradeData">
     <div *ngIf="currentSelected === type.title">
       <div class="options" *ngFor="let studies of type.studies">
         <h6 translate>docencia.{{studies.title}}</h6>

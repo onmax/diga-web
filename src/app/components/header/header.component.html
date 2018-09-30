@@ -1,7 +1,7 @@
 <header *ngIf="getWidthStatus() === 'large'" class="pc">
   <a routerLink="/">
-    <h1 [ngClass]="{'underline': this.url !== '/'}">
-      <span translate>diga</span>
+    <h1>
+      <span [ngClass]="{'underline': this.url !== '/'}" translate>diga</span>
     </h1>
   </a>
 </header>
