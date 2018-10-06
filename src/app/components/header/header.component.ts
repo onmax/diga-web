@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe(path => {
       if (path instanceof NavigationStart) {
         this.url = path.url;
-        console.log(this.url !== '/');
       }
     });
   }

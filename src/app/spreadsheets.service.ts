@@ -318,10 +318,6 @@ export class SpreadsheetsService {
             };
             reportYear.push(type);
           } else {
-            column.push({
-              title: row.gsx$asignatura.$t.trim(),
-              url: row.gsx$url.$t.trim()
-            });
             if (
               row.gsx$tipo.$t.trim() !== lastType ||
               data.length - 1 === index
@@ -355,6 +351,10 @@ export class SpreadsheetsService {
               }
               column = [];
             }
+            column.push({
+              title: row.gsx$asignatura.$t.trim(),
+              url: row.gsx$url.$t.trim()
+            });
           }
         });
         arr.push({
@@ -372,11 +372,13 @@ export class SpreadsheetsService {
                 }
               });
             }
+            /*
             t.reports.map(r => {
               if (r.column !== undefined) {
                 r.column.sort((a, b) => (a.title < b.title ? 1 : -1));
               }
             });
+            */
           })
         );
       });
