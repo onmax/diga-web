@@ -21,7 +21,8 @@
           <h4>{{row.title}}</h4>
           <div class="grid">
             <div class="column" *ngFor="let column of row.reports" [ngClass]="{'fix-posgrade':['titulos_universitarios', 'doctorado'].includes(column.title)}">
-              <h6 translate>docencia.{{column.title}}</h6>
+              <h6 *ngIf="column.title === 'intensificacion'" translate>docencia.optativa</h6>
+              <h6 *ngIf="column.title !== 'intensificacion'" translate>docencia.{{column.title}}</h6>
               <div class="
               list">
                 <ul>
