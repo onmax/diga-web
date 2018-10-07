@@ -299,13 +299,15 @@ export class SpreadsheetsService {
 
         let type: ReportArray = { title: '', reports: [] },
           lastType: string,
+          reports: Report[] = [],
           column: ReportColumn[] = [],
-          reports: Report[],
           lastColumn: string;
 
         data = data.feed.entry;
+        lastColumn = data[1].gsx$columna.$t.trim();
+        lastType = data[1].gsx$tipo.$t.trim();
 
-        data.map((row, index) => {
+        data.map((row, i) => {
           if (row.gsx$tipo.$t.trim() === 'general') {
             type = {
               title: row.gsx$tipo.$t.trim(),
@@ -318,43 +320,39 @@ export class SpreadsheetsService {
             };
             reportYear.push(type);
           } else {
-            if (
-              row.gsx$tipo.$t.trim() !== lastType ||
-              data.length - 1 === index
-            ) {
-              if (data.length - 1 === index) {
-                reports[reports.length - 1].column.push({
-                  title: row.gsx$asignatura.$t.trim(),
-                  url: row.gsx$url.$t.trim()
-                });
-              }
-              if (reports !== undefined) {
-                type = {
-                  title: lastType,
-                  reports
-                };
-                reportYear.push(type);
-              }
-              reports = [];
+            if (row.gsx$tipo.$t.trim() !== lastType) {
+              type = {
+                reports,
+                title: lastType
+              };
+              reportYear.push(type);
               lastType = row.gsx$tipo.$t.trim();
+              reports = [];
             }
-            if (
-              row.gsx$columna.$t.trim() !== lastColumn ||
-              data.length - 1 === index
-            ) {
+            if (row.gsx$columna.$t.trim() !== lastColumn) {
+              reports.push({
+                title: lastColumn,
+                column
+              });
               lastColumn = row.gsx$columna.$t.trim();
-              if (column.length > 0) {
-                reports.push({
-                  title: row.gsx$columna.$t.trim(),
-                  column
-                });
-              }
               column = [];
             }
             column.push({
               title: row.gsx$asignatura.$t.trim(),
-              url: row.gsx$url.$t.trim()
+              url: row.gsx$url.$t.trim(),
+              code: row.gsx$code.$t.trim()
             });
+            if (i === data.length - 1) {
+              reports.push({
+                title: lastColumn,
+                column
+              });
+              type = {
+                reports,
+                title: lastType
+              };
+              reportYear.push(type);
+            }
           }
         });
         arr.push({

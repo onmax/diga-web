@@ -101,4 +101,5 @@ export interface Report {
 export interface ReportColumn {
   title: string;
   url: LinkList[];
+  code: string;
 }
