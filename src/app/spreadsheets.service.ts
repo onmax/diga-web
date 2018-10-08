@@ -321,6 +321,12 @@ export class SpreadsheetsService {
             reportYear.push(type);
           } else {
             if (row.gsx$tipo.$t.trim() !== lastType) {
+              reports.push({
+                title: lastColumn,
+                column
+              });
+              lastColumn = row.gsx$columna.$t.trim();
+              column = [];
               type = {
                 reports,
                 title: lastType
@@ -328,14 +334,15 @@ export class SpreadsheetsService {
               reportYear.push(type);
               lastType = row.gsx$tipo.$t.trim();
               reports = [];
-            }
-            if (row.gsx$columna.$t.trim() !== lastColumn) {
-              reports.push({
-                title: lastColumn,
-                column
-              });
-              lastColumn = row.gsx$columna.$t.trim();
-              column = [];
+            } else {
+              if (row.gsx$columna.$t.trim() !== lastColumn) {
+                reports.push({
+                  title: lastColumn,
+                  column
+                });
+                lastColumn = row.gsx$columna.$t.trim();
+                column = [];
+              }
             }
             column.push({
               title: row.gsx$asignatura.$t.trim(),
