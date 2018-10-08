@@ -371,9 +371,9 @@ export class SpreadsheetsService {
           y.content.map(t => {
             if (t.title === 'posgrado') {
               t.reports.map((p, index) => {
-                if (['titulos_universitarios', 'doctorado'].includes(p.title)) {
+                if (['masteres_universitarios', 'doctorado'].includes(p.title)) {
                   t.reports.splice(index, 1);
-                  t.reports.push(p);
+                  t.reports.unshift(p);
                 }
               });
             }
