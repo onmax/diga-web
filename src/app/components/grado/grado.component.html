@@ -24,14 +24,14 @@
     <div class="table-header">
       <div class="table-header__option" *ngFor="let quarter of gradeData" [ngClass]="{'selected': quarter.quarter == currentQuarter}"
         (click)="currentQuarter = quarter.quarter">
-        {{quarter.quarter}} º<span translate>docencia.quarter</span>
+        {{quarter.quarter}}º <span translate>docencia.quarter</span>
       </div>
     </div>
     <div *ngFor="let quarter of gradeData">
       <div class="table-content" *ngIf="currentQuarter === quarter.quarter">
         <div class="table-content__type" *ngFor="let type of quarter.types">
           <div>
-            <span class="course">{{type.course}}º <span translate>docencia.course</span></span>
+            <span class="course">{{type.course}}º <span translate>docencia.year</span></span>
             <span *ngIf="small()"><br></span>
             <span *ngIf="!small()"> - </span>
             <span translate>docencia.{{type.type}}</span>

@@ -13,12 +13,7 @@
   margin-bottom: 4px;
 }
 
-.info-group {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.info-group p {
-  margin-bottom: 0;
+.group-name a {
+  color: inherit;
+  font-weight: 400;
 }

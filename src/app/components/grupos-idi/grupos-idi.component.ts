@@ -11,17 +11,18 @@ export class GruposIdiComponent implements OnInit {
     this.idGroups = [
       {
         nombre: 'Grupo 1',
-        integrantes: ['Persona 1', 'Person2'],
+        enlace: { href: '', texto: 'Enlace 1' },
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
         nombre: 'Grupo 2',
+        enlace: { href: '', texto: 'Enlace 2' },
         integrantes: ['Persona 3', 'Persona 4'],
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
         nombre: 'Grupo i+d 3',
-        integrantes: ['Persona 3', 'Persona 4'],
+        enlace: { href: '', texto: 'Enlace 3' },
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       }
     ];

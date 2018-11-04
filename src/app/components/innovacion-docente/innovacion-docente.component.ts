@@ -11,12 +11,13 @@ export class InnovacionDocenteComponent implements OnInit {
     this.idGroups = [
       {
         nombre: 'Grupo 1',
+        enlace: { href: '', texto: 'Enlace 1' },
         integrantes: ['Persona 1', 'Person2'],
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
         nombre: 'Grupo 1',
-        integrantes: ['Persona 3', 'Persona 4'],
+        enlace: { href: '', texto: 'Enlace 2' },
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       }
     ];

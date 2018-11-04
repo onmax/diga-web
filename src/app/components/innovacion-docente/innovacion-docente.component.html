@@ -3,9 +3,6 @@
 </h2>
 <section class="groups" style="padding:10px 50px;">
   <div *ngFor="let group of idGroups">
-    <h3 class="group-name">{{group.nombre}}</h3>
-    <div class="info-group">
-      <p *ngFor="let item of group.integrantes">{{item}}</p>
-    </div>
+    <h3 class="group-name">{{group.nombre}} - <a href="{{group.enlace.href}}">{{group.enlace.texto}}</a></h3>
   </div>
 </section>
