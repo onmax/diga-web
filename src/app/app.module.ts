@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 
 // Routing
 import { RoutingModule } from './routing.module';
@@ -49,7 +48,7 @@ import { ErrorComponent } from './components/error/error.component';
     BrowserModule,
     RoutingModule,
     HttpClientModule,
-    HttpModule,
+    // HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
