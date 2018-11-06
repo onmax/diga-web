@@ -17,7 +17,6 @@ export class GruposIdiComponent implements OnInit {
       {
         nombre: 'Grupo 2',
         enlace: { href: '', texto: 'Enlace 2' },
-        integrantes: ['Persona 3', 'Persona 4'],
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
