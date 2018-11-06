@@ -20,7 +20,7 @@ export class GruposIdiComponent implements OnInit {
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
-        nombre: 'Grupo i+d 3',
+        nombre: 'Grupo 3',
         enlace: { href: '', texto: 'Enlace 3' },
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       }

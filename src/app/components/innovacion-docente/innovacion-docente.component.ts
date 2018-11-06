@@ -16,7 +16,7 @@ export class InnovacionDocenteComponent implements OnInit {
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       },
       {
-        nombre: 'Grupo 1',
+        nombre: 'Grupo 2',
         enlace: { href: '', texto: 'Enlace 2' },
         img: ['./assets/acreditacioninternacional.jpg', 'CarruselMasterok.jpg']
       }
