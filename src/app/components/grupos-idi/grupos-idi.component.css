@@ -1,3 +1,6 @@
+h2.title span{
+  text-transform: initial;
+}
 .groups {
   margin-top: 20px;
   display: grid;
