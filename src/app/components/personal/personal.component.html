@@ -47,7 +47,7 @@
       <div class="container-teachers">
         <div class="profesor" *ngFor="let teacher of teachers.teachers">
           <div class="display-info">
-            <img class="img" src="./assets/personal/{{teacher.imagen}}" alt="">
+            <img class="img" src="https://drive.google.com/uc?id={{teacher.imagen}}" alt="">
             <div class="info-profesor">
               <div class="nombre" (click)="showCV($event)">{{teacher.apellidos}}, {{teacher.nombre}}</div>
               <div class="info-hidden cv-profesor"> {{teacher.curriculum}}</div>
