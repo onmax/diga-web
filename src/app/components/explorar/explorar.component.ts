@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import Swiper from 'swiper';
+import { SpreadsheetsService } from "../../spreadsheets.service";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-explorar',
@@ -8,10 +9,23 @@ import Swiper from 'swiper';
   styleUrls: ['../../swiper.min.css', './explorar.component.css']
 })
 export class ExplorarComponent implements OnInit {
-  constructor() {}
+  items = [];
+  constructor(private spreadsheetsService: SpreadsheetsService) {}
 
   ngOnInit() {
     this.initSwiper();
+    this.spreadsheetsService.getJSON(environment.spreadsheets.explore).subscribe(res => {
+      res.feed.entry.map(row => {
+        this.items.push(
+          {
+            title: row.gsx$titulo.$t,
+            description: row.gsx$descripcion.$t,
+            img: row.gsx$imagen.$t,
+            url: row.gsx$link.$t
+          }
+        );
+      });
+    });
   }
   initSwiper() {
     const swiper = new Swiper('.swiper-container', {

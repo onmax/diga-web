@@ -4,39 +4,16 @@
   </h2>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <div class="img">
-            <img src="./assets/explorar/morales.jpg" alt="">
-          </div>
-          <div class="text">
-            <h5>Cuando las ovejas campaban por la catedral</h5>
-            <p>Reportaje a Manuel Morales
-              <br>
-              <a href="https://elpais.com/cultura/2019/01/13/actualidad/1547406654_853256.html?id_externo_rsoc=whatsapp">Enlace</a></p>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="img">
-            <img src="./assets/explorar/img (2).jpg" alt="">
-          </div>
-          <div class="text">
-            <h5>Exposición. LinaBoBardi.</h5>
-            <p>Fundación, Juan March, Madrid. <br />
-              Comisaria y diseño del montaje: Mara Sánchez Llorens.
-              <br>
-              <a href="https://www.march.es/arte/madrid/exposiciones/lina-bo-bardi/">Enlace</a></p>
-          </div>
-        </div>
-      <div class="swiper-slide">
+      <div class="swiper-slide" *ngFor="let item of items">
         <div class="img">
-          <img src="./assets/explorar/img (3).jpg" alt="">
+          <img src="https://drive.google.com/uc?id={{item.img}}" alt="">
         </div>
         <div class="text">
-          <h5>Exposición. Beatos, Mecachis y Percebes.</h5>
-          <p>Biblioteca Nacional, Madrid.<br />
-            Comisario: Enrique Bordes.
+          <h5>{{item.title}}</h5>
+          <p>
+            {{item.decription}}
             <br>
-            <a href="http://www.bne.es/es/Actividades/Exposiciones/Exposiciones/Exposiciones2018/beatos_mecachis_y_percebes.html">Enlace</a></p>
+            <a href="{{item.url}}">Enlace</a></p>
         </div>
       </div>
     </div>

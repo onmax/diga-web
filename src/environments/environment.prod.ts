@@ -9,6 +9,7 @@ export const environment = {
     posgrade: {
       subjects: '12sfy79wCfcfQpOTYxw6d17Ewqe7IlSL3RWKpVDVoVHk'
     },
-    reports: '1rqE_8CLNvzlDQgI5sJacjzqB2-jyVzwrUbJlpIFzYc0'
+    reports: '1rqE_8CLNvzlDQgI5sJacjzqB2-jyVzwrUbJlpIFzYc0',
+    explore: '1-nJuTk7yboQAPuGQhwEgAjcVzeHUf_ytysmwUrjKhVE'
   }
 };
